@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="1dc1b14f-1515-48f6-a732-e5fa3fc03463" name="Changes" comment="" />
+=======
+    <list default="true" id="1dc1b14f-1515-48f6-a732-e5fa3fc03463" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+>>>>>>> main
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +30,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
+<<<<<<< HEAD
+=======
+    "last_opened_file_path": "C:/Users/SMHRD/Desktop/GMORE/Gmore",
+>>>>>>> main
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
 }]]></component>
