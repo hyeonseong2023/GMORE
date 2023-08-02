@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +32,7 @@ class GameCategoryActivity : AppCompatActivity() {
     lateinit var rv: RecyclerView
     lateinit var tvCategoryName: TextView
     val boardList = ArrayList<BoardCategoryVO>()
+    lateinit var btnWriteNext : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +40,15 @@ class GameCategoryActivity : AppCompatActivity() {
 
         rv = this.findViewById(R.id.rvCategoryList1)
         tvCategoryName = this.findViewById(R.id.tvCategoryListName1)
+        btnWriteNext = this.findViewById(R.id.btnNextWrite)
 
         reqQueue = Volley.newRequestQueue(this@GameCategoryActivity)
+
+        btnWriteNext.setOnClickListener {
+            var intent = Intent(this, BoardEditActivity::class.java)
+            intent.putExtra("buttonText", tvCategoryName.text.toString())
+            startActivity(intent)
+        }
 
         val category = intent.getStringExtra("buttonText")
 
