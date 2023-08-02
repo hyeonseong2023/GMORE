@@ -253,6 +253,10 @@ attr circularflow_defaultAngle
 attr circularflow_defaultRadius
 attr circularflow_radiusInDP
 attr circularflow_viewCenter
+attr civ_border_color
+attr civ_border_overlay
+attr civ_border_width
+attr civ_circle_background_color
 attr clearsTag
 attr clickAction
 attr clockFaceBackgroundColor
@@ -2445,6 +2449,8 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable hartoff
+drawable harton
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
@@ -2456,6 +2462,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable icon_like_off
 drawable m3_appbar_background
 drawable m3_popupmenu_background_overlay
 drawable m3_radiobutton_ripple
@@ -2594,6 +2601,8 @@ id beginOnFirstDraw
 id beginning
 id bestChoice
 id blocking
+id boardBookmark
+id boardLike
 id bottom
 id bounce
 id bounceBoth
@@ -2673,6 +2682,7 @@ id easeIn
 id easeInOut
 id easeOut
 id east
+id editTextText
 id edit_query
 id elastic
 id end
@@ -2703,6 +2713,12 @@ id group_divider
 id grouping
 id groups
 id guideline
+id guideline2
+id guideline3
+id guidelineEnd
+id guidelineHorizontalBottom
+id guidelineHorizontalTop
+id guidelineStart
 id header_title
 id hideable
 id home
@@ -2722,6 +2738,8 @@ id invisible
 id inward
 id italic
 id item_touch_helper_previous_elevation
+id ivBoardImage
+id ivInputAdd
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -2840,6 +2858,7 @@ id right_icon
 id right_side
 id rounded
 id row_index_key
+id rvComments
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -2901,6 +2920,7 @@ id stretch
 id submenuarrow
 id submit_area
 id supportScrollUp
+id svBoardContent
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -2951,6 +2971,13 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvBoardContent
+id tvBoardDate
+id tvBoardTitle
+id tvBoardWriter
+id tvCommentContent
+id tvCommentDate
+id tvCommentNickname
 id unchecked
 id uniform
 id unlabeled
@@ -3091,6 +3118,7 @@ layout fragment_1
 layout fragment_2
 layout fragment_3
 layout fragment_4
+layout item_comment
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -4349,6 +4377,7 @@ styleable Carousel carousel_backwardTransition carousel_emptyViewsBehavior carou
 styleable CheckedTextView android_checkMark checkMarkCompat checkMarkTint checkMarkTintMode
 styleable Chip android_textAppearance android_textSize android_textColor android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconTint checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipMinTouchTargetSize chipStartPadding chipStrokeColor chipStrokeWidth chipSurfaceColor closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible ensureMinTouchTargetSize hideMotionSpec iconEndPadding iconStartPadding rippleColor shapeAppearance shapeAppearanceOverlay showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical selectionRequired singleLine singleSelection
+styleable CircleImageView civ_border_color civ_border_overlay civ_border_width civ_circle_background_color
 styleable CircularProgressIndicator indicatorDirectionCircular indicatorInset indicatorSize
 styleable ClockFaceView clockFaceBackgroundColor clockNumberTextColor
 styleable ClockHandView clockHandColor materialCircleRadius selectorSize

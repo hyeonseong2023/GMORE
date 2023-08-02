@@ -8,6 +8,8 @@
         android:minSdkVersion="24"
         android:targetSdkVersion="33" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <permission
         android:name="com.smhrd.gmore.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
@@ -25,7 +27,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Gmore" >
+        android:testOnly="true"
+        android:theme="@style/Theme.Gmore"
+        android:usesCleartextTraffic="true" >
         <activity
             android:name="com.smhrd.gmore.user.MyWriteListActivity"
             android:exported="false" />
@@ -43,7 +47,13 @@
             android:exported="false" />
         <activity
             android:name="com.smhrd.gmore.board.BoardDetailActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.smhrd.gmore.board.GameCartegoryActivity"
             android:exported="false" />
@@ -61,12 +71,7 @@
             android:exported="false" />
         <activity
             android:name="com.smhrd.gmore.fragment.MainActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false" >
         </activity>
 
         <provider
