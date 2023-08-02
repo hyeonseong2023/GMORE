@@ -31,6 +31,7 @@ import com.smhrd.gmore.MainActivity
 
 import com.smhrd.gmore.R
 import com.smhrd.gmore.user.EditProfileActivity
+import com.smhrd.gmore.user.MyPageBoardList
 import com.smhrd.gmore.user.User_VO
 import java.io.ByteArrayOutputStream
 
@@ -82,6 +83,7 @@ class Fragment4 : Fragment() {
         val editor = spf.edit()
         editor.putString("userEmail", "user1@example.com")
         editor.putString("userNick","User1")
+        editor.putInt("userId",1)
         editor.commit()
 
 
@@ -138,6 +140,14 @@ class Fragment4 : Fragment() {
         // 회원정보 수정 페이지로 이동
         btnEditMypage.setOnClickListener {
             intent = Intent(requireActivity(), EditProfileActivity::class.java)
+            startActivity(intent)
+
+        }
+
+
+        // 내가 작성한 글 목록
+        btnBoardListMypage.setOnClickListener{
+            intent = Intent(requireActivity(), MyPageBoardList::class.java)
             startActivity(intent)
 
         }
