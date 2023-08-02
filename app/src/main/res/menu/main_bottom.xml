@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/tab1"
-        android:icon="@drawable/img14"
+        android:icon="@drawable/icon_home"
         android:title="Home" />
     <item
         android:id="@+id/tab2"
-        android:icon="@drawable/img14"
-        android:title="Board" />
+        android:icon="@drawable/icon_chat"
+        android:title="Chat" />
     <item
         android:id="@+id/tab3"
-        android:icon="@drawable/img14"
-        android:title="News" />
+        android:icon="@drawable/icon_bookmark"
+        android:title="Bookmark" />
     <item
         android:id="@+id/tab4"
-        android:icon="@drawable/img14"
-        android:title="Setting" />
+        android:icon="@drawable/icon_me"
+        android:title="Mypage" />
 </menu>
