@@ -1,15 +1,15 @@
 package com.smhrd.gmore.fragment
 // MyPage - 프로필 사진 수정 / 내 글목록 조회 / 로그아웃
 import android.app.Activity
-import android.app.DownloadManager.Request
+import android.content.Context
+
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.provider.ContactsContract.Data
+
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
@@ -19,16 +19,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
 
 import com.smhrd.gmore.R
@@ -68,6 +65,25 @@ class Fragment4 : Fragment() {
         btnEditMypage = view.findViewById(R.id.btnSaveEditProfile)
         btnBoardListMypage = view.findViewById(R.id.btnBoardListMypage)
         btnLogoutMypage = view.findViewById(R.id.btnLogoutMypage)
+
+
+
+        // ✨ SharedPreference 생성
+        //url 값 저장 (SharedPreference -> 내부 메모리)
+        val spf = requireActivity().getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+        //MODE_PRIVATE : 내부 캐시에 저장 --> 노출X
+
+        // 저장 - editor 사용
+        val editor = spf.edit()
+        editor.putString("userId","aaa")
+        editor.commit()
+
+
+
+
+
+
+
 
 
         // 쓰기기 /읽기 권한 설정 확인용 변수 선언
@@ -162,7 +178,7 @@ class Fragment4 : Fragment() {
 
         // 변경한 프로필 이미지 node로 전송
         val request = object : StringRequest(
-            com.android.volley.Request.Method.POST,
+            Request.Method.POST,
             "http://172.30.1.40:8888/user/updateimg",
             { response ->
                 Log.d("response", response.toString())
@@ -176,7 +192,8 @@ class Fragment4 : Fragment() {
                 val params: MutableMap<String, String> = HashMap<String, String>()
 
                 val imgMypage = encodeImgString
-                params.put("img", Gson().toJson(imgMypage))
+                params.put("img", imgMypage)
+
                 Log.d("이미지전송데이터 ?", imgMypage.toString())
                 return params
             }
