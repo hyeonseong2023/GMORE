@@ -13,13 +13,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <!--    끝-->
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -76,7 +69,7 @@
             android:usesCleartextTraffic="true" />
         <activity
             android:name=".user.JoinActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".user.LoginActivity"
             android:exported="false" />
