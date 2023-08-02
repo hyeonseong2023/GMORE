@@ -38,7 +38,7 @@ class FragmentTest : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().replace(
                         // fl 구간에 Fragment1() 보이게 하겠다
                         R.id.fl,
-                        Fragment2()
+                        ChatRoomFragment()
                     ).commit()
                 }
                 R.id.tab3 -> {
