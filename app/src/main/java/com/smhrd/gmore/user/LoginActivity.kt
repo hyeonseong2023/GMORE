@@ -14,6 +14,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.smhrd.gmore.R
+import com.smhrd.gmore.vo.MemberVO
 
 class LoginActivity : AppCompatActivity() {
     lateinit var etLoginId : EditText
