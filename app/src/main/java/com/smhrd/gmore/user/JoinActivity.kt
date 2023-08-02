@@ -8,21 +8,26 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.auth.model.Prompt
 import com.kakao.sdk.common.KakaoSdk
+import com.kakao.sdk.common.model.ClientError
+import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.smhrd.gmore.R
+import com.smhrd.gmore.databinding.ActivityJoinBinding
 import com.smhrd.gmore.vo.MemberVO
 
 class JoinActivity : AppCompatActivity() {
@@ -35,17 +40,29 @@ class JoinActivity : AppCompatActivity() {
     lateinit var btnNickCheck : Button
     lateinit var btnJoin : Button
 
+
     var isIdOk : Boolean = false
     var isPwOk : Boolean = false
     var isNickOk : Boolean = false
 
     var reqURL : String = "http://172.30.1.21:8888/"
 
+    lateinit var binding : ActivityJoinBinding
+    val constraintSet = ConstraintSet()
+    lateinit var constraint1 : ConstraintLayout
+
+
     lateinit var reqQue : RequestQueue
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_join)
+//        setContentView(R.layout.activity_join)
+
+        binding = ActivityJoinBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        constraint1 = findViewById(R.id.joinRoot)
+
 
         etJoinId = findViewById(R.id.etJoinId)
         etJoinPw = findViewById(R.id.etJoinPw)
@@ -66,6 +83,8 @@ class JoinActivity : AppCompatActivity() {
         var keyHash = Utility.getKeyHash(this)
         Log.d("키 해쉬는 ", keyHash)
 
+
+        // 아이디
         etJoinId.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -77,6 +96,7 @@ class JoinActivity : AppCompatActivity() {
                 checkJoin()
             }
         })
+
         // 아이디 중복 검사
         btnJoinIdCheck.setOnClickListener {
             if(!etJoinId.text.isEmpty()) {
@@ -84,6 +104,7 @@ class JoinActivity : AppCompatActivity() {
             }
         }
 
+        // 닉네임 입력 감지
         etJoinNick.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -92,7 +113,8 @@ class JoinActivity : AppCompatActivity() {
 
             //텍스트가 변경된 이후에 호출.
             override fun afterTextChanged(s: Editable) {
-                checkJoin()
+                btnJoin.isEnabled = false
+
             }
         })
 
@@ -101,13 +123,16 @@ class JoinActivity : AppCompatActivity() {
             Log.d("실행", "안1")
             if(!etJoinNick.text.isEmpty()) {
                 checkNick(etJoinNick.text.toString())
+            }else {
+                isNickOk = false
+                checkJoin()
             }
         }
 
         // 비밀번호 & 비밀번호 확인 검사
-        var number = 0
-        var preText: String? = null
         etJoinPwCheck.addTextChangedListener(object : TextWatcher {
+            var number = 0
+            var preText: String? = null
             //변경되기 전 문자열을 담고있다.
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 preText = s.toString()
@@ -148,7 +173,6 @@ class JoinActivity : AppCompatActivity() {
 
         // 회원가입 하기
         btnJoin.setOnClickListener {
-
             var request = object: StringRequest(
                 Request.Method.POST,
                 reqURL+"member/join/",
@@ -182,12 +206,7 @@ class JoinActivity : AppCompatActivity() {
         }
 
 
-
-
-
-
-
-        // 카카오톡으로 로그인하기
+        // 카카오톡으로 회원가입
         ivKakao.setOnClickListener {
 
             fun navigateToLoginActivity() {
@@ -201,16 +220,28 @@ class JoinActivity : AppCompatActivity() {
             // 카카오계정으로 로그인 공통 callback 구성
             // 카카오톡으로 로그인 할 수 없어 카카오계정으로 로그인할 경우 사용됨
 
+
             // 콜백함수
             val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
                 if (error != null) {
-                    Log.e("LOGIN", "카카오계정으로 로그인 실패 콜백함수", error)
-                    Toast.makeText(this, "로그인 실패-콜백", Toast.LENGTH_SHORT).show()
+
+                    if(error is ClientError && error.reason == ClientErrorCause.Cancelled) {
+                        Toast.makeText(this, "취소하셨습니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Log.e("Join", "카카오계정으로 로그인 실패 콜백함수", error)
+                        Toast.makeText(this, "로그인 실패-콜백", Toast.LENGTH_SHORT).show()
+                    }
+
                 } else if (token != null) {
                     Log.i("LOGIN", "카카오계정으로 로그인 성공 콜백함수 ${token.accessToken}")
+                    var tempPW : String = token.accessToken
+                    binding.etJoinPw.setText(tempPW)
+                    binding.etJoinPwCheck.setText(tempPW)
                     Toast.makeText(this, "로그인 성공-콜백", Toast.LENGTH_SHORT).show()
 
                     Log.d("LOGIN", "사용자 정보 가져오기 . me()")
+
+                    // 카카오톡의 이메일 정보 가져오기
                     UserApiClient.instance.me{ user, error ->
                         if(error!=null) {
                             Log.e(TAG, "사용자 정보 요청 실패", error)
@@ -229,7 +260,14 @@ class JoinActivity : AppCompatActivity() {
 
                                 etJoinId.isEnabled = false
                                 isIdOk = true
-                            checkJoin()
+                                binding.etJoinPw.visibility = View.GONE
+                                binding.etJoinPwCheck.visibility = View.GONE
+                                constraintSet.connect(binding.constraintLayout2.id, ConstraintSet.BOTTOM, binding.linearLayout.id, ConstraintSet.TOP)
+
+                                constraintSet.applyTo(constraint1)
+                                checkJoin()
+
+
                             }
 
                         }
@@ -239,6 +277,7 @@ class JoinActivity : AppCompatActivity() {
 
                 }
             } // 콜백함수 끝
+
 
             Log.d("카카오 로그인", "카카오 계정으로 로그인")
             UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
@@ -264,7 +303,7 @@ class JoinActivity : AppCompatActivity() {
             {
                 response ->
                 Log.d("response", response)
-                if(response.equals("[]")) {
+                if(response.equals("이메일 없음")) {
                     Toast.makeText(this, "아이디 중복 검사 : 아이디 사용 가능!", Toast.LENGTH_SHORT).show()
                     isIdOk = true
                     checkJoin()
@@ -293,6 +332,8 @@ class JoinActivity : AppCompatActivity() {
                 response ->
                 Log.d("response", response)
 
+
+
                 if(response.equals("[]")) {
                     Toast.makeText(this, "닉네임 중복 검사 : 닉네임 사용 가능!", Toast.LENGTH_SHORT).show()
                     isNickOk = true
@@ -310,6 +351,7 @@ class JoinActivity : AppCompatActivity() {
             }
         ){ }
         reqQue.add(request)
+        checkJoin()
     }
 
     fun checkJoin() {
