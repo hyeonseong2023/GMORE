@@ -238,49 +238,12 @@ class JoinActivity : AppCompatActivity() {
                     }
 
                 }
-            }
+            } // 콜백함수 끝
 
             Log.d("카카오 로그인", "카카오 계정으로 로그인")
             UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
 
-            // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
-//            if (!UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
-//                UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
-//
-//                    if (error != null) { // 에러 발생
-//                        Log.e("LOGIN", "카카오톡으로 로그인 실패 콜백함수아님", error)
-//
-//                        // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우,
-//                        // 의도적인 로그인 취소로 보고 카카오계정으로 로그인 시도 없이 로그인 취소로 처리 (예: 뒤로 가기)
-//                        /*if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
-//                            Log.d("LOGIN", "카카오톡으로 로그인 실패 콜백함수아님2 의도적인 취소")
-//                            return@loginWithKakaoTalk
-//                        }*/
-//
-//                        // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
-//                        UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
-//                    } else if (token != null) {
-//                        Log.i("LOGIN", "카카오톡으로 로그인 성공 콜백함수아님 ${token.accessToken}")
-////                        val intent = Intent(this@JoinActivity, LoginActivity::class.java)
-////                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-////                        finish()
-////                        navigateToLoginActivity()
-//                    }
-//                }
-//                Log.d("LOGIN", "간편로그인!")
-//                UserApiClient.instance.loginWithKakaoAccount(this, prompts = listOf(Prompt.SELECT_ACCOUNT)) { token, error ->
-//                    if (error != null) {
-//                        Log.e(ContentValues.TAG, "로그인 실패", error)
-//                    }
-//                    else if (token != null) {
-//                        Log.i(ContentValues.TAG, "로그인 성공 ${token.accessToken}")
-//                    }
-//                }
-//            } else {
-//                Log.d("카카오 로그인", "카카오 계정으로 로그인")
-//                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
-//            }
-            Log.d("카카오 로그인", "카카오 로그인 끝")
+
         }  //setOnClickListener 함수 끝
 
 
