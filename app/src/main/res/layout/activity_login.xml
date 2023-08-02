@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".user.LoginActivity">
+<!--    tools:viewBindingIgnore="true"-->
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineup"
+        android:id="@+id/glLoginH25p"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -15,13 +16,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineDown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineup">
+        app:layout_constraintBottom_toTopOf="@+id/glLoginH75p"
+        app:layout_constraintEnd_toStartOf="@+id/glLoginV90p"
+        app:layout_constraintStart_toStartOf="@+id/glLoginV10p"
+        app:layout_constraintTop_toTopOf="@+id/glLoginH25p"
+        app:layout_constraintVertical_bias="0.3">
 
         <TextView
             android:id="@+id/tvLogin"
@@ -35,7 +36,7 @@
 
         <EditText
             android:id="@+id/etLoginId"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="ID"
@@ -46,7 +47,7 @@
 
         <EditText
             android:id="@+id/etLoginPw"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="PW"
@@ -67,7 +68,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineDown"
+        android:id="@+id/glLoginH75p"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -75,12 +76,12 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/glLoginV90p"
+        app:layout_constraintStart_toStartOf="@+id/glLoginV10p"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
         <TextView
@@ -88,7 +89,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:text="아이디가 없다면! 회원가입하러 가기(클릭)" />
+            android:text="아이디가 없다면! 회원가입하러 가기(클릭)"
+            android:textAlignment="center" />
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/glLoginV90p"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/glLoginV10p"
+        app:layout_constraintTop_toTopOf="@+id/glLoginH75p">
+
+        <ImageView
+            android:id="@+id/ivLoginKako"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/kakaotalklogin1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glLoginH81p"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.81" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glLoginV10p"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glLoginV90p"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
