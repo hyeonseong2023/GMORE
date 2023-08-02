@@ -12,6 +12,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <!--    끝-->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -21,9 +25,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GMORE"
+        android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
 
         <activity
+
             android:name=".fragment.FragmentTest"
             android:exported="true" >
 
@@ -34,29 +40,46 @@
 <!--            </intent-filter>-->
         </activity>
         <activity
+            android:name=".user.MyWriteListActivity"
+
+            android:exported="false" />
+        <activity
+            android:name=".user.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".chat.ChattingRoomActivity"
+            android:exported="false" />
+        <activity
+            android:name=".board.BoardEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".board.BoardWriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".board.BoardDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".board.GameCategoryActivity"
+            android:exported="true"
+            android:usesCleartextTraffic="true" />
+        <activity
+            android:name=".user.JoinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".IntroActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".user.EditProfileActivity"
-            android:exported="false" />
 
-
-        <activity
-            android:name=".board.BoardWriteActivity"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
     </application>
 
 </manifest>
