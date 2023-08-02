@@ -12,7 +12,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -24,7 +23,7 @@ import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.smhrd.gmore.R
-import okio.ByteString.Companion.encodeUtf8
+import com.smhrd.gmore.vo.MemberVO
 
 class JoinActivity : AppCompatActivity() {
     lateinit var ivKakao : ImageView
@@ -240,10 +239,12 @@ class JoinActivity : AppCompatActivity() {
 
                 }
             }
-            
+
+            Log.d("카카오 로그인", "카카오 계정으로 로그인")
+            UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
 
             // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
-            if (!UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
+//            if (!UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
 //                UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
 //
 //                    if (error != null) { // 에러 발생
@@ -266,19 +267,19 @@ class JoinActivity : AppCompatActivity() {
 ////                        navigateToLoginActivity()
 //                    }
 //                }
-                Log.d("LOGIN", "간편로그인!")
-                UserApiClient.instance.loginWithKakaoAccount(this, prompts = listOf(Prompt.SELECT_ACCOUNT)) { token, error ->
-                    if (error != null) {
-                        Log.e(ContentValues.TAG, "로그인 실패", error)
-                    }
-                    else if (token != null) {
-                        Log.i(ContentValues.TAG, "로그인 성공 ${token.accessToken}")
-                    }
-                }
-            } else {
-                Log.d("카카오 로그인", "카카오 계정으로 로그인")
-                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
-            }
+//                Log.d("LOGIN", "간편로그인!")
+//                UserApiClient.instance.loginWithKakaoAccount(this, prompts = listOf(Prompt.SELECT_ACCOUNT)) { token, error ->
+//                    if (error != null) {
+//                        Log.e(ContentValues.TAG, "로그인 실패", error)
+//                    }
+//                    else if (token != null) {
+//                        Log.i(ContentValues.TAG, "로그인 성공 ${token.accessToken}")
+//                    }
+//                }
+//            } else {
+//                Log.d("카카오 로그인", "카카오 계정으로 로그인")
+//                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
+//            }
             Log.d("카카오 로그인", "카카오 로그인 끝")
         }  //setOnClickListener 함수 끝
 
