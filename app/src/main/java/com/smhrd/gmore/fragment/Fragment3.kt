@@ -1,3 +1,5 @@
+package com.smhrd.gmore.fragment
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.smhrd.gmore.R
-import com.smhrd.gmore.fragment.FavoriteAdapter
 import com.smhrd.gmore.fragment.Fragment3VO
 import java.io.BufferedReader
 import java.io.InputStreamReader
