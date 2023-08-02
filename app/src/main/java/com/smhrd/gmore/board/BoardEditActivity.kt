@@ -49,6 +49,9 @@ class BoardEditActivity : AppCompatActivity() {
         finish()
     }
 
+    // SharedPreference 생성
+//        val spf = getSharedPreferences("mySPF", Context.MODE_PRIVATE)
+
     // 💡💡 받아야 할 값
     // board_id
     // title
@@ -78,19 +81,19 @@ class BoardEditActivity : AppCompatActivity() {
 //        ivEditUpload.setImageResource(R.drawable.icon_close)
 
         // 💡 해당 게시물 정보 불러오기
-        val request = object : StringRequest(
-            Request.Method.GET,
-            "http://172.30.1.51:8888/board/update/1",   // 게시물 번호
-            { response ->
-                Log.d("response", response.toString())
-                val imageBytes = Base64.decode(response, 0)
-                val image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-                ivEditUpload.setImageBitmap(image)
-            },
-            { error ->
-                Log.d("error", error.toString())
-            }
-        ) {}
+//        val request = object : StringRequest(
+//            Request.Method.GET,
+//            "http://172.30.1.51:8888/board/update/1",   // 게시물 번호
+//            { response ->
+//                Log.d("response", response.toString())
+//                val imageBytes = Base64.decode(response, 0)
+//                val image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+//                ivEditUpload.setImageBitmap(image)
+//            },
+//            { error ->
+//                Log.d("error", error.toString())
+//            }
+//        ) {}
 
 
         // 뒤로가기 버튼
@@ -134,16 +137,7 @@ class BoardEditActivity : AppCompatActivity() {
             ) {
                 override fun getParams(): MutableMap<String, String> {
                     val params: MutableMap<String, String> = HashMap<String, String>()
-                    val board = BoardDetailVO(
-                        2,
-                        inputTitle,
-                        inputContent,
-                        encodeImgString,
-                        "오버워치",
-                        5,
-                        null,
-                        "id"
-                    )
+                    val board = BoardDetailVO(2, inputTitle, inputContent, encodeImgString, "오버워치", 5, null, "id")
                     params.put("board", Gson().toJson(board))
                     return params
                 }

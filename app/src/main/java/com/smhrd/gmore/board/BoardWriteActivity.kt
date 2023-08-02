@@ -1,6 +1,7 @@
 package com.smhrd.gmore.board
 
 import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -82,6 +83,9 @@ class BoardWriteActivity : AppCompatActivity() {
         writeImgLine = findViewById(R.id.writeImgLine)
 
         reqQueue = Volley.newRequestQueue(this@BoardWriteActivity)
+
+        // SharedPreference 생성
+//        val spf = getSharedPreferences("mySPF", Context.MODE_PRIVATE)
 
         // 💡💡 받아야 할 값
         // user_id
@@ -230,7 +234,6 @@ class BoardWriteActivity : AppCompatActivity() {
                 writeImgLine.visibility = View.VISIBLE
             }
         }
-
     }
 
     // bitmap -> String (Base64)
