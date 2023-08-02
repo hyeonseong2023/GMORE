@@ -16,7 +16,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -29,6 +35,7 @@
         tools:targetApi="31">
 
         <activity
+
 
             android:name=".fragment.FragmentTest"
             android:exported="true" >
@@ -43,6 +50,11 @@
             android:name=".user.MyWriteListActivity"
 
             android:exported="false" />
+
+
+
+
+
         <activity
             android:name=".user.EditProfileActivity"
             android:exported="false" />
@@ -80,6 +92,23 @@
             </intent-filter>
         </activity>
 
+
+        <!--    카카오톡 로그인 필요 코드    -->
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
+                <data
+                    android:host="oauth"
+                    android:scheme="@string/kakao_scheme" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
