@@ -27,6 +27,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import com.smhrd.gmore.MainActivity
 
 import com.smhrd.gmore.R
 import com.smhrd.gmore.user.EditProfileActivity
@@ -40,7 +41,10 @@ class Fragment4 : Fragment() {
     lateinit var btnEditMypage: Button
     lateinit var btnBoardListMypage: Button
     lateinit var btnLogoutMypage: Button
-    lateinit var userId:String
+    lateinit var userEmail: String
+    lateinit var userNick: String
+    lateinit var intent: Intent
+
 
     // Volley 사용
     lateinit var reqQueue: RequestQueue
@@ -69,7 +73,6 @@ class Fragment4 : Fragment() {
         btnLogoutMypage = view.findViewById(R.id.btnLogoutMypage)
 
 
-
         // ✨ SharedPreference 생성
         //url 값 저장 (SharedPreference -> 내부 메모리)
         val spf = requireActivity().getSharedPreferences("userSPF", Context.MODE_PRIVATE)
@@ -77,17 +80,18 @@ class Fragment4 : Fragment() {
 
         // 저장 - editor 사용
         val editor = spf.edit()
-        editor.putString("userId","user1@example.com")
+        editor.putString("userEmail", "user1@example.com")
+        editor.putString("userNick","User1")
         editor.commit()
 
 
+        // spf 에서 유저 정보 가져와 textView에 출력
 
-        // spf 에서 user id 가져와 textView에 출력
-        userId = spf.getString("userId", "")!!
+        userEmail = spf.getString("userEmail", "")!!
+        userNick = spf.getString("userNick", "")!!
 
-
-
-
+        tvIdMypage.text = userEmail
+        tvNickMypage.text = userNick
 
 
         // 쓰기기 /읽기 권한 설정 확인용 변수 선언
@@ -133,7 +137,7 @@ class Fragment4 : Fragment() {
 
         // 회원정보 수정 페이지로 이동
         btnEditMypage.setOnClickListener {
-            val intent = Intent(requireActivity(), EditProfileActivity::class.java)
+            intent = Intent(requireActivity(), EditProfileActivity::class.java)
             startActivity(intent)
 
         }
@@ -142,6 +146,17 @@ class Fragment4 : Fragment() {
         // 로그아웃
         btnLogoutMypage.setOnClickListener {
 
+            val spf = requireActivity().getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+            val editor = spf.edit()
+
+
+            editor.remove("userEmail")
+            editor.remove("userNick")
+            editor.commit()
+
+            intent = Intent(requireActivity(),MainActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
         return view
     }
@@ -197,7 +212,7 @@ class Fragment4 : Fragment() {
 
                 val imgMypage = encodeImgString
 
-                val myPageData = User_VO(null, userId,null, null,null,imgMypage)
+                val myPageData = User_VO(null, userEmail, null, null, null, imgMypage)
 
                 params.put("myPageData", Gson().toJson(myPageData))
                 Log.d("이미지전송데이터 ?", imgMypage.toString())
@@ -208,23 +223,22 @@ class Fragment4 : Fragment() {
     }
 
 
+    // bitmap -> String()  ==> 노드로 이미지 데이터 넘기기 위한 작업
+    private fun encodeBitmapImg(bitmap: Bitmap) {
 
-// bitmap -> String()  ==> 노드로 이미지 데이터 넘기기 위한 작업
-private  fun encodeBitmapImg(bitmap: Bitmap){
+        // 이미지 문자열 들이 들어갈 ByteArray 생성
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        // 받아온 bitmap을 압축 시키기 (문자열이 너무 크면 오류가 나기도 함)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
 
-    // 이미지 문자열 들이 들어갈 ByteArray 생성
-    val byteArrayOutputStream = ByteArrayOutputStream()
-    // 받아온 bitmap을 압축 시키기 (문자열이 너무 크면 오류가 나기도 함)
-    bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream)
+        // 이미지 배열 형태로 가공
+        val byteOfImg = byteArrayOutputStream.toByteArray()
 
-    // 이미지 배열 형태로 가공
-    val byteOfImg = byteArrayOutputStream.toByteArray()
+        //  byteArray에 든 데이터 문자열로 인코딩 (base64)
+        encodeImgString = Base64.encodeToString(byteOfImg, Base64.DEFAULT)
 
-    //  byteArray에 든 데이터 문자열로 인코딩 (base64)
-    encodeImgString = Base64.encodeToString(byteOfImg, Base64.DEFAULT)
-
-    // 가공한 데이터 onActivityResult 메서드에서 사용
-}
+        // 가공한 데이터 onActivityResult 메서드에서 사용
+    }
 
 
 }
