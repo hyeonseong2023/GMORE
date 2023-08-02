@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.smhrd.gmore.R
 import com.smhrd.gmore.vo.BoardCategoryVO
 
-class BoardCategoryAdapter(var context: Context, var datas:ArrayList<BoardCategoryVO>) :
-    RecyclerView.Adapter<BoardCategoryViewHolder>(){
+class BoardCategoryAdapter(var context: Context, var datas: ArrayList<BoardCategoryVO>) :
+    RecyclerView.Adapter<BoardCategoryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardCategoryViewHolder {
-        return BoardCategoryViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.board_category_item,parent,false))
+        return BoardCategoryViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.board_category_item, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {

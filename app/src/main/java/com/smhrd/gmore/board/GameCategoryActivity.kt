@@ -25,58 +25,44 @@ import java.net.URL
 
 class GameCategoryActivity : AppCompatActivity() {
 
-    lateinit var reqQueue:RequestQueue
-    lateinit var rv:RecyclerView
-    lateinit var tvCategoryName : TextView
+    lateinit var reqQueue: RequestQueue
+    lateinit var rv: RecyclerView
+    lateinit var tvCategoryName: TextView
     val boardList = ArrayList<BoardCategoryVO>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_category)
 
-
         rv = this.findViewById(R.id.rvCategoryList1)
         tvCategoryName = this.findViewById(R.id.tvCategoryListName1)
 
         reqQueue = Volley.newRequestQueue(this@GameCategoryActivity)
+
         val request = object : StringRequest(
             Request.Method.GET,
-            "http://172.30.1.24:8888/board",
-            {
-                response ->
-                // 로그 출력: 원본 응답 확인
-                Log.d("response", response)
+            "http://localhost:8888/board/category",
+//            "http://172.30.1.24:8888/board/category",
+            { response ->
                 Log.d("response", response.toString())
 
                 var result = JSONArray(response)
-                Log.d("jsonA", result.toString())
 
-//                for(i in 0 until result.length()){
-//                    val board = Gson().fromJson(result.get(i).toString(), BoardCategoryVO::class.java)
-//                    boardList.add(board)
-//                }
-
-                val gson = Gson()
+                // JSON 응답을 List<BoardCategoryVO>로 변환하여 boardList 에 저장
                 val typeToken = object : TypeToken<List<BoardCategoryVO>>() {}.type
-                // 로그 출력: 타입 토큰(TypeToken) 확인
                 Log.d("TypeToken", typeToken.toString())
                 boardList.clear()
-                boardList.addAll(gson.fromJson(response, typeToken))
-                // 로그 출력: 변환된 데이터 확인
-                Log.d("boardList", boardList.toString())
+                boardList.addAll(Gson().fromJson(response, typeToken))
 
                 val adapter = BoardCategoryAdapter(this@GameCategoryActivity, boardList)
                 rv.layoutManager = LinearLayoutManager(this@GameCategoryActivity)
                 rv.adapter = adapter
-
             },
-            {
-                error ->
+            { error ->
                 Log.d("error!!", error.toString())
             }
-        ){}
+        ) {}
         reqQueue.add(request)
     }
-
 
 }
