@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "169787677402",
+    "project_id": "gmore-eed57",
+    "storage_bucket": "gmore-eed57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:169787677402:android:6c7d94b51cce6cb5df23e3",
+        "android_client_info": {
+          "package_name": "com.smhrd.gmore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "169787677402-a1svsocajh9qk12at4d3p6j6mg4hhqg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKQeX0YatvM9qDAQHeEzl265woliF30Nc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "169787677402-a1svsocajh9qk12at4d3p6j6mg4hhqg7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
