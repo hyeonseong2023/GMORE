@@ -41,8 +41,7 @@ class GameCategoryActivity : AppCompatActivity() {
 
         val request = object : StringRequest(
             Request.Method.GET,
-            "http://localhost:8888/board/category",
-//            "http://172.30.1.24:8888/board/category",
+            "http://172.30.1.24:8888/board/category",
             { response ->
                 Log.d("response", response.toString())
 
