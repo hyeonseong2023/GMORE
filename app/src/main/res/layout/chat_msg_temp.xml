@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvMsgOpp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#BABABA"
+        android:padding="4dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="text"
+        android:textColor="#3C3C3C"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBlank"
+        android:layout_width="410dp"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMsgMy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:background="#BFBFBF"
+        android:padding="4dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="text"
+        android:textColor="#3C3C3C"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTimeOpp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="오후 12:43"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMsgOpp"
+        app:layout_constraintStart_toEndOf="@+id/tvMsgOpp"
+        app:layout_constraintTop_toTopOf="@+id/tvMsgOpp" />
+
+    <TextView
+        android:id="@+id/tvTimeMy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="오후 12:43"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMsgMy"
+        app:layout_constraintEnd_toStartOf="@+id/tvMsgMy"
+        app:layout_constraintTop_toTopOf="@+id/tvMsgMy" />
+</androidx.constraintlayout.widget.ConstraintLayout>
