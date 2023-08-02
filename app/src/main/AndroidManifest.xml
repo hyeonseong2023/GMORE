@@ -43,7 +43,7 @@
             android:name=".user.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".chat.ChattingRoomActivity"
+            android:name=".chat.ChatActivity"
             android:exported="false" />
         <activity
             android:name=".board.BoardEditActivity"
