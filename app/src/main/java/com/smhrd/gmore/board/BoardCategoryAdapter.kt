@@ -9,10 +9,12 @@ import com.smhrd.gmore.vo.BoardCategoryVO
 
 class BoardCategoryAdapter(var context: Context, var datas: ArrayList<BoardCategoryVO>) :
     RecyclerView.Adapter<BoardCategoryViewHolder>() {
+
+    var categoryClickEvent: CategoryClickEvent? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardCategoryViewHolder {
-        return BoardCategoryViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.board_category_item, parent, false)
-        )
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.board_category_item, parent, false)
+        return BoardCategoryViewHolder(view, categoryClickEvent)
     }
 
     override fun getItemCount(): Int {

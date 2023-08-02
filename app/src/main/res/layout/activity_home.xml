@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="108dp"
-        android:text="category1"
+        android:text="Category1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,7 +21,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
-        android:text="category2"
+        android:text="Category2"
         app:layout_constraintBottom_toBottomOf="@+id/btn1"
         app:layout_constraintStart_toEndOf="@+id/btn1" />
+
+    <TextView
+        android:id="@+id/tvNick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="변경될 닉네임"
+        app:layout_constraintEnd_toEndOf="@+id/btn1"
+        app:layout_constraintTop_toBottomOf="@+id/btn1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

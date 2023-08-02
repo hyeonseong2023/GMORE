@@ -1,5 +1,6 @@
 package com.smhrd.gmore.board
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.smhrd.gmore.HomeActivity
 import com.smhrd.gmore.R
 import com.smhrd.gmore.vo.BoardCategoryVO
 import kotlinx.coroutines.CoroutineScope
@@ -39,9 +41,11 @@ class GameCategoryActivity : AppCompatActivity() {
 
         reqQueue = Volley.newRequestQueue(this@GameCategoryActivity)
 
+        val category = intent.getStringExtra("buttonText")
+
         val request = object : StringRequest(
             Request.Method.GET,
-            "http://172.30.1.24:8888/board/category",
+            "http://172.30.1.24:8888/board/category?category=$category",
             { response ->
                 Log.d("response", response.toString())
 
@@ -49,11 +53,22 @@ class GameCategoryActivity : AppCompatActivity() {
 
                 // JSON 응답을 List<BoardCategoryVO>로 변환하여 boardList 에 저장
                 val typeToken = object : TypeToken<List<BoardCategoryVO>>() {}.type
-                Log.d("TypeToken", typeToken.toString())
                 boardList.clear()
                 boardList.addAll(Gson().fromJson(response, typeToken))
 
                 val adapter = BoardCategoryAdapter(this@GameCategoryActivity, boardList)
+                adapter.categoryClickEvent = object : CategoryClickEvent {
+
+                    // 아이템 클릭 이벤트 처리
+                    override fun onItemClick(position: Int) {
+                        val selectedBoard = boardList[position]
+
+                        val intent = Intent(this@GameCategoryActivity, HomeActivity::class.java)
+                        intent.putExtra("selected_board_id", selectedBoard.categoryBoardId)
+                        startActivity(intent)
+
+                    }
+                }
                 rv.layoutManager = LinearLayoutManager(this@GameCategoryActivity)
                 rv.adapter = adapter
             },
@@ -62,6 +77,7 @@ class GameCategoryActivity : AppCompatActivity() {
             }
         ) {}
         reqQueue.add(request)
+
     }
 
 }
