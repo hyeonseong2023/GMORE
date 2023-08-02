@@ -45,7 +45,7 @@ class ChatActivity : AppCompatActivity() {
         btnChatSend.setOnClickListener {
             myRef.push().setValue(ChatVO(etChatMsg.text.toString(),"dd","오후3:48"))
 
-//            rvChat.smoothScrollToPosition(data.size-1)
+            rvChat.smoothScrollToPosition(data.size-1)
             etChatMsg.text.clear()
         }
 

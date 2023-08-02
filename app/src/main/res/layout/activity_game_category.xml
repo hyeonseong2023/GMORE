@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".board1.GameCategoryActivity">
+    tools:context=".board.GameCategoryActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategoryList1"
