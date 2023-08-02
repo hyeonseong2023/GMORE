@@ -24,6 +24,9 @@ import com.smhrd.gmore.MainActivity
 import com.smhrd.gmore.R
 import com.smhrd.gmore.databinding.ActivityLoginBinding
 import com.smhrd.gmore.vo.MemberVO
+import com.smhrd.gmore.vo.MembersResponse
+import com.smhrd.gmore.vo.RQMember
+import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
     lateinit var etLoginId : EditText
@@ -33,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var reqQue : RequestQueue
 
-    var reqURL : String = "http://172.30.1.21:8888/"
+    var reqURL : String = "http://172.30.1.11:8888/"
 
 
     lateinit var binding : ActivityLoginBinding
@@ -80,18 +83,30 @@ class LoginActivity : AppCompatActivity() {
                 reqURL + "member/login",
 //                "http://172.30.1.40:8888/user/checknick",
                 {
-                    response ->
-                    Log.d("response", response)
-
-
-                    editor.putString("loginedId", inputId)
-                    editor.commit()
+                        response ->
                     startActivity(it_toMain)
+                    Log.d("response", response.toString())
 
-                }, {
+                    val gson = Gson()
+                    val membersResponse: MembersResponse = gson.fromJson(response, MembersResponse::class.java)
+                    val firstMember: RQMember? = membersResponse.members.firstOrNull()
+
+                    firstMember?.let { member ->
+                        val userId: Int = member.id
+                        val userNick: String = member.nick
+
+                        editor.putString("loginedId", userNick) // 아이디 값을 SPF에 저장
+                        editor.commit()
+
+                        intent.putExtra("selected_login_id", userId.toString()) // 아이디 값을 인텐트에 저장
+                        startActivity(it_toMain)
+                    } ?: run {
+                        // 회원 정보가 없을 경우, 처리할 수 있는 코드를 추가해주세요.
+                    }
+                },
+                {
                         error ->
                     Log.d("error", error.toString())
-                    Toast.makeText(this, "error발생", Toast.LENGTH_SHORT).show()
                 }
             ){
                 override fun getParams(): MutableMap<String, String> {

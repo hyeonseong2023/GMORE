@@ -28,6 +28,8 @@ class BoardDetailActivity : AppCompatActivity() {
     private lateinit var commentAdapter: CommentAdapter
     private lateinit var boardbookmark: ImageView
     private lateinit var boardLike: ImageView
+    lateinit var boardId:String
+    lateinit var login_id:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_detail)
@@ -40,7 +42,11 @@ class BoardDetailActivity : AppCompatActivity() {
         rvComments = findViewById(R.id.rvComments)
         boardbookmark = findViewById(R.id.boardBookmark)
         boardLike = findViewById(R.id.boardLike)
-
+        boardId =  intent.getIntExtra("selected_board_id", -1).toString()
+        login_id =  intent.getIntExtra("selected_login_id", -1).toString()
+        if(login_id == null){
+            login_id = 1.toString()
+        }
         fetchBoardDetail()
         fetchComments()
         var isBookmarked = false // 북마크 상태를 저장하는 변수 (기본값: false)
@@ -73,7 +79,7 @@ class BoardDetailActivity : AppCompatActivity() {
     private fun fetchBoardDetail() {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/1"
+                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -114,7 +120,7 @@ class BoardDetailActivity : AppCompatActivity() {
     private fun fetchComments() {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/1/comments"
+                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/comments"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -153,7 +159,7 @@ class BoardDetailActivity : AppCompatActivity() {
     private fun updateBookmark(isBookmarked: Boolean) {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/1/1/$isBookmarked/book"
+                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/1/$isBookmarked/book"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -171,7 +177,7 @@ class BoardDetailActivity : AppCompatActivity() {
     private fun updateLike(isLiked: Boolean) {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/1/1/$isLiked/like"
+                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/1/$isLiked/like"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
