@@ -22,6 +22,7 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.smhrd.gmore.MainActivity
 import com.smhrd.gmore.R
+import com.smhrd.gmore.chat.ChatActivity
 import com.smhrd.gmore.databinding.ActivityLoginBinding
 import com.smhrd.gmore.vo.MemberVO
 
@@ -33,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var reqQue : RequestQueue
 
-    var reqURL : String = "http://172.30.1.21:8888/"
+    var reqURL : String = "http://172.30.1.15:8888/"
 
 
     lateinit var binding : ActivityLoginBinding

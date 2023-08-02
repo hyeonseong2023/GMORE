@@ -45,7 +45,7 @@ class JoinActivity : AppCompatActivity() {
     var isPwOk : Boolean = false
     var isNickOk : Boolean = false
 
-    var reqURL : String = "http://172.30.1.21:8888/"
+    var reqURL : String = "http://172.30.1.15:8888/"
 
     lateinit var binding : ActivityJoinBinding
     val constraintSet = ConstraintSet()

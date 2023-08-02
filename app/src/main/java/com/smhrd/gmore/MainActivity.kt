@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.tab2 -> {
                     supportFragmentManager.beginTransaction().replace(
                         R.id.fl,
-                        ChatRoomFragment()
+                        ChatRoomFragment(loginedID.toString())
                     ).commit()
                 }
                 R.id.tab3 -> {

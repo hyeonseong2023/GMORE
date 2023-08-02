@@ -45,7 +45,7 @@ class ChatActivity : AppCompatActivity() {
         data.add(ChatVO("안녕하", "ddd","시간1"))
         data.add(ChatVO("안녕하", "ddd","시간1"))
 
-        var adapter = ChatAdapter(applicationContext, data,loginedID)
+        var adapter = ChatAdapter(applicationContext, data,loginedID.toString())
         rvChat.layoutManager = LinearLayoutManager(applicationContext)// 목록형
         rvChat.adapter = adapter
         tvChatNick.text = loginedID
