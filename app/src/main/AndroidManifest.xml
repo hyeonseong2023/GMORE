@@ -15,7 +15,9 @@
 
 
     <application
+
         android:usesCleartextTraffic="true"
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -28,7 +30,6 @@
         tools:targetApi="31">
 
         <activity
-
 
             android:name=".fragment.FragmentTest"
             android:exported="true" >
@@ -45,15 +46,16 @@
             android:exported="false" />
 
 
-
-
-
         <activity
             android:name=".user.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".chat.ChattingRoomActivity"
-            android:exported="false" />
+            android:name=".chat.ChatActivity"
+            android:exported="true" >
+
+        </activity>
+
+
         <activity
             android:name=".board.BoardEditActivity"
             android:exported="false" />
@@ -83,6 +85,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
 

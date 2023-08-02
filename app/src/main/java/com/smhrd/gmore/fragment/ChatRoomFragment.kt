@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 
 import com.smhrd.gmore.R
 
-class Fragment2 : Fragment() {
+class ChatRoomFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -16,7 +16,7 @@ class Fragment2 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_2, container, false)
+        return inflater.inflate(R.layout.fragment_chat_rooms, container, false)
     }
 
 
