@@ -30,6 +30,7 @@ import com.google.gson.Gson
 
 import com.smhrd.gmore.R
 import com.smhrd.gmore.user.EditProfileActivity
+import com.smhrd.gmore.user.User_VO
 import java.io.ByteArrayOutputStream
 
 class Fragment4 : Fragment() {
@@ -39,6 +40,7 @@ class Fragment4 : Fragment() {
     lateinit var btnEditMypage: Button
     lateinit var btnBoardListMypage: Button
     lateinit var btnLogoutMypage: Button
+    lateinit var userId:String
 
     // Volley 사용
     lateinit var reqQueue: RequestQueue
@@ -75,11 +77,13 @@ class Fragment4 : Fragment() {
 
         // 저장 - editor 사용
         val editor = spf.edit()
-        editor.putString("userId","aaa")
+        editor.putString("userId","user1@example.com")
         editor.commit()
 
 
 
+        // spf 에서 user id 가져와 textView에 출력
+        userId = spf.getString("userId", "")!!
 
 
 
@@ -192,8 +196,10 @@ class Fragment4 : Fragment() {
                 val params: MutableMap<String, String> = HashMap<String, String>()
 
                 val imgMypage = encodeImgString
-                params.put("img", imgMypage)
 
+                val myPageData = User_VO(null, userId,null, null,null,imgMypage)
+
+                params.put("myPageData", Gson().toJson(myPageData))
                 Log.d("이미지전송데이터 ?", imgMypage.toString())
                 return params
             }
