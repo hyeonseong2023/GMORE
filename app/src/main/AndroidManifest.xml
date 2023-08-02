@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-<!--지연 임시- 카메라 추가-->
+
+    <!--지연 임시- 카메라 추가-->
     <uses-feature android:name="android.hardware.camera.any" />
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -61,10 +62,10 @@
 
         <activity
             android:name=".board.BoardEditActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".board.BoardWriteActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".board.BoardDetailActivity"
             android:exported="false" />
