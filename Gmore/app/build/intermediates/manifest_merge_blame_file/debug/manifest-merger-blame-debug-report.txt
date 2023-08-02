@@ -1,0 +1,161 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.smhrd.gmore"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:4:5-67
+11-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:4:22-64
+12
+13    <permission
+13-->[androidx.core:core:1.9.0] C:\Users\kyg49\.gradle\caches\transforms-3\256c6597bc3e6f8192abd6f9b27a26ab\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+14        android:name="com.smhrd.gmore.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+14-->[androidx.core:core:1.9.0] C:\Users\kyg49\.gradle\caches\transforms-3\256c6597bc3e6f8192abd6f9b27a26ab\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+15        android:protectionLevel="signature" />
+15-->[androidx.core:core:1.9.0] C:\Users\kyg49\.gradle\caches\transforms-3\256c6597bc3e6f8192abd6f9b27a26ab\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+16
+17    <uses-permission android:name="com.smhrd.gmore.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+17-->[androidx.core:core:1.9.0] C:\Users\kyg49\.gradle\caches\transforms-3\256c6597bc3e6f8192abd6f9b27a26ab\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+17-->[androidx.core:core:1.9.0] C:\Users\kyg49\.gradle\caches\transforms-3\256c6597bc3e6f8192abd6f9b27a26ab\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+18
+19    <application
+19-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:6:5-61:19
+20        android:allowBackup="true"
+20-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:9:9-35
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.9.0] C:\Users\kyg49\.gradle\caches\transforms-3\256c6597bc3e6f8192abd6f9b27a26ab\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+22        android:dataExtractionRules="@xml/data_extraction_rules"
+22-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:10:9-65
+23        android:debuggable="true"
+24        android:extractNativeLibs="false"
+25        android:fullBackupContent="@xml/backup_rules"
+25-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:11:9-54
+26        android:icon="@mipmap/ic_launcher"
+26-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:12:9-43
+27        android:label="@string/app_name"
+27-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:13:9-41
+28        android:roundIcon="@mipmap/ic_launcher_round"
+28-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:14:9-54
+29        android:supportsRtl="true"
+29-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:15:9-35
+30        android:testOnly="true"
+31        android:theme="@style/Theme.Gmore"
+31-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:16:9-43
+32        android:usesCleartextTraffic="true" >
+32-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:8:9-44
+33        <activity
+33-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:18:9-20:40
+34            android:name="com.smhrd.gmore.user.MyWriteListActivity"
+34-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:19:13-53
+35            android:exported="false" />
+35-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:20:13-37
+36        <activity
+36-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:21:9-23:40
+37            android:name="com.smhrd.gmore.user.EditProfileActivity"
+37-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:22:13-53
+38            android:exported="false" />
+38-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:23:13-37
+39        <activity
+39-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:24:9-26:40
+40            android:name="com.smhrd.gmore.ChattingRoomActivity"
+40-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:25:13-49
+41            android:exported="false" />
+41-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:26:13-37
+42        <activity
+42-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:27:9-29:40
+43            android:name="com.smhrd.gmore.board.BoardEditActivity"
+43-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:28:13-52
+44            android:exported="false" />
+44-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:29:13-37
+45        <activity
+45-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:30:9-32:40
+46            android:name="com.smhrd.gmore.board.BoardWriteActivity"
+46-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:31:13-53
+47            android:exported="false" />
+47-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:32:13-37
+48        <activity
+48-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:33:9-41:20
+49            android:name="com.smhrd.gmore.board.BoardDetailActivity"
+49-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:34:13-54
+50            android:exported="true" >
+50-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:35:13-36
+51            <intent-filter>
+51-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:36:9-40:25
+52                <action android:name="android.intent.action.MAIN" />
+52-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:37:13-65
+52-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:37:21-62
+53
+54                <category android:name="android.intent.category.LAUNCHER" />
+54-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:39:13-73
+54-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:39:23-70
+55            </intent-filter>
+56        </activity>
+57        <activity
+57-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:42:9-44:40
+58            android:name="com.smhrd.gmore.board.GameCartegoryActivity"
+58-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:43:13-56
+59            android:exported="false" />
+59-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:44:13-37
+60        <activity
+60-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:45:9-47:40
+61            android:name="com.smhrd.gmore.HomeActivity"
+61-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:46:13-41
+62            android:exported="false" />
+62-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:47:13-37
+63        <activity
+63-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:48:9-50:40
+64            android:name="com.smhrd.gmore.user.JoinActivity"
+64-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:49:13-46
+65            android:exported="false" />
+65-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:50:13-37
+66        <activity
+66-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:51:9-53:40
+67            android:name="com.smhrd.gmore.user.LoginActivity"
+67-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:52:13-47
+68            android:exported="false" />
+68-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:53:13-37
+69        <activity
+69-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:54:9-56:40
+70            android:name="com.smhrd.gmore.IntroActivity"
+70-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:55:13-42
+71            android:exported="false" />
+71-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:56:13-37
+72        <activity
+72-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:57:9-60:20
+73            android:name="com.smhrd.gmore.fragment.MainActivity"
+73-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:58:13-50
+74            android:exported="false" >
+74-->C:\Users\kyg49\Desktop\GMORE\Gmore\app\src\main\AndroidManifest.xml:59:13-37
+75        </activity>
+76
+77        <provider
+77-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kyg49\.gradle\caches\transforms-3\ed5c533cc70e7b3b025c1d493dfcade0\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+78            android:name="androidx.startup.InitializationProvider"
+78-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kyg49\.gradle\caches\transforms-3\ed5c533cc70e7b3b025c1d493dfcade0\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+79            android:authorities="com.smhrd.gmore.androidx-startup"
+79-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kyg49\.gradle\caches\transforms-3\ed5c533cc70e7b3b025c1d493dfcade0\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+80            android:exported="false" >
+80-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kyg49\.gradle\caches\transforms-3\ed5c533cc70e7b3b025c1d493dfcade0\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+81            <meta-data
+81-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kyg49\.gradle\caches\transforms-3\ed5c533cc70e7b3b025c1d493dfcade0\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+82                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+82-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kyg49\.gradle\caches\transforms-3\ed5c533cc70e7b3b025c1d493dfcade0\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+83                android:value="androidx.startup" />
+83-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kyg49\.gradle\caches\transforms-3\ed5c533cc70e7b3b025c1d493dfcade0\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+84            <meta-data
+84-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\kyg49\.gradle\caches\transforms-3\41ce1ad912a5e3041715fcd6269c5d09\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+85                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+85-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\kyg49\.gradle\caches\transforms-3\41ce1ad912a5e3041715fcd6269c5d09\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+86                android:value="androidx.startup" />
+86-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\kyg49\.gradle\caches\transforms-3\41ce1ad912a5e3041715fcd6269c5d09\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+87        </provider>
+88    </application>
+89
+90</manifest>
