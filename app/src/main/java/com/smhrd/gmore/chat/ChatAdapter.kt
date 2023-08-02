@@ -11,17 +11,14 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.smhrd.gmore.R
 import com.smhrd.gmore.utils.FBAuth
 
-class ChatAdapter(val context: Context, val data: ArrayList<ChatVO>): RecyclerView.Adapter<ChatViewHolder>() {
-
+class  ChatAdapter (val context : Context, var template : Int , val data:ArrayList<ChatVO>) : Adapter<ChatViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
-//    var template_View : View = LayoutInflater.from(parent.context).inflate(R.layout.chat_msg_temp,parent,false)
-//        var VH : ChatViewHolder = ChatViewHolder(template_View)
-        return ChatViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.chat_msg_temp, parent, false)
-        )
-    }
 
+        var template_View : View = LayoutInflater.from(parent.context).inflate(template,parent,false)
+        var VH = ChatViewHolder(template_View)
+        return  VH
+    }
 
     override fun onBindViewHolder(holder:ChatViewHolder, position: Int) {
 //        var time = FBAuth.myTime(data[position].time)
@@ -43,7 +40,6 @@ class ChatAdapter(val context: Context, val data: ArrayList<ChatVO>): RecyclerVi
             holder.tvTimeOpp.isVisible = true
         }
     }
-
 
     override fun getItemCount(): Int {
         return data.size

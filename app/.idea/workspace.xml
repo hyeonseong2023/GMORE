@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93d89036-5b9c-4de8-bf59-d541ae1f5232" name="Changes" comment="">
+    <list default="true" id="ad88f2cb-1385-4a9a-8b1b-d1831c92959a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_game_category.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_game_category.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChildEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatChildEvent.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
