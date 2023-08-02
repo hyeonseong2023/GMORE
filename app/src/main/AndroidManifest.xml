@@ -63,10 +63,10 @@
 
         <activity
             android:name=".board.BoardEditActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".board.BoardWriteActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".board.BoardDetailActivity"
             android:exported="false" />

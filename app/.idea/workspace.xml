@@ -5,77 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0134d43-8fc4-40bf-bc37-51a97f002b18" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gmore.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/google-services.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardCategoryAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardCategoryViewHolder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardDetailVO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/CommentAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/CommentVO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/GameCategoryActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatRoomAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatRoomVO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatVO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatViewHolder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChildEvent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/fragment/FragmentTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/user/aa.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/utils/FBAuth.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/utils/FBDatabase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/vo/BoardCategoryVO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/vo/MemberVO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/hartoff.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/harton.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/icon_like_off.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/img14.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/kakaotalkicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/font/font.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/font/main.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/activity_chat.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/activity_fragment_test.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/activity_game_category.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/board_category_item.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/chat_msg_temp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/chat_room_temp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_chat_rooms.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/item_comment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/menu/main_bottom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/values/kakao_app_key.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/xml/network_security_config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/deploymentTargetDropDown.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/proguard-rules.pro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardDetailActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardDetailVO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardDetailVO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardEditActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardEditActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardVO.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardWriteActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardWriteActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/GameCartegoryActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChattingRoomActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/fragment/Fragment2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/fragment/ChatRoomFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/fragment/Fragment4.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/fragment/Fragment4.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/user/EditProfileActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/user/EditProfileActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/user/JoinActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/user/JoinActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/user/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/user/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_board_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_board_detail.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_board_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_board_edit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_chatting_room.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_edit_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_edit_profile.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_game_cartegory.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_join.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_join.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_board_write.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_board_write.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/xml/network_security_config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/xml/network_security_config.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
