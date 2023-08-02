@@ -20,10 +20,10 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
+//import androidx.camera.core.CameraSelector
+//import androidx.camera.core.ImageCapture
+//import androidx.camera.core.Preview
+//import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.android.volley.Request
@@ -31,7 +31,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.smhrd.gmore.R
-import com.smhrd.gmore.databinding.ActivityBoardWriteBinding
+//import com.smhrd.gmore.databinding.ActivityBoardWriteBinding
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
 import java.util.concurrent.ExecutorService
