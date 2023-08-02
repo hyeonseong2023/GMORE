@@ -21,11 +21,7 @@
         <activity
             android:name=".user.JoinActivity"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
@@ -35,8 +31,14 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
+        <!--    카카오톡 로그인 필요 코드    -->
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
@@ -52,6 +54,7 @@
                     android:scheme="@string/kakao_scheme" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

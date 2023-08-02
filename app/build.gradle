@@ -33,13 +33,23 @@ android {
 }
 
 dependencies {
+//    카카오
     implementation "com.kakao.sdk:v2-user:2.15.0"
-    implementation 'com.android.volley:volley:1.2.1'
-    implementation 'com.google.code.gson:gson:2.10.1'
+
+//    implementation 'com.android.volley:volley:1.2.1'
+//    implementation 'com.google.code.gson:gson:2.10.1'
+//
+//    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
+//    implementation 'de.hdodenhof:circleimageview:3.1.0' // Circle ImageView
+//    implementation 'com.google.android.material:material:1.5.0'
+//    implementation 'com.github.bumptech.glide:glide:4.11.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+//    implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.30"
+//    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
