@@ -35,9 +35,11 @@ class BoardDetailActivity : AppCompatActivity() {
     lateinit var login_id:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_board_detail)
+
+        // 뷰 초기화를 setContentView 호출 후에 수행합니다.
         etCommentInput = findViewById(R.id.editTextText)
         btnSubmitComment = findViewById(R.id.ivInputAdd)
-        setContentView(R.layout.activity_board_detail)
         tvBoardTitle = findViewById(R.id.tvBoardTitle)
         tvBoardWriter = findViewById(R.id.tvBoardWriter)
         tvBoardDate = findViewById(R.id.tvBoardDate)
