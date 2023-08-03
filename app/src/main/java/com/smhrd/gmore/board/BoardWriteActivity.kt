@@ -1,6 +1,7 @@
 package com.smhrd.gmore.board
 
 import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -31,7 +32,9 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import com.kakao.sdk.common.util.Utility
 import com.smhrd.gmore.R
+import com.smhrd.gmore.vo.MemberVO
 
 //import com.smhrd.gmore.databinding.ActivityBoardWriteBinding
 
@@ -85,17 +88,14 @@ class BoardWriteActivity : AppCompatActivity() {
         reqQueue = Volley.newRequestQueue(this@BoardWriteActivity)
 
         // SharedPreference 생성
-//        val spf = getSharedPreferences("mySPF", Context.MODE_PRIVATE)
+        val spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+        val userId = spf.getString("userId", "").toString()   // 유저코드 값 불러오기
+        val userNick = spf.getString("userNick", "").toString() // 닉네임 값 불러오기
+        val category = spf.getString("category","").toString()  // 게임 카테고리 값 불러오기
 
-        // 💡💡 받아야 할 값
-        // user_id
-        // category
-
-        // nickname
 
         // 뒤로가기 버튼
         btnWriteClose.setOnClickListener {
-            Log.d("ec", encodeImgString)
 
             // 제목과 내용에 적힌 글이 없다면
             if (etWriteTitle.text.toString() == "" && etWriteContent.text.toString() == "") {
@@ -116,25 +116,22 @@ class BoardWriteActivity : AppCompatActivity() {
 
         // 작성한 게시글 업로드 버튼
         btnWriteOk.setOnClickListener {
-            Log.d("ok","odf")
             val inputTitle = etWriteTitle.text.toString()
             val inputContent = etWriteContent.text.toString()
-//            Toast.makeText(this, "버튼클릭",Toast.LENGTH_SHORT).show()
-
-
-
             val request = object : StringRequest(
                 Request.Method.POST,
-                "http://172.30.1.29:8888/board/write",
+                "http://172.30.1.24:8888/board/write",
 //                "http://localhost:8888/board/write",
                 { response ->
                     Log.d("response", response.toString())
 
                     if(response == "Success"){
                         Toast.makeText(this, "글 업로드 완", Toast.LENGTH_SHORT).show()
-//                        val it = Intent(this, GameCategoryActivity::class.java)
-//                        startActivity(it)
-//                        finish()
+                        val it = Intent(this, GameCategoryActivity::class.java)
+                        intent.putExtra("categoryTag", category)
+                        startActivity(it)
+                        finish()
+
                     }else{
                         Toast.makeText(this, "Fail....", Toast.LENGTH_SHORT).show()
                     }
@@ -145,9 +142,8 @@ class BoardWriteActivity : AppCompatActivity() {
             ) {
                 override fun getParams(): MutableMap<String, String> {
 
-                    Log.d("ec", encodeImgString)
                     val params: MutableMap<String, String> = HashMap<String, String>()
-                    val board = BoardDetailVO(null, inputTitle, inputContent, encodeImgString, "오버워치", 1,null, "nick")
+                    val board = BoardDetailVO(null, inputTitle, inputContent, encodeImgString, category, userId.toInt(),null, userNick)
                     params.put("board", Gson().toJson(board))
                     return params
                 }
@@ -184,7 +180,6 @@ class BoardWriteActivity : AppCompatActivity() {
                 Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
                     takePictureIntent.resolveActivity(packageManager)?.also {
                         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-                        Log.d("req", REQUEST_IMAGE_CAPTURE.toString())
                     }
                 }
             }
@@ -198,7 +193,6 @@ class BoardWriteActivity : AppCompatActivity() {
             ivDelete.visibility = View.INVISIBLE
         }
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

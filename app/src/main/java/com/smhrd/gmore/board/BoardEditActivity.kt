@@ -1,6 +1,7 @@
 package com.smhrd.gmore.board
 
 import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
@@ -75,25 +76,25 @@ class BoardEditActivity : AppCompatActivity() {
         reqQueue = Volley.newRequestQueue(this@BoardEditActivity)
 
 
-        // 임시
-        etEditTitle.setText("제목임")
-        etEditContent.setText("내용임")
-//        ivEditUpload.setImageResource(R.drawable.icon_close)
+
+        val spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+        val userId = spf.getString("userId", "")?.toInt()
+        val userNick = spf.getString("userNick", "").toString()
 
         // 💡 해당 게시물 정보 불러오기
-//        val request = object : StringRequest(
-//            Request.Method.GET,
-//            "http://172.30.1.51:8888/board/update/1",   // 게시물 번호
-//            { response ->
-//                Log.d("response", response.toString())
-//                val imageBytes = Base64.decode(response, 0)
-//                val image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-//                ivEditUpload.setImageBitmap(image)
-//            },
-//            { error ->
-//                Log.d("error", error.toString())
-//            }
-//        ) {}
+        val title = "제목"
+        val content = "내용"
+        val image = "이미지"
+        val category = "오버워치"   // 임시
+
+        // 임시
+        etEditTitle.setText(title)
+        etEditContent.setText(content)
+//        ivEditUpload.setImageBitmap(image)
+
+
+
+
 
 
         // 뒤로가기 버튼
@@ -208,7 +209,6 @@ class BoardEditActivity : AppCompatActivity() {
             }
         } else {  // 카메라 촬영을 하면 이미지뷰에 사진 삽입
             if (requestCode == 101 && resultCode == Activity.RESULT_OK) {
-
                 // Bundle로 데이터 입력
                 val extras: Bundle? = data?.extras
                 // Bitmap으로 형변환
