@@ -4,7 +4,7 @@
 
         <domain includeSubdomains="true">172.30.1.29</domain>
         <domain includeSubdomains="true">172.30.1.15</domain>
-
+        <domain includeSubdomains="true">172.30.1.11</domain>
 
         <domain includeSubdomains="true">172.30.1.21</domain>
 

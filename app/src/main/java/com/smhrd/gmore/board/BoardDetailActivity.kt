@@ -2,9 +2,11 @@ package com.smhrd.gmore.board
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.smhrd.gmore.R
-import com.smhrd.gmore.user.JoinActivity
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -30,7 +31,6 @@ class BoardDetailActivity : AppCompatActivity() {
     private lateinit var tvBoardDate: TextView
     private lateinit var tvBoardContent: TextView
     private lateinit var ivBoardImage: ImageView
-    private lateinit var ivInputAdd: ImageView
     private lateinit var rvComments: RecyclerView
     private lateinit var commentAdapter: CommentAdapter
     private lateinit var boardbookmark: ImageView
@@ -48,14 +48,13 @@ class BoardDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_board_detail)
 
         // 뷰 초기화를 setContentView 호출 후에 수행합니다.
-        etCommentInput = findViewById(R.id.editTextText)
+        etCommentInput = findViewById(R.id.edtComment)
         btnSubmitComment = findViewById(R.id.ivInputAdd)
         tvBoardTitle = findViewById(R.id.tvBoardTitle)
         tvBoardWriter = findViewById(R.id.tvBoardWriter)
         tvBoardDate = findViewById(R.id.tvBoardDate)
         tvBoardContent = findViewById(R.id.tvBoardContent)
         ivBoardImage = findViewById(R.id.ivBoardImage)
-        ivInputAdd = findViewById(R.id.ivInputAdd)
         rvComments = findViewById(R.id.rvComments)
         boardbookmark = findViewById(R.id.boardBookmark)
         boardLike = findViewById(R.id.boardLike)
@@ -103,6 +102,7 @@ class BoardDetailActivity : AppCompatActivity() {
             fetchBoardDelete()
         }
 
+
         btnBoradUpdate.setOnClickListener {
             val intent = Intent(this, BoardEditActivity::class.java).apply {
                 putExtra("boardId", boardId)
@@ -111,7 +111,7 @@ class BoardDetailActivity : AppCompatActivity() {
                 putExtra("date", tvBoardDate.text.toString())
                 putExtra("content", tvBoardContent.text.toString())
                 // 이미지 URL을 변수로 가져올 수 있는 경우 다음 변수 이름을 사용합니다.
-                // putExtra("image_url", imageUrl)
+                // putExtra("image_url", imaivInputAddgeUrl)
             }
             startActivity(intent)
         }
@@ -162,7 +162,7 @@ private fun fetchBoardDelete() {
     private fun fetchBoardDetail() {
         thread {
             try {
-                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}"
+                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
                 conn.requestMethod = "GET"
@@ -188,20 +188,29 @@ private fun fetchBoardDelete() {
                     tvBoardWriter.text = boardDetail.nickname
                     tvBoardDate.text = boardDetail.date_created
                     tvBoardContent.text = boardDetail.content
-                    // 이미지 로드
-                    // 예를 들어 Glide 라이브러리를 사용한다면:
-                    // Glide.with(this).load(boardDetail.image_url).into(ivBoardImage)
-                    if(login_nick==boardDetail.nickname){
-                        btnBoradDelete.visibility = View.VISIBLE
-                    }
 
+                    // 이미지 로드
+                    val bitmapImage = decodeBase64ToBitmap(boardDetail.image_url ?: "")
+                    if (bitmapImage != null) {
+                        ivBoardImage.setImageBitmap(bitmapImage)
+                    }
                 }
 
             } catch (e: Exception) {
-                Log.e("Fetch c", "Error fetching board detail: ${e.message}", e)
+                e.printStackTrace()
             }
         }
     }
+
+    private fun decodeBase64ToBitmap(base64: String): Bitmap? {
+        if (base64.isEmpty()) {
+            return null
+        }
+
+        val decodedBytes = Base64.decode(base64, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+    }
+
 
     private fun fetchComments() {
         thread {
@@ -279,37 +288,46 @@ private fun fetchBoardDelete() {
     }
 
     private fun submitComment() {
+        val content = etCommentInput.text.toString().trim()
+
+        if (content.isEmpty()) {
+            Toast.makeText(this, "댓글 내용을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         thread {
             try {
-//                val commentText = etCommentInput.text.toString()
-//                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/1/$isLiked/like"
-//
-//                val url = URL(urlString)
-//                val conn = url.openConnection() as HttpURLConnection
-//
-//                conn.requestMethod = "POST"
-//                conn.doOutput = true
-//
-//                val outputStream = conn.outputStream
-//                outputStream.write(postData.toByteArray())
-//                outputStream.close()
-//
-//                val responseCode = conn.responseCode
-//                Log.d("Response", "Response Code: $responseCode")
-//
-//                if (responseCode == HttpURLConnection.HTTP_OK) {
-//                    runOnUiThread {
-//                        etCommentInput.setText("") // 코멘트 전송에 성공하면 텍스트를 지웁니다.
-//                        fetchComments() // 코멘트 목록을 새로 고칩니다.
-//                    }
-//                }
+                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/newcomment/${login_id}"
+                val url = URL(urlString)
+                val conn = url.openConnection() as HttpURLConnection
+
+                conn.requestMethod = "POST"
+                conn.doInput = true
+                conn.doOutput = true
+
+                val postData = "content=${content}".toByteArray(Charsets.UTF_8)
+                conn.outputStream.write(postData)
+
+                val responseCode = conn.responseCode
+                Log.d("Response", "Response Code: $responseCode")
+
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    runOnUiThread {
+                        Toast.makeText(this, "댓글이 작성되었습니다.", Toast.LENGTH_SHORT).show()
+                        etCommentInput.text.clear()
+                        fetchComments() // 댓글 작성 후 댓글 목록을 갱신합니다.
+                    }
+                } else {
+                    runOnUiThread {
+                        Toast.makeText(this, "댓글 작성에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
 
             } catch (e: Exception) {
                 Log.e("Submit Comment", "Error submitting comment: ${e.message}", e)
             }
         }
     }
-
 
 
 
