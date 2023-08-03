@@ -95,7 +95,6 @@ class LoginActivity : AppCompatActivity() {
                     firstMember?.let { member ->
 //                        val userId: Int = member.id
 //                        val userNick: String = member.nick
-
 //                        editor.putString("loginedId", userNick) // 아이디 값을 SPF에 저장
 //                        editor.commit()
 
@@ -103,14 +102,11 @@ class LoginActivity : AppCompatActivity() {
                         val userId: Int = member.id
                         val userNick: String = member.nick
 
-                        val userEmail : String = member.eamil
                         Log.d("로그인한 사용자 값",userId.toString())
                         Log.d("로그인한 사용자 값",userNick)
-                        Log.d("로그인한 사용자 값",userEmail)
                         editor.putString("loginedId", userId.toString())
                         editor.putString("loginedNick", userNick)
-                        editor.putString("logineEmail", userEmail)
-
+                        editor.putString("logineEmail", etLoginId.text.toString())
                         editor.commit()
                         //✨혜주 spf 수정 끝✨
 
@@ -177,6 +173,7 @@ class LoginActivity : AppCompatActivity() {
                                     Log.d("Login", "spf에 저장")
                                     // spf에 저장!
                                     editor.putString("loginedId", loginedID)
+                                    editor.putString("loginedEmail", loginedID)
                                     editor.commit()
 
                                     startActivity(it_toMain)

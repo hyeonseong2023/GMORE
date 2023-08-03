@@ -56,8 +56,9 @@ class EditProfileActivity : AppCompatActivity() {
         )
 
         // spf 에서 user 데이터 가져오기
-        val userEmail = spf.getString("userEmail", "")
-        val userNick = spf.getString("userNick", "")
+        val userEmail = spf.getString("loginEmail", "")
+        val userNick = spf.getString("loginNick", "")
+        val userid = spf.getString("loginId", "")
         Log.d("spf 값??", userNick.toString())
         etNickEditProfile.hint = userNick
 
@@ -154,6 +155,48 @@ class EditProfileActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "PW를 확인 해주세요", Toast.LENGTH_SHORT).show()
             }
+        }
+
+
+        // 회원탈퇴 ---- 수정중
+        tvQuitEditProfile.setOnClickListener{
+            val request = object : StringRequest(
+                Request.Method.POST,
+                "http://172.30.1.40:8888/user/delete",
+                { response ->
+                    Log.d("response", response.toString())
+
+                    if (response.toString().equals("삭제O")) {
+                        Toast.makeText(this, "탈퇴완료", Toast.LENGTH_SHORT).show()
+
+                        // spf 이용해 로그인 유저 데이터 받아오기
+                        val spf = getSharedPreferences(
+                            //  -- fragment2 에서 생성한 것과 KEY 값 맞춰주기
+                            "userSPF",
+                            Context.MODE_PRIVATE
+                        )
+
+                        val editor = spf.edit()
+                        editor.clear()
+                        editor.apply()
+
+
+                    } else {
+
+                        Toast.makeText(this, "삭제실패", Toast.LENGTH_SHORT).show()
+                    }
+
+                }, { error ->
+                    Log.d("error", error.toString())
+                }
+            ) {
+                override fun getParams(): MutableMap<String, String> {
+                    val params: MutableMap<String, String> = HashMap<String, String>()
+                    params.put("deleteData", userEmail.toString())
+                    return params
+                }
+            }
+            reqQueue.add(request)
         }
 
 
