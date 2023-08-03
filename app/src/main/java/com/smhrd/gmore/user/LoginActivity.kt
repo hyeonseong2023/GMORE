@@ -52,6 +52,15 @@ class LoginActivity : AppCompatActivity() {
 //    var reqURL: String = "http://172.30.1.29:8888/"
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+    lateinit var reqQue : RequestQueue
+=======
+>>>>>>> Stashed changes
+
+    var reqURL: String = "http://172.30.1.29:8888/"
+>>>>>>> daun
 
 
 

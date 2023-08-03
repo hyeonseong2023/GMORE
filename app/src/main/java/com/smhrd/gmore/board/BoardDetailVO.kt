@@ -8,7 +8,7 @@ class BoardDetailVO(val board_id: Int?,
                     val category: String?,
                     val user_id : Int?,
                     val date_created: String?,
-                    val nickname: String
+                    val nickname: String?
 )
 
 //class BoardDetailVO (    val board_id: Int?,

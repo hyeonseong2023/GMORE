@@ -135,7 +135,7 @@
         app:layout_constraintGuide_percent="0.8" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/boardcomAdd"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
