@@ -71,17 +71,19 @@ class GameCategoryActivity : AppCompatActivity() {
 
         val request = object : StringRequest(Request.Method.GET,
             "http://172.30.1.24:8888/board/category?category=$category",
-//            "https://57ef-211-223-144-120.ngrok.io/board/category?category=$category",
-
             { response ->
                 Log.d("response", response.toString())
 
                 var result = JSONArray(response)
 
-                // JSON 응답을 List<BoardCategoryVO>로 변환하여 boardList 에 저장
-                val typeToken = object : TypeToken<List<BoardCategoryVO>>() {}.type
-                boardList.clear()
-                boardList.addAll(Gson().fromJson(response, typeToken))
+                if (result.length() > 0) {
+                    // JSON 응답을 List<BoardCategoryVO>로 변환하여 boardList 에 저장
+                    val typeToken = object : TypeToken<List<BoardCategoryVO>>() {}.type
+                    boardList.clear()
+                    boardList.addAll(Gson().fromJson(response, typeToken))
+                } else {
+                    boardList.clear()
+                }
 
                 val adapter = BoardCategoryAdapter(this@GameCategoryActivity, boardList)
 
