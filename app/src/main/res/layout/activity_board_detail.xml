@@ -10,10 +10,12 @@
         android:id="@+id/tvBoardTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="Title"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
@@ -151,19 +153,51 @@
         android:id="@+id/boardBookmark"
         android:layout_width="60dp"
         android:layout_height="63dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalBottom"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintHorizontal_bias="0.601"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:srcCompat="@android:drawable/btn_star_big_off" />
+        app:srcCompat="@android:drawable/btn_star_big_off"
+        tools:layout_editor_absoluteX="194dp" />
 
     <ImageView
         android:id="@+id/boardLike"
         android:layout_width="60dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalBottom"
         app:layout_constraintEnd_toStartOf="@+id/boardBookmark"
         app:layout_constraintTop_toBottomOf="@+id/svBoardContent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/hartoff" />
+
+    <Button
+        android:id="@+id/btnBoradUpdate"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#E4D6B2"
+        android:text="수정"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalTop"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+    <Button
+        android:id="@+id/btnBoradDelete"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#B19E9E"
+        android:text="삭제"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalTop"
+        app:layout_constraintEnd_toStartOf="@+id/btnBoradUpdate"
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
