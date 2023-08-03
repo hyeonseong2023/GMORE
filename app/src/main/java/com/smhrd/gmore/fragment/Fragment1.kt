@@ -25,8 +25,6 @@ class Fragment1 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-
 
         var view:View = inflater.inflate(R.layout.fragment_1, container, false)
 
@@ -53,5 +51,10 @@ class Fragment1 : Fragment() {
         imageViews.forEach { it.setOnClickListener(commonClickListener) }
 
         return view
+
+
+
+
+
     }
 }
