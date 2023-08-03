@@ -41,14 +41,8 @@ class LoginActivity : AppCompatActivity() {
     lateinit var tvToJoin: TextView
     lateinit var reqQue: RequestQueue
 
-<<<<<<< HEAD
+
     var reqURL: String = "http://172.30.1.29:8888/"
-=======
-    lateinit var reqQue : RequestQueue
->>>>>>> daun
-
-    var reqURL : String = "http://172.30.1.29:8888/"
-
 
     lateinit var binding : ActivityLoginBinding
 

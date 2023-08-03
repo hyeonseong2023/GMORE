@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(
             R.id.fl,
             Fragment1()
-        )
+        ).commit()
 
         // bnv에서 선택한 메뉴에 따라 fl에 표시할 Fragment를 갈아 끼우기!
         binding.bnv.setOnItemSelectedListener {
