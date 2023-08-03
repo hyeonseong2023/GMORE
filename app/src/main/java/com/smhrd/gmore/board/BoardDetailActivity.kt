@@ -65,6 +65,7 @@ class BoardDetailActivity : AppCompatActivity() {
         login_id = sharedPreferences.getString("selected_login_id", "1") ?: "1"
         login_nick = sharedPreferences.getString("userNick", "1") ?: "1"
 
+        boardId =  intent.getIntExtra("selected_board_id", -1).toString()
         fetchBoardDetail()
         fetchComments()
         var isBookmarked = false // 북마크 상태를 저장하는 변수 (기본값: false)
@@ -101,9 +102,17 @@ class BoardDetailActivity : AppCompatActivity() {
             fetchBoardDelete()
         }
 
-        btnBoradUpdate.setOnClickListener{
-            var it = Intent(this, BoardEditActivity::class.java)
-            startActivity(it)
+        btnBoradUpdate.setOnClickListener {
+            val intent = Intent(this, BoardEditActivity::class.java).apply {
+                putExtra("boardId", boardId)
+                putExtra("title", tvBoardTitle.text.toString())
+                putExtra("writer", tvBoardWriter.text.toString())
+                putExtra("date", tvBoardDate.text.toString())
+                putExtra("content", tvBoardContent.text.toString())
+                // 이미지 URL을 변수로 가져올 수 있는 경우 다음 변수 이름을 사용합니다.
+                // putExtra("image_url", imageUrl)
+            }
+            startActivity(intent)
         }
     }
 //게시글 삭제 버튼 반응
@@ -188,6 +197,7 @@ private fun fetchBoardDelete() {
                     if(login_nick==boardDetail.nickname){
                         btnBoradDelete.visibility = View.VISIBLE
                     }
+
                 }
 
             } catch (e: Exception) {
@@ -274,29 +284,28 @@ private fun fetchBoardDelete() {
     private fun submitComment() {
         thread {
             try {
-                val commentText = etCommentInput.text.toString()
-                val urlString = "http://your-server-url.com/your-comment-submit-url"
-                val postData = "board_id=$boardId&login_id=${login_id}&comment_text=$commentText"
-
-                val url = URL(urlString)
-                val conn = url.openConnection() as HttpURLConnection
-
-                conn.requestMethod = "POST"
-                conn.doOutput = true
-
-                val outputStream = conn.outputStream
-                outputStream.write(postData.toByteArray())
-                outputStream.close()
-
-                val responseCode = conn.responseCode
-                Log.d("Response", "Response Code: $responseCode")
-
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    runOnUiThread {
-                        etCommentInput.setText("") // 코멘트 전송에 성공하면 텍스트를 지웁니다.
-                        fetchComments() // 코멘트 목록을 새로 고칩니다.
-                    }
-                }
+//                val commentText = etCommentInput.text.toString()
+//                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/1/$isLiked/like"
+//
+//                val url = URL(urlString)
+//                val conn = url.openConnection() as HttpURLConnection
+//
+//                conn.requestMethod = "POST"
+//                conn.doOutput = true
+//
+//                val outputStream = conn.outputStream
+//                outputStream.write(postData.toByteArray())
+//                outputStream.close()
+//
+//                val responseCode = conn.responseCode
+//                Log.d("Response", "Response Code: $responseCode")
+//
+//                if (responseCode == HttpURLConnection.HTTP_OK) {
+//                    runOnUiThread {
+//                        etCommentInput.setText("") // 코멘트 전송에 성공하면 텍스트를 지웁니다.
+//                        fetchComments() // 코멘트 목록을 새로 고칩니다.
+//                    }
+//                }
 
             } catch (e: Exception) {
                 Log.e("Submit Comment", "Error submitting comment: ${e.message}", e)

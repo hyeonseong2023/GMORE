@@ -76,8 +76,11 @@ class BoardEditActivity : AppCompatActivity() {
 
 
         // 임시
-        etEditTitle.setText("제목임")
-        etEditContent.setText("내용임")
+        val title = intent.getStringExtra("title")
+        val content = intent.getStringExtra("content")
+
+        etEditTitle.setText(title)
+        etEditContent.setText(content)
 //        ivEditUpload.setImageResource(R.drawable.icon_close)
 
         // 💡 해당 게시물 정보 불러오기
