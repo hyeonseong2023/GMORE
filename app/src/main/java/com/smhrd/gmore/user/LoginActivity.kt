@@ -23,6 +23,7 @@ import com.kakao.sdk.user.UserApiClient
 import com.smhrd.gmore.MainActivity
 import com.smhrd.gmore.R
 import com.smhrd.gmore.databinding.ActivityLoginBinding
+
 import com.smhrd.gmore.vo.MemberVO
 import com.smhrd.gmore.vo.MembersResponse
 import com.smhrd.gmore.vo.RQMember
@@ -36,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var reqQue : RequestQueue
 
-    var reqURL : String = "http://172.30.1.11:8888/"
+    var reqURL : String = "http://172.30.1.24:8888/"
 
 
     lateinit var binding : ActivityLoginBinding
