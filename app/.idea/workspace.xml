@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d0134d43-8fc4-40bf-bc37-51a97f002b18" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardEditActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardEditActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/proguard-rules.pro" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardWriteActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardWriteActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_board_write.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_board_write.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +33,8 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SMHRD/Desktop/GMORE/app&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

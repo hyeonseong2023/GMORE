@@ -1,7 +1,6 @@
 package com.smhrd.gmore.board
 
 import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,6 +11,7 @@ import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -51,10 +51,8 @@ class BoardWriteActivity : AppCompatActivity() {
 
     lateinit var writeImgLine: View
     lateinit var reqQueue: RequestQueue
-    lateinit var encodeImgString: String
+     var encodeImgString: String = ""
     val STORAGE_CODE = 1000
-
-    lateinit var file: File
 
     var imgCamUpload = false
     var imgPhotoUpload = false
@@ -73,7 +71,7 @@ class BoardWriteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_board_write)
 
         btnWriteClose = findViewById(R.id.btnWriteClose)
-        btnWriteOk = findViewById(R.id.btnWriteOk)
+        btnWriteOk = findViewById(R.id.btnOkkk)
         btnWriteCam = findViewById(R.id.btnWriteCam)
         btnWritePhoto = findViewById(R.id.btnWritephoto)
         etWriteTitle = findViewById(R.id.etWriteTitle)
@@ -90,10 +88,13 @@ class BoardWriteActivity : AppCompatActivity() {
         // 💡💡 받아야 할 값
         // user_id
         // category
+
         // nickname
 
         // 뒤로가기 버튼
         btnWriteClose.setOnClickListener {
+            Log.d("ec", encodeImgString)
+
             // 제목과 내용에 적힌 글이 없다면
             if (etWriteTitle.text.toString() == "" && etWriteContent.text.toString() == "") {
                 // 게임 게시판으로 돌아가기
@@ -113,9 +114,12 @@ class BoardWriteActivity : AppCompatActivity() {
 
         // 작성한 게시글 업로드 버튼
         btnWriteOk.setOnClickListener {
-
+            Log.d("ok","odf")
             val inputTitle = etWriteTitle.text.toString()
             val inputContent = etWriteContent.text.toString()
+//            Toast.makeText(this, "버튼클릭",Toast.LENGTH_SHORT).show()
+
+
 
             val request = object : StringRequest(
                 Request.Method.POST,
@@ -138,8 +142,9 @@ class BoardWriteActivity : AppCompatActivity() {
                 }
             ) {
                 override fun getParams(): MutableMap<String, String> {
-                    val params: MutableMap<String, String> = HashMap<String, String>()
 
+                    Log.d("ec", encodeImgString)
+                    val params: MutableMap<String, String> = HashMap<String, String>()
                     val board = BoardDetailVO(null, inputTitle, inputContent, encodeImgString, "오버워치", 1,null, "nick")
                     params.put("board", Gson().toJson(board))
                     return params

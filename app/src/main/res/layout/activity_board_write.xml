@@ -24,11 +24,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/btnWriteOk"
+        android:id="@+id/btnOkkk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
-        android:background="@android:color/transparent"
+        android:background="@color/white"
         android:maxWidth="30dp"
         android:maxHeight="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
@@ -91,7 +91,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnWriteClose"
-        app:layout_constraintEnd_toStartOf="@+id/btnWriteOk"
+        app:layout_constraintEnd_toStartOf="@+id/btnOkkk"
         app:layout_constraintStart_toEndOf="@+id/btnWriteClose"
         app:layout_constraintTop_toTopOf="@+id/btnWriteClose" />
 
