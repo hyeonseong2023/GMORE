@@ -40,9 +40,9 @@ class BoardDetailActivity : AppCompatActivity() {
     private lateinit var btnBoradDelete: Button
     private lateinit var btnBoradUpdate: Button
 
-    lateinit var boardId:String
-    lateinit var login_id:String
-    lateinit var login_nick:String
+    lateinit var boardId: String
+    lateinit var login_id: String
+    lateinit var login_nick: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_detail)
@@ -65,7 +65,7 @@ class BoardDetailActivity : AppCompatActivity() {
         login_id = sharedPreferences.getString("selected_login_id", "1") ?: "1"
         login_nick = sharedPreferences.getString("userNick", "1") ?: "1"
 
-        boardId =  intent.getIntExtra("selected_board_id", -1).toString()
+        boardId = intent.getIntExtra("selected_board_id", -1).toString()
         Log.d("boardId??? : ", boardId)
         fetchBoardDetail()
         fetchComments()
@@ -99,7 +99,7 @@ class BoardDetailActivity : AppCompatActivity() {
             updateLike(isLiked)
         }
 
-        btnBoradDelete.setOnClickListener{
+        btnBoradDelete.setOnClickListener {
             fetchBoardDelete()
         }
 
@@ -116,47 +116,50 @@ class BoardDetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-//게시글 삭제 버튼 반응
-private fun fetchBoardDelete() {
-    thread {
-        try {
-            val urlString = "http://172.30.1.24:8888/board/detail/$boardId/delete"
-            val url = URL(urlString)
-            val conn = url.openConnection() as HttpURLConnection
 
-            conn.requestMethod = "GET"
+    //게시글 삭제 버튼 반응
+    private fun fetchBoardDelete() {
+        thread {
+            try {
+                val urlString = "http://172.30.1.24:8888/board/detail/$boardId/delete"
+                val url = URL(urlString)
+                val conn = url.openConnection() as HttpURLConnection
 
-            val `in` = BufferedReader(InputStreamReader(conn.inputStream))
-            val response = StringBuilder()
+                conn.requestMethod = "GET"
 
-            var inputLine: String?
-            while (`in`.readLine().also { inputLine = it } != null) {
-                response.append(inputLine)
-            }
+                val `in` = BufferedReader(InputStreamReader(conn.inputStream))
+                val response = StringBuilder()
 
-            // 받은 값(응답 문자열)에 따른 조건 처리
-            when (response.toString().trim()) {
-                "Success" -> {
-                    runOnUiThread {
-                        val intent = Intent(this, GameCategoryActivity::class.java)
-                        startActivity(intent)
-                        finish() // 현재 Activity 닫기
+                var inputLine: String?
+                while (`in`.readLine().also { inputLine = it } != null) {
+                    response.append(inputLine)
+                }
+
+                // 받은 값(응답 문자열)에 따른 조건 처리
+                when (response.toString().trim()) {
+                    "Success" -> {
+                        runOnUiThread {
+                            val intent = Intent(this, GameCategoryActivity::class.java)
+                            startActivity(intent)
+                            finish() // 현재 Activity 닫기
+                        }
+                    }
+
+                    "Fail" -> {
+                        runOnUiThread {
+                            Toast.makeText(this, "실패.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    else -> {
+
                     }
                 }
-                "Fail" -> {
-                    runOnUiThread {
-                        Toast.makeText(this, "실패.", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                else -> {
 
-                }
+            } catch (e: Exception) {
+                Log.e("Fetch c", "Error fetching board detail: ${e.message}", e)
             }
-
-        } catch (e: Exception) {
-            Log.e("Fetch c", "Error fetching board detail: ${e.message}", e)
         }
-      }
     }
 
     private fun fetchBoardDetail() {
@@ -191,7 +194,7 @@ private fun fetchBoardDelete() {
                     // 이미지 로드
                     // 예를 들어 Glide 라이브러리를 사용한다면:
                     // Glide.with(this).load(boardDetail.image_url).into(ivBoardImage)
-                    if(login_nick==boardDetail.nickname){
+                    if (login_nick == boardDetail.nickname) {
                         btnBoradDelete.visibility = View.VISIBLE
                     }
 
@@ -245,7 +248,8 @@ private fun fetchBoardDelete() {
     private fun updateBookmark(isBookmarked: Boolean) {
         thread {
             try {
-                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/1/$isBookmarked/book"
+                val urlString =
+                    "http://172.30.1.24:8888/board/detail/${boardId}/1/$isBookmarked/book"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -309,8 +313,6 @@ private fun fetchBoardDelete() {
             }
         }
     }
-
-
 
 
 }

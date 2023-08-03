@@ -48,7 +48,6 @@ class GameCategoryActivity : AppCompatActivity() {
         tvCategoryName = this.findViewById(R.id.tvCategoryListName1)
         btnWriteNext = this.findViewById(R.id.btnNextWrite)
         ivCategoryBack = this.findViewById(R.id.ivCategoryBack)
-
         reqQueue = Volley.newRequestQueue(this@GameCategoryActivity)
 
         spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
