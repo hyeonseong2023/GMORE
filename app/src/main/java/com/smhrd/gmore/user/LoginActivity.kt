@@ -3,6 +3,7 @@ package com.smhrd.gmore.user
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,14 +20,19 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.smhrd.gmore.MainActivity
 import com.smhrd.gmore.R
+import com.smhrd.gmore.board.BoardWriteActivity
+import com.smhrd.gmore.board.GameCategoryActivity
 import com.smhrd.gmore.databinding.ActivityLoginBinding
 
 import com.smhrd.gmore.vo.MemberVO
 import com.smhrd.gmore.vo.MembersResponse
 import com.smhrd.gmore.vo.RQMember
+import org.json.JSONArray
+import org.json.JSONObject
 import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
@@ -36,11 +42,19 @@ class LoginActivity : AppCompatActivity() {
     lateinit var tvToJoin : TextView
 
     lateinit var reqQue : RequestQueue
-
+    
     var reqURL : String = "http://172.30.1.24:8888/"
 
 
     lateinit var binding : ActivityLoginBinding
+
+    // SharedPreference
+    lateinit var spf : SharedPreferences
+    // MODE_PRIVATE : 내부 캐시에 저장 -> 노출 x
+
+    // - editor 사용
+    lateinit var editor : SharedPreferences.Editor
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,11 +78,11 @@ class LoginActivity : AppCompatActivity() {
         var it_toMain = Intent(this@LoginActivity, MainActivity::class.java)
 
         // SharedPreference
-        val spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+        spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
         // MODE_PRIVATE : 내부 캐시에 저장 -> 노출 x
 
         // - editor 사용
-        val editor= spf.edit()
+        editor= spf.edit()
 
         // ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -80,12 +94,12 @@ class LoginActivity : AppCompatActivity() {
 
             var request = object : StringRequest(
                 Request.Method.POST,
-                    // http://172.30.1.21:8888/member/login
+                // http://172.30.1.21:8888/member/login
                 reqURL + "member/login",
 //                "http://172.30.1.40:8888/user/checknick",
                 {
                         response ->
-                    startActivity(it_toMain)
+//                    startActivity(it_toMain)
                     Log.d("response", response.toString())
 
                     val gson = Gson()
@@ -96,11 +110,19 @@ class LoginActivity : AppCompatActivity() {
                         val userId: Int = member.id
                         val userNick: String = member.nick
 
-                        editor.putString("loginedId", userNick) // 아이디 값을 SPF에 저장
-                        editor.putString("selected_login_id", userId.toString())
+                        // spf에 값 저장
+                        editor.putString("userNick", userNick)  // 닉네임
+                        editor.putString("userId", userId.toString())  // 유저코드
                         editor.commit()
+                        Log.d("userNick", spf.getString("userNick", "").toString())
 
-                        startActivity(it_toMain)
+
+
+                        intent.putExtra("selected_login_id", userId.toString()) // 아이디 값을 인텐트에 저장
+//                        startActivity(it_toMain)
+                        val i = Intent(this, GameCategoryActivity::class.java)
+                        startActivity(i)
+                        finish()
                     } ?: run {
                         // 회원 정보가 없을 경우, 처리할 수 있는 코드를 추가해주세요.
                     }
@@ -145,7 +167,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
                 // 성공했을 때
-                else if (token != null) { 
+                else if (token != null) {
                     Log.i("LOGIN", "카카오계정으로 로그인 성공 콜백함수 ${token.accessToken}")
                     //Toast.makeText(this, "로그인 성공-콜백", Toast.LENGTH_SHORT).show()
 
@@ -160,12 +182,13 @@ class LoginActivity : AppCompatActivity() {
 
                             checkEmail(loginedID) {isEmailExists ->
                                 if(isEmailExists) {
-                                    Log.d("Login", "spf에 저장")
-                                    // spf에 저장!
-                                    editor.putString("loginedId", loginedID)
-                                    editor.commit()
 
-                                    startActivity(it_toMain)
+                                    get_userID(loginedID)
+
+
+
+
+
                                     finish()
                                 } else {
                                     //  // Toast.makeText(this, "카카오톡 로그인 실패", Toast.LENGTH_SHORT).show()
@@ -190,9 +213,10 @@ class LoginActivity : AppCompatActivity() {
         var request = object:StringRequest(Request.Method.GET,
             reqURL+"member/checkID/" + id,
             {
-                response ->
+                    response ->
                 if(response.equals("이메일 있음")) {
                     Log.d("Login", "이메일 있음")
+
                     callback(true)
                 } else {
                     Log.d("Login", "이메일 없음")
@@ -200,11 +224,42 @@ class LoginActivity : AppCompatActivity() {
                     callback(false)
                 }
             }, {
-                err ->
+                    err ->
                 Log.d("checkEmail", "에러"+err.toString())
                 callback(false)
             }
         ){}
+        reqQue.add(request)
+    }
+
+    private fun get_userID(email : String)  {
+        var request = object:StringRequest(Request.Method.GET,
+            reqURL+"member/getuserid/"+email,
+            {
+                    response ->
+                Log.d("Login", "닉네임"+response.toString())
+                var result = JSONArray(response).getJSONObject(0)
+                Log.d("Login", "유저콛드" + result.getString("user_id"))
+                var code = result.getString("user_id").toString()
+                var nickname = result.getString("nickname").toString()
+
+                Log.d("11", code)
+                editor.putString("userId", code)
+                editor.putString("userNIck", nickname)
+                editor.commit()
+
+                Log.d("Login", "spf에 저장")
+                // spf에 저장!
+                val i = Intent(this, BoardWriteActivity::class.java)
+                startActivity(i)
+
+
+
+            }, {
+                    err ->
+                Log.d("Login", err.toString())
+            }
+        ){ }
         reqQue.add(request)
     }
 }
