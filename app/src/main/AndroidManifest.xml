@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    
 
+    <!-- fa13c429fc04b21ee004e594cc199d4fea13c819-->
     <!-- 지연 임시- 카메라 추가 -->
 
     <uses-feature android:name="android.hardware.camera.any" />
@@ -12,15 +12,19 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 끝 -->
+
+    <!--    끝-->
+
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-<!-- android:networkSecurityConfig="@xml/network_security_config" -->
+
+    <!-- android:networkSecurityConfig="@xml/network_security_config" -->
     <application
 
-        android:usesCleartextTraffic="true"
-
-
         android:allowBackup="true"
+
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -29,32 +33,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GMORE"
-
+        android:usesCleartextTraffic="true"
 
         tools:targetApi="31">
-        <activity
-            android:name=".user.MyPageBoardList"
-            android:exported="false" />
 
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true" />
         <activity
             android:name=".fragment.FragmentTest"
-            android:exported="true">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+            android:exported="true"/>
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
 
+            <activity
+                android:name=".user.MyPageBoardList"
+                android:exported="false" />
 
+
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
-
-        </activity>
+<!--        </activity>-->
         <activity
             android:name=".user.MyWriteListActivity"
             android:exported="false" />
@@ -65,11 +71,17 @@
             android:name=".chat.ChatActivity"
             android:exported="true">
 
+
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
 
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".board.BoardEditActivity"
@@ -89,12 +101,12 @@
             android:exported="true" />
         <activity
             android:name=".user.LoginActivity"
-            android:exported="true" >
+            android:exported="true">
 
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
 
         </activity>
         <activity
@@ -103,17 +115,24 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+
         </activity>
 
 
         <!--    카카오톡 로그인 필요 코드    -->
-
 
 
         <activity
@@ -131,6 +150,7 @@
                     android:scheme="@string/kakao_scheme" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
