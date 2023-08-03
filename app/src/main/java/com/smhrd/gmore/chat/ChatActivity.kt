@@ -30,7 +30,7 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
         var spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
-        var loginedID = spf.getString("loginedId", "hee")
+        var userNick = spf.getString("userNick", "userNick")
 
 
         rvChat = findViewById(R.id.rvChat)
@@ -44,18 +44,20 @@ class ChatActivity : AppCompatActivity() {
 
         val data = ArrayList<ChatVO>()
 
-        data.add(ChatVO("안녕하세yo", "heehee","오후14:30"))
-        data.add(ChatVO("겜 친추 하실래요???", "heehee","오후14:32"))
+        data.add(ChatVO("안녕하세yo", "ssoo","오후14:30"))
+        data.add(ChatVO("겜 친추 하실래요???", "ssoo","오후14:32"))
 
-        var adapter = ChatAdapter(applicationContext, data,loginedID.toString())
+        var adapter = ChatAdapter(applicationContext, data,userNick.toString())
         rvChat.layoutManager = LinearLayoutManager(applicationContext)// 목록형
         rvChat.adapter = adapter
-        tvChatNick.text = loginedID
+        tvChatNick.text = "ssoo"
 
 
         btnChatSend.setOnClickListener {
             Log.d("spf",spf.toString())
-            myRef.push().setValue(ChatVO(etChatMsg.text.toString(),loginedID.toString(), myTime(getTime())))
+            Log.d("loginId",userNick.toString())
+
+            myRef.push().setValue(ChatVO(etChatMsg.text.toString(),userNick.toString(), myTime(getTime())))
 
             rvChat.smoothScrollToPosition(data.size-1)
             etChatMsg.text.clear()
