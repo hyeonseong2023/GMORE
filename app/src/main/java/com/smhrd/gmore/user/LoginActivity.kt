@@ -43,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var reqQue: RequestQueue
 
     var reqURL: String = "http://172.30.1.29:8888/"
+//    var reqURL: String = "https://48e5-211-223-144-120.ngrok.io/"
 
 
 
