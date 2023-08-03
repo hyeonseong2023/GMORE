@@ -90,19 +90,9 @@ class GameCategoryActivity : AppCompatActivity() {
                     override fun onItemClick(position: Int) {
                         val selectedBoard = boardList[position]
 
-<<<<<<< HEAD
                         val intent = Intent(this@GameCategoryActivity, BoardDetailActivity::class.java)
                         intent.putExtra("selected_board_id", selectedBoard.board_id)
                         Log.d("보낸다", selectedBoard.board_id .toString())
-=======
-<<<<<<< Updated upstream
-                        val intent = Intent(this@GameCategoryActivity, HomeActivity::class.java)
-                        intent.putExtra("selected_board_id", selectedBoard.categoryBoardId)
-=======
-                        val intent = Intent(this@GameCategoryActivity, BoardDetailActivity::class.java)
-                        intent.putExtra("selected_board_id", selectedBoard.board_id) // boardList에서 선택한 아이템의 board_id 가져오기
->>>>>>> Stashed changes
->>>>>>> daun
                         startActivity(intent)
                     }
                 }
