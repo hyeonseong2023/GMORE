@@ -44,11 +44,11 @@ class GameCategoryActivity : AppCompatActivity() {
 
         reqQueue = Volley.newRequestQueue(this@GameCategoryActivity)
 
-        val category = intent.getStringExtra("buttonText")
+        val category = intent.getStringExtra("imageTag")
 
         val request = object : StringRequest(Request.Method.GET,
-//            "http://172.30.1.24:8888/board/category?category=$category",
-            "https://57ef-211-223-144-120.ngrok.io/board/category?category=$category",
+            "http://172.30.1.24:8888/board/category?category=$category",
+//            "https://57ef-211-223-144-120.ngrok.io/board/category?category=$category",
 
             { response ->
                 Log.d("response", response.toString())
