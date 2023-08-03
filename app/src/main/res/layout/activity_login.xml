@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.16" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -20,16 +20,19 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/glLoginH75p"
         app:layout_constraintEnd_toStartOf="@+id/glLoginV90p"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/glLoginV10p"
         app:layout_constraintTop_toTopOf="@+id/glLoginH25p"
-        app:layout_constraintVertical_bias="0.3">
+        app:layout_constraintVertical_bias="0.146">
 
         <TextView
             android:id="@+id/tvLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:letterSpacing="-0.05"
             android:text="로그인"
             android:textSize="34sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,9 +41,12 @@
             android:id="@+id/etLoginId"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="ID"
             android:inputType="text"
+            android:letterSpacing="-0.05"
+            android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
@@ -49,10 +55,14 @@
             android:id="@+id/etLoginPw"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="PW"
             android:inputType="text"
+            android:letterSpacing="-0.05"
+            android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etLoginId" />
 
@@ -60,8 +70,14 @@
             android:id="@+id/btnLogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="로그인"
+            android:layout_marginTop="28dp"
+            android:backgroundTint="@color/main"
+            android:letterSpacing="-0.05"
+            android:text="LOGIN"
+            android:textSize="18sp"
+            app:cornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etLoginPw" />
 
@@ -72,25 +88,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.65" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toStartOf="@+id/glLoginV90p"
         app:layout_constraintStart_toStartOf="@+id/glLoginV10p"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:letterSpacing="-0.05"
+            android:text="아이디가 없다면? "
+            android:textAlignment="textEnd"
+            android:textColor="#9E9E9E"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/tvToJoin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:text="아이디가 없다면! 회원가입하러 가기(클릭)"
-            android:textAlignment="center" />
+            android:letterSpacing="-0.05"
+            android:text=" 회원가입하러 가기(클릭)"
+            android:textAlignment="textStart"
+            android:textColor="@color/main"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -118,20 +149,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.81" />
+        app:layout_constraintGuide_percent="0.71" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glLoginV10p"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glLoginV90p"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.85" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
