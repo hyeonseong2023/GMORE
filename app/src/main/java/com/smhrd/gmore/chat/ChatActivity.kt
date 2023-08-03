@@ -1,5 +1,6 @@
 package com.smhrd.gmore.chat
 
+import ChatChildEvent
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -58,7 +59,7 @@ class ChatActivity : AppCompatActivity() {
             etChatMsg.text.clear()
         }
 
-        myRef.addChildEventListener(ChildEvent(data,adapter))
+        myRef.addChildEventListener(ChatChildEvent(data,adapter))
     }
 
 
