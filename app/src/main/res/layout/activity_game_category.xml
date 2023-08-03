@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".board1.GameCategoryActivity">
+    android:padding="0dp"
+    tools:context=".board.GameCategoryActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategoryList1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,11 +26,26 @@
         android:id="@+id/tvCategoryListName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="16dp"
         android:text="게임이름"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnNextWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/main"
+        android:includeFontPadding="false"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:text="글쓰기"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

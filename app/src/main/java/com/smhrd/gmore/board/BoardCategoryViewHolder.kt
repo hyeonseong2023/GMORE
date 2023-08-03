@@ -21,9 +21,10 @@ class BoardCategoryViewHolder(itemView: View, val categoryClickEvent: CategoryCl
         itemView.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
+
+    override fun onClick(view: View?) {
         val position = adapterPosition
-        if (position != RecyclerView.NO_POSITION && v != null) {
+        if (position != RecyclerView.NO_POSITION && view != null) {
             categoryClickEvent?.onItemClick(position)
         }
     }

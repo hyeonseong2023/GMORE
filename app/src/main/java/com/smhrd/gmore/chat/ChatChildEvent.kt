@@ -1,19 +1,13 @@
-package com.smhrd.gmore.chat
-
-import android.util.Log
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.smhrd.gmore.chat.ChatAdapter
+import com.smhrd.gmore.chat.ChatVO
 
-class ChildEvent(var data: ArrayList<ChatVO>, var adapter: ChatAdapter) : ChildEventListener {
+class ChatChildEvent (var data : ArrayList<ChatVO>, var adapter: ChatAdapter) : ChildEventListener{
     override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-        // 데이터 추가 감지
-
-        //snapshot => firebase database 에 저장된 데이터
-        //json 구조로 응답함 => ChatVO 형태로 변환
         var temp : ChatVO? = snapshot.getValue(ChatVO::class.java)
         data.add(temp!!)
-        Log.d("data",data.toString())
         adapter.notifyDataSetChanged()
 
     }
