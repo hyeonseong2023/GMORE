@@ -4,6 +4,7 @@ import ChatChildEvent
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -37,6 +38,7 @@ class ChatActivity : AppCompatActivity() {
         etChatMsg = findViewById(R.id.etChatMsg)
         tvChatNick = findViewById(R.id.tvChatNick)
 
+        Log.d("spf",spf.toString())
 
         val database = Firebase.database
         val myRef = database.getReference("message")
