@@ -96,9 +96,9 @@ class LoginActivity : AppCompatActivity() {
                         val userNick: String = member.nick
 
                         editor.putString("loginedId", userNick) // 아이디 값을 SPF에 저장
+                        editor.putString("selected_login_id", userId.toString())
                         editor.commit()
 
-                        intent.putExtra("selected_login_id", userId.toString()) // 아이디 값을 인텐트에 저장
                         startActivity(it_toMain)
                     } ?: run {
                         // 회원 정보가 없을 경우, 처리할 수 있는 코드를 추가해주세요.
