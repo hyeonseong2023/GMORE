@@ -94,6 +94,7 @@ class BoardWriteActivity : AppCompatActivity() {
         val category = spf.getString("category","").toString()  // 게임 카테고리 값 불러오기
 
 
+
         // 뒤로가기 버튼
         btnWriteClose.setOnClickListener {
 
@@ -126,7 +127,6 @@ class BoardWriteActivity : AppCompatActivity() {
                     Log.d("response", response.toString())
 
                     if(response == "Success"){
-                        Toast.makeText(this, "글 업로드 완", Toast.LENGTH_SHORT).show()
                         val it = Intent(this, GameCategoryActivity::class.java)
                         intent.putExtra("categoryTag", category)
                         startActivity(it)

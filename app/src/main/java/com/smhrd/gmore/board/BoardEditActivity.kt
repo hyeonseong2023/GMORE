@@ -50,14 +50,6 @@ class BoardEditActivity : AppCompatActivity() {
         finish()
     }
 
-    // SharedPreference 생성
-//        val spf = getSharedPreferences("mySPF", Context.MODE_PRIVATE)
-
-    // 💡💡 받아야 할 값
-    // board_id
-    // title
-    // content
-    // image_url
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,34 +67,29 @@ class BoardEditActivity : AppCompatActivity() {
 
         reqQueue = Volley.newRequestQueue(this@BoardEditActivity)
 
-
-
         val spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
         val userId = spf.getString("userId", "")?.toInt()
         val userNick = spf.getString("userNick", "").toString()
 
         // 💡 해당 게시물 정보 불러오기
-        val title = "제목"
-        val content = "내용"
+        val boardId = intent.getStringExtra("boardId")?.toInt()
+        val title = intent.getStringExtra("title")
+        val content = intent.getStringExtra("content")
+        val date = intent.getStringExtra("date")
         val image = "이미지"
-        val category = "오버워치"   // 임시
 
-        // 임시
         etEditTitle.setText(title)
         etEditContent.setText(content)
 //        ivEditUpload.setImageBitmap(image)
-
-
-
-
 
 
         // 뒤로가기 버튼
         btnEditClose.setOnClickListener {
             if (etEditTitle.text.toString() == "" && etEditContent.text.toString() == "") {
                 // 해당 게임 게시판으로 돌아가기
-                var intent = Intent(this, GameCategoryActivity::class.java)
-                startActivity(intent)
+                var it = Intent(this, GameCategoryActivity::class.java)
+                startActivity(it)
+                finish()
             } else {  // 제목이나 내용에 글이 적혀있다면 알림창 띄우기
                 val builder: AlertDialog.Builder = AlertDialog.Builder(this)
                 builder.setTitle("작성 중인 글을 취소하시겠습니까? 확인 선택 시, 수정된 글은 저장되지 않습니다.")
@@ -124,10 +111,9 @@ class BoardEditActivity : AppCompatActivity() {
                 { response ->
                     Log.d("response", response.toString())
                     if (response == "Success") {
-                        Toast.makeText(this, "글 수정 완", Toast.LENGTH_SHORT).show()
-//                        val it = Intent(this, GameCategoryActivity::class.java)
-//                        startActivity(it)
-//                        finish()
+                        val it = Intent(this, GameCategoryActivity::class.java)
+                        startActivity(it)
+                        finish()
                     } else {
                         Toast.makeText(this, "Fail....", Toast.LENGTH_SHORT).show()
                     }
@@ -138,7 +124,7 @@ class BoardEditActivity : AppCompatActivity() {
             ) {
                 override fun getParams(): MutableMap<String, String> {
                     val params: MutableMap<String, String> = HashMap<String, String>()
-                    val board = BoardDetailVO(2, inputTitle, inputContent, encodeImgString, "오버워치", 5, null, "id")
+                    val board = BoardDetailVO(boardId, inputTitle, inputContent, encodeImgString, null, userId, date, userNick)
                     params.put("board", Gson().toJson(board))
                     return params
                 }
@@ -170,6 +156,14 @@ class BoardEditActivity : AppCompatActivity() {
                     Log.d("req", REQUEST_IMAGE_CAPTURE.toString())
                 }
             }
+        }
+
+        // 추가된 이미지 삭제 버튼
+        ivDelete.setOnClickListener{
+            ivEditUpload.setImageBitmap(null)
+            imgCamUpload = false
+            imgPhotoUpload = false
+            ivDelete.visibility = View.INVISIBLE
         }
     }
 
