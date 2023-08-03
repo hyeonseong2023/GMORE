@@ -120,7 +120,7 @@ class BoardWriteActivity : AppCompatActivity() {
             val inputContent = etWriteContent.text.toString()
             val request = object : StringRequest(
                 Request.Method.POST,
-                "http://172.30.1.29:8888/board/write",
+                "http://172.30.1.24:8888/board/write",
 //                "http://localhost:8888/board/write",
                 { response ->
                     Log.d("response", response.toString())
@@ -128,6 +128,7 @@ class BoardWriteActivity : AppCompatActivity() {
                     if(response == "Success"){
                         Toast.makeText(this, "글 업로드 완", Toast.LENGTH_SHORT).show()
                         val it = Intent(this, GameCategoryActivity::class.java)
+                        intent.putExtra("categoryTag", category)
                         startActivity(it)
                         finish()
 
