@@ -1,5 +1,6 @@
 package com.smhrd.gmore.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,5 +15,8 @@ class Fragment1 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_1, container, false)
+
+
+
     }
 }
