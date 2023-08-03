@@ -67,7 +67,7 @@ class GameCategoryActivity : AppCompatActivity() {
                     override fun onItemClick(position: Int) {
                         val selectedBoard = boardList[position]
 
-                        val intent = Intent(this@GameCategoryActivity, HomeActivity::class.java)
+                        val intent = Intent(this@GameCategoryActivity, BoardDetailActivity::class.java)
                         intent.putExtra("selected_board_id", selectedBoard.categoryBoardId)
                         startActivity(intent)
                     }
