@@ -30,7 +30,7 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
         var spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
-        var loginedID = spf.getString("loginedId", "-")
+        var loginedID = spf.getString("loginedId", "hee")
 
 
         rvChat = findViewById(R.id.rvChat)
@@ -38,15 +38,14 @@ class ChatActivity : AppCompatActivity() {
         etChatMsg = findViewById(R.id.etChatMsg)
         tvChatNick = findViewById(R.id.tvChatNick)
 
-        Log.d("spf",spf.toString())
 
         val database = Firebase.database
         val myRef = database.getReference("message")
 
         val data = ArrayList<ChatVO>()
 
-        data.add(ChatVO("안녕하세요", "ddd",myTime(getTime())))
-        data.add(ChatVO("안녕하", "ddd",myTime(getTime())))
+        data.add(ChatVO("안녕하세yo", "heehee","오후14:30"))
+        data.add(ChatVO("겜 친추 하실래요???", "heehee","오후14:32"))
 
         var adapter = ChatAdapter(applicationContext, data,loginedID.toString())
         rvChat.layoutManager = LinearLayoutManager(applicationContext)// 목록형
@@ -55,6 +54,7 @@ class ChatActivity : AppCompatActivity() {
 
 
         btnChatSend.setOnClickListener {
+            Log.d("spf",spf.toString())
             myRef.push().setValue(ChatVO(etChatMsg.text.toString(),loginedID.toString(), myTime(getTime())))
 
             rvChat.smoothScrollToPosition(data.size-1)
