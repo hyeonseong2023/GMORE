@@ -2,6 +2,7 @@ package com.smhrd.gmore.board
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -28,10 +29,14 @@ class BoardDetailActivity : AppCompatActivity() {
     private lateinit var commentAdapter: CommentAdapter
     private lateinit var boardbookmark: ImageView
     private lateinit var boardLike: ImageView
+    private lateinit var etCommentInput: EditText
+    private lateinit var btnSubmitComment: ImageView
     lateinit var boardId:String
     lateinit var login_id:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        etCommentInput = findViewById(R.id.editTextText)
+        btnSubmitComment = findViewById(R.id.ivInputAdd)
         setContentView(R.layout.activity_board_detail)
         tvBoardTitle = findViewById(R.id.tvBoardTitle)
         tvBoardWriter = findViewById(R.id.tvBoardWriter)
@@ -60,6 +65,9 @@ class BoardDetailActivity : AppCompatActivity() {
                 boardbookmark.setImageResource(android.R.drawable.btn_star_big_off) // 비활성화 된 별 이미지로 변경
             }
             updateBookmark(isBookmarked)
+        }
+        btnSubmitComment.setOnClickListener {
+            submitComment()
         }
 
         var isLiked = false // 좋아요 상태를 저장하는 변수 (기본값: false)
@@ -191,6 +199,40 @@ class BoardDetailActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun submitComment() {
+        thread {
+            try {
+                val commentText = etCommentInput.text.toString()
+                val urlString = "http://your-server-url.com/your-comment-submit-url"
+                val postData = "board_id=$boardId&login_id=${login_id}&comment_text=$commentText"
+
+                val url = URL(urlString)
+                val conn = url.openConnection() as HttpURLConnection
+
+                conn.requestMethod = "POST"
+                conn.doOutput = true
+
+                val outputStream = conn.outputStream
+                outputStream.write(postData.toByteArray())
+                outputStream.close()
+
+                val responseCode = conn.responseCode
+                Log.d("Response", "Response Code: $responseCode")
+
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    runOnUiThread {
+                        etCommentInput.setText("") // 코멘트 전송에 성공하면 텍스트를 지웁니다.
+                        fetchComments() // 코멘트 목록을 새로 고칩니다.
+                    }
+                }
+
+            } catch (e: Exception) {
+                Log.e("Submit Comment", "Error submitting comment: ${e.message}", e)
+            }
+        }
+    }
+
 
 
 
