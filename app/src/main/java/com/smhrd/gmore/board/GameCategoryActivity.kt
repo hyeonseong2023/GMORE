@@ -79,7 +79,8 @@ class GameCategoryActivity : AppCompatActivity() {
                         val selectedBoard = boardList[position]
 
                         val intent = Intent(this@GameCategoryActivity, BoardDetailActivity::class.java)
-                        intent.putExtra("selected_board_id", selectedBoard.categoryBoardId)
+                        intent.putExtra("selected_board_id", selectedBoard.board_id)
+                        Log.d("보낸다", selectedBoard.board_id .toString())
                         startActivity(intent)
                     }
                 }
