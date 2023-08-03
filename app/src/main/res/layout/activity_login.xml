@@ -61,7 +61,7 @@
             android:background="@drawable/edtblackline"
             android:ems="10"
             android:hint="PW"
-            android:inputType="text"
+            android:inputType="text|textPassword"
             android:letterSpacing="-0.05"
             android:padding="10dp"
             android:paddingLeft="10dp"
