@@ -8,10 +8,10 @@ import com.smhrd.gmore.R
 class BoardCategoryViewHolder(itemView: View, val categoryClickEvent: CategoryClickEvent?) :
     RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-    var categoryTitle:TextView
-    var categoryNick:TextView
-    var categoryDate:TextView
-    var categoryLikeCnt:TextView
+    var categoryTitle: TextView
+    var categoryNick: TextView
+    var categoryDate: TextView
+    var categoryLikeCnt: TextView
 
     init {
         categoryTitle = itemView.findViewById(R.id.tvCategoryTitle)
@@ -21,9 +21,10 @@ class BoardCategoryViewHolder(itemView: View, val categoryClickEvent: CategoryCl
         itemView.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
+
+    override fun onClick(view: View?) {
         val position = adapterPosition
-        if (position != RecyclerView.NO_POSITION && v != null) {
+        if (position != RecyclerView.NO_POSITION && view != null) {
             categoryClickEvent?.onItemClick(position)
         }
     }

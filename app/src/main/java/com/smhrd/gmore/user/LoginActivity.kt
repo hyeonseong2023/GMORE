@@ -23,6 +23,7 @@ import com.kakao.sdk.user.UserApiClient
 import com.smhrd.gmore.MainActivity
 import com.smhrd.gmore.R
 import com.smhrd.gmore.databinding.ActivityLoginBinding
+
 import com.smhrd.gmore.vo.MemberVO
 import com.smhrd.gmore.vo.MembersResponse
 import com.smhrd.gmore.vo.RQMember
@@ -36,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var reqQue : RequestQueue
 
-    var reqURL : String = "http://172.30.1.11:8888/"
+    var reqURL : String = "http://172.30.1.24:8888/"
 
 
     lateinit var binding : ActivityLoginBinding
@@ -101,6 +102,7 @@ class LoginActivity : AppCompatActivity() {
                         // ✨혜주 spf 수정✨
                         val userId: Int = member.id
                         val userNick: String = member.nick
+
                         val userEmail : String = member.eamil
                         Log.d("로그인한 사용자 값",userId.toString())
                         Log.d("로그인한 사용자 값",userNick)
@@ -108,10 +110,10 @@ class LoginActivity : AppCompatActivity() {
                         editor.putString("loginedId", userId.toString())
                         editor.putString("loginedNick", userNick)
                         editor.putString("logineEmail", userEmail)
+
                         editor.commit()
                         //✨혜주 spf 수정 끝✨
 
-                        intent.putExtra("selected_login_id", userId.toString()) // 아이디 값을 인텐트에 저장
                         startActivity(it_toMain)
                     } ?: run {
                         // 회원 정보가 없을 경우, 처리할 수 있는 코드를 추가해주세요.

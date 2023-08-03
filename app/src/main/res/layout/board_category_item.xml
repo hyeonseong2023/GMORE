@@ -46,4 +46,14 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvCategoryNick"
         app:layout_constraintStart_toEndOf="@+id/tvCategoryNick"
         app:layout_constraintTop_toTopOf="@+id/tvCategoryNick" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCategoryLikeCnt"
+        app:layout_constraintEnd_toStartOf="@+id/tvCategoryLikeCnt"
+        app:layout_constraintTop_toTopOf="@+id/tvCategoryLikeCnt"
+        app:srcCompat="@drawable/icon_like_off" />
 </androidx.constraintlayout.widget.ConstraintLayout>

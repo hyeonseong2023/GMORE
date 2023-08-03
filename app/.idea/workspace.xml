@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="d0134d43-8fc4-40bf-bc37-51a97f002b18" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -13,7 +14,24 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/user/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/user/LoginActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/vo/RQMember.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/vo/RQMember.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_edit_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_edit_profile.xml" afterDir="false" />
+
+
+<!--    <list default="true" id="d0134d43-8fc4-40bf-bc37-51a97f002b18" name="Changes" comment="">-->
+<!--      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />-->
+<!--      <change beforePath="$PROJECT_DIR$/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/proguard-rules.pro" afterDir="false" />-->
+<!--      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardWriteActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/board/BoardWriteActivity.kt" afterDir="false" />-->
+<!--      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_board_write.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_board_write.xml" afterDir="false" />-->
+
+<!--    <list default="true" id="ad88f2cb-1385-4a9a-8b1b-d1831c92959a" name="Changes" comment="">-->
+<!--      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />-->
+<!--      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />-->
+<!--      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatActivity.kt" afterDir="false" />-->
+<!--      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatAdapter.kt" afterDir="false" />-->
+<!--      <change beforePath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChildEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smhrd/gmore/chat/ChatChildEvent.kt" afterDir="false" />-->
+
+<!--&gt;>>>>>> main-->
     </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,15 +40,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+
+
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2TPDQxvsznK2FIfGZYofizl6gMz" />
+<!--  <component name="ProjectId" id="2TPDQxvsznK2FIfGZYofizl6gMz" />-->
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+
+  <component name="ProjectId" id="2TPK9o1krbIUEnfOVF34uyXB2eD" />
+
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -39,16 +63,35 @@
     "android.gradle.sync.needed": "true",
     "cidr.known.project.marker": "true",
     "last_opened_file_path": "C:/Users/user/Desktop/GMORE/app"
+
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SMHRD/Desktop/GMORE/app&quot;
+
+
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d0134d43-8fc4-40bf-bc37-51a97f002b18" name="Changes" comment="" />
-      <created>1690935813951</created>
+<!--<<<<<<< HEAD-->
+<!--      <changelist id="d0134d43-8fc4-40bf-bc37-51a97f002b18" name="Changes" comment="" />-->
+<!--      <created>1690935813951</created>-->
+<!--      <option name="number" value="Default" />-->
+<!--      <option name="presentableId" value="Default" />-->
+<!--      <updated>1690935813951</updated>-->
+<!--=======-->
+      <changelist id="93d89036-5b9c-4de8-bf59-d541ae1f5232" name="Changes" comment="" />
+      <created>1690939126197</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1690935813951</updated>
+      <updated>1690939126197</updated>
+<!--&gt;>>>>>> hyeon-->
     </task>
     <servers />
   </component>
