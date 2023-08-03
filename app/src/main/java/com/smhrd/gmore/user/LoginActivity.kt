@@ -120,9 +120,9 @@ class LoginActivity : AppCompatActivity() {
 
                         Log.d("로그인한 사용자 값",userId.toString())
                         Log.d("로그인한 사용자 값",userNick)
-                        editor.putString("loginedId", userId.toString())
-                        editor.putString("loginedNick", userNick)
-                        editor.putString("logineEmail", etLoginId.text.toString())
+                        editor.putString("loginId", userId.toString())
+                        editor.putString("loginNick", userNick)
+                        editor.putString("loginEmail", etLoginId.text.toString())
                         editor.commit()
                         //✨혜주 spf 수정 끝✨
                         val i = Intent(this, GameCategoryActivity::class.java)

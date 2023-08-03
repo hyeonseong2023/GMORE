@@ -93,7 +93,7 @@ class Fragment4 : Fragment() {
         // spf 에서 유저 정보 가져와 textView에 출력
 
         userEmail = spf.getString("loginEmail", "")!!
-        userNick = spf.getString("loginrNick", "")!!
+        userNick = spf.getString("loginNick", "")!!
         userId = spf.getInt("loginId",0)
 
         tvIdMypage.text = userEmail
