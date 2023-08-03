@@ -97,13 +97,13 @@
 
     <ImageView
         android:id="@+id/your_image_view"
-        android:layout_width="230dp"
-        android:layout_height="110dp"
+        android:layout_width="0dp"
+        android:layout_height="107dp"
         android:layout_marginBottom="12dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
-        app:layout_constraintEnd_toStartOf="@+id/guideline8"
-        app:layout_constraintHorizontal_bias="0.539"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/cirby" />
 
     <androidx.constraintlayout.widget.Guideline
