@@ -28,7 +28,7 @@ class EditProfileActivity : AppCompatActivity() {
     lateinit var tvQuitEditProfile: TextView
     lateinit var btnNickCheckEditPage: Button
     lateinit var btnSaveEditProfile: Button
-    lateinit var btnBackEditPage:ImageButton
+
 
     lateinit var reqQueue: RequestQueue
 
@@ -42,7 +42,7 @@ class EditProfileActivity : AppCompatActivity() {
         tvQuitEditProfile = findViewById(R.id.tvQuitEditPrpfile)
         btnNickCheckEditPage = findViewById(R.id.btnNickCheckEditPage)
         btnSaveEditProfile = findViewById(R.id.btnSaveEditProfile)
-        btnBackEditPage = findViewById(R.id.btnBackEditPage)
+
 
 
         reqQueue = Volley.newRequestQueue(this@EditProfileActivity)
@@ -62,12 +62,6 @@ class EditProfileActivity : AppCompatActivity() {
         etNickEditProfile.hint = userNick
 
 
-        // 뒤로가기 버튼
-
-        btnBackEditPage.setOnClickListener{
-            var intent = Intent(this,Fragment4::class.java)
-            finish()
-        }
 
         // 닉네임 중복 확인
         btnNickCheckEditPage.setOnClickListener {

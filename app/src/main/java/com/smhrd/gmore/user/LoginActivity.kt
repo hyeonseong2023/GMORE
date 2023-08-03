@@ -92,11 +92,24 @@ class LoginActivity : AppCompatActivity() {
                     val firstMember: RQMember? = membersResponse.members.firstOrNull()
 
                     firstMember?.let { member ->
+//                        val userId: Int = member.id
+//                        val userNick: String = member.nick
+
+//                        editor.putString("loginedId", userNick) // 아이디 값을 SPF에 저장
+//                        editor.commit()
+
+                        // ✨혜주 spf 수정✨
                         val userId: Int = member.id
                         val userNick: String = member.nick
-
-                        editor.putString("loginedId", userNick) // 아이디 값을 SPF에 저장
+                        val userEmail : String = member.eamil
+                        Log.d("로그인한 사용자 값",userId.toString())
+                        Log.d("로그인한 사용자 값",userNick)
+                        Log.d("로그인한 사용자 값",userEmail)
+                        editor.putString("loginedId", userId.toString())
+                        editor.putString("loginedNick", userNick)
+                        editor.putString("logineEmail", userEmail)
                         editor.commit()
+                        //✨혜주 spf 수정 끝✨
 
                         intent.putExtra("selected_login_id", userId.toString()) // 아이디 값을 인텐트에 저장
                         startActivity(it_toMain)
