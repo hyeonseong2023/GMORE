@@ -125,7 +125,7 @@ class EditProfileActivity : AppCompatActivity() {
 
                             // 마이페이지로 화면 이동
                             var it = Intent(this@EditProfileActivity,Fragment4::class.java)
-//                            startActivity(it)
+                            startActivity(it)
                             finish()
                         }
 
