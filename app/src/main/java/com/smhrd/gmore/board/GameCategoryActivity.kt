@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.smhrd.gmore.HomeActivity
+import com.smhrd.gmore.MainActivity
 import com.smhrd.gmore.R
 import com.smhrd.gmore.vo.BoardCategoryVO
 import kotlinx.coroutines.CoroutineScope
@@ -36,7 +38,7 @@ class GameCategoryActivity : AppCompatActivity() {
     val boardList = ArrayList<BoardCategoryVO>()
     lateinit var btnWriteNext: Button
     lateinit var spf: SharedPreferences
-    lateinit var editor: SharedPreferences.Editor
+    lateinit var ivCategoryBack : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,15 +47,25 @@ class GameCategoryActivity : AppCompatActivity() {
         rv = this.findViewById(R.id.rvCategoryList1)
         tvCategoryName = this.findViewById(R.id.tvCategoryListName1)
         btnWriteNext = this.findViewById(R.id.btnNextWrite)
+        ivCategoryBack = this.findViewById(R.id.ivCategoryBack)
 
         reqQueue = Volley.newRequestQueue(this@GameCategoryActivity)
 
         spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
         val category = spf.getString("category", "").toString()
 
+        tvCategoryName.setText(category)
+
+        // 글작성 버튼
         btnWriteNext.setOnClickListener {
             var it_next: Intent =
                 Intent(this, BoardWriteActivity::class.java)
+            startActivity(it_next)
+        }
+
+        // 뒤로가기 버튼
+        ivCategoryBack.setOnClickListener {
+            var it_next = Intent(this, MainActivity::class.java)
             startActivity(it_next)
         }
 
