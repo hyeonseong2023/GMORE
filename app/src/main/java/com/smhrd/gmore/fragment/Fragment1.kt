@@ -1,6 +1,8 @@
 package com.smhrd.gmore.fragment
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +22,8 @@ class Fragment1 : Fragment() {
     lateinit var ivFifa4: ImageView
     lateinit var ivLostark: ImageView
     lateinit var ivBattleground: ImageView
+    lateinit var spf: SharedPreferences
+    lateinit var editor: SharedPreferences.Editor
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +49,11 @@ class Fragment1 : Fragment() {
         val commonClickListener = View.OnClickListener { view ->
             val imageTag = (view as ImageView).tag.toString()
             val intent = Intent(requireContext(), GameCategoryActivity::class.java)
-            intent.putExtra("imageTag", imageTag) // 받을 때 이 키값 사용!
+//            intent.putExtra("categoryTag", imageTag) // 받을 때 이 키값 사용!
+            spf = requireActivity().getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+            editor= spf.edit()
+            editor.putString("category", imageTag.toString())
+            editor.commit()
             startActivity(intent)
         }
 
