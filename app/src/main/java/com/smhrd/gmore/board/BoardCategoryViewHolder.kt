@@ -5,7 +5,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.smhrd.gmore.R
 
-class BoardCategoryViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView) {
+class BoardCategoryViewHolder(itemView: View, val categoryClickEvent: CategoryClickEvent?) :
+    RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
     var categoryTitle:TextView
     var categoryNick:TextView
@@ -17,6 +18,14 @@ class BoardCategoryViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView)
         categoryNick = itemView.findViewById(R.id.tvCategoryNick)
         categoryDate = itemView.findViewById(R.id.tvCategoryDate)
         categoryLikeCnt = itemView.findViewById(R.id.tvCategoryLikeCnt)
+        itemView.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        val position = adapterPosition
+        if (position != RecyclerView.NO_POSITION && v != null) {
+            categoryClickEvent?.onItemClick(position)
+        }
     }
 
 }

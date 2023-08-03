@@ -24,11 +24,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/btnWriteOk"
+        android:id="@+id/btnOkkk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
-        android:background="@android:color/transparent"
+        android:background="@color/white"
         android:maxWidth="30dp"
         android:maxHeight="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
@@ -91,14 +91,14 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnWriteClose"
-        app:layout_constraintEnd_toStartOf="@+id/btnWriteOk"
+        app:layout_constraintEnd_toStartOf="@+id/btnOkkk"
         app:layout_constraintStart_toEndOf="@+id/btnWriteClose"
         app:layout_constraintTop_toTopOf="@+id/btnWriteClose" />
 
     <View
         android:id="@+id/writeLine1"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_marginTop="10dp"
         android:background="#d3d0d0"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,9 +126,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="0dp"
+                android:layout_marginBottom="10dp"
                 android:background="@android:color/transparent"
                 android:backgroundTint="#8F8F8F"
                 android:ems="10"
@@ -136,6 +136,7 @@
                 android:inputType="text"
                 android:letterSpacing="-0.07"
                 android:paddingLeft="10dp"
+                android:textAlignment="center"
                 android:textSize="24sp" />
 
             <View
@@ -188,5 +189,18 @@
             android:src="@android:drawable/ic_menu_camera" />
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ivDelete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="5dp"
+        android:background="#D1D1D1"
+        android:maxWidth="15dp"
+        android:maxHeight="15dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ivUpload"
+        app:layout_constraintStart_toEndOf="@+id/ivUpload"
+        app:srcCompat="@drawable/icon_close" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
