@@ -32,7 +32,7 @@ class MyPageBoardAdapter (var context: Context, var template: Int, var data:Arra
 
         holder.imgMyBoard.setImageBitmap(image)
         holder.tvMyTitle.text = data.get(position).title
-        holder.tvMyDate.text = data.get(position).date_created
+        holder.tvMyDate.text = data.get(position).date_created!!.substring(0 until 10)
 
         }
 
