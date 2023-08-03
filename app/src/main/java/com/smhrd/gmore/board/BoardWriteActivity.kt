@@ -89,7 +89,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
         // SharedPreference 생성
         val spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
-        val userId = spf.getString("userId", "")?.toInt()   // 유저코드 값 불러오기
+        val userId = spf.getString("userId", "").toString()   // 유저코드 값 불러오기
         val userNick = spf.getString("userNick", "").toString() // 닉네임 값 불러오기
         val category = spf.getString("category","").toString()  // 게임 카테고리 값 불러오기
 
@@ -143,7 +143,7 @@ class BoardWriteActivity : AppCompatActivity() {
                 override fun getParams(): MutableMap<String, String> {
 
                     val params: MutableMap<String, String> = HashMap<String, String>()
-                    val board = BoardDetailVO(null, inputTitle, inputContent, encodeImgString, category, userId,null, userNick)
+                    val board = BoardDetailVO(null, inputTitle, inputContent, encodeImgString, category, userId.toInt(),null, userNick)
                     params.put("board", Gson().toJson(board))
                     return params
                 }
