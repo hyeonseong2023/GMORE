@@ -34,13 +34,13 @@ class FragmentTest : AppCompatActivity() {
                         Fragment1()
                     ).commit()
                 }
-                R.id.tab2 -> {
-                    supportFragmentManager.beginTransaction().replace(
-                        // fl 구간에 Fragment1() 보이게 하겠다
-                        R.id.fl,
-                        ChatRoomFragment()
-                    ).commit()
-                }
+//                R.id.tab2 -> {
+//                    supportFragmentManager.beginTransaction().replace(
+//                        // fl 구간에 Fragment1() 보이게 하겠다
+//                        R.id.fl,
+//                        ChatRoomFragment()
+//                    ).commit()
+//                }
                 R.id.tab3 -> {
                     supportFragmentManager.beginTransaction().replace(
                         // fl 구간에 Fragment1() 보이게 하겠다

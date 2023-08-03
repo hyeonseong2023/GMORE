@@ -10,22 +10,29 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.smhrd.gmore.R
 import com.smhrd.gmore.utils.FBAuth
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
-class  ChatAdapter (val context : Context, var template : Int , val data:ArrayList<ChatVO>) : Adapter<ChatViewHolder>(){
+class ChatAdapter(val context: Context, val data: ArrayList<ChatVO>, val spf : String): RecyclerView.Adapter<ChatViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
+//    var template_View : View = LayoutInflater.from(parent.context).inflate(R.layout.chat_msg_temp,parent,false)
+//        var VH : ChatViewHolder = ChatViewHolder(template_View)
 
-        var template_View : View = LayoutInflater.from(parent.context).inflate(template,parent,false)
-        var VH = ChatViewHolder(template_View)
-        return  VH
+        return ChatViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.chat_msg_temp, parent, false)
+
+        )
     }
 
-    override fun onBindViewHolder(holder:ChatViewHolder, position: Int) {
-//        var time = FBAuth.myTime(data[position].time)
 
-        if (data[position].uid == FBAuth.getUid()) {
+    override fun onBindViewHolder(holder:ChatViewHolder, position: Int) {
+
+        if (data[position].uid == spf) {
             holder.tvMsgMy.text = data.get(position).msg
-//            holder.tvTimeMy.text = data.get(position).time
+            holder.tvTimeMy.text = data.get(position).time
             holder.tvMsgOpp.isVisible = false
             holder.tvTimeOpp.isVisible = false
             holder.tvMsgMy.isVisible = true
@@ -33,7 +40,7 @@ class  ChatAdapter (val context : Context, var template : Int , val data:ArrayLi
 
         } else {
             holder.tvMsgOpp.text = data.get(position).msg
-//            holder.tvTimeOpp.text = data.get(position).time
+            holder.tvTimeOpp.text = data.get(position).time
             holder.tvMsgMy.isVisible = false
             holder.tvTimeMy.isVisible = false
             holder.tvMsgOpp.isVisible = true
@@ -41,7 +48,10 @@ class  ChatAdapter (val context : Context, var template : Int , val data:ArrayLi
         }
     }
 
+
     override fun getItemCount(): Int {
         return data.size
     }
+
+
 }

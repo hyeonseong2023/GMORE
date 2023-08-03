@@ -1,10 +1,13 @@
 package com.smhrd.gmore.board
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +18,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.smhrd.gmore.HomeActivity
+import com.smhrd.gmore.MainActivity
 import com.smhrd.gmore.R
 import com.smhrd.gmore.vo.BoardCategoryVO
 import kotlinx.coroutines.CoroutineScope
@@ -33,6 +37,8 @@ class GameCategoryActivity : AppCompatActivity() {
     lateinit var tvCategoryName: TextView
     val boardList = ArrayList<BoardCategoryVO>()
     lateinit var btnWriteNext: Button
+    lateinit var spf: SharedPreferences
+    lateinit var ivCategoryBack : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,24 +47,43 @@ class GameCategoryActivity : AppCompatActivity() {
         rv = this.findViewById(R.id.rvCategoryList1)
         tvCategoryName = this.findViewById(R.id.tvCategoryListName1)
         btnWriteNext = this.findViewById(R.id.btnNextWrite)
+        ivCategoryBack = this.findViewById(R.id.ivCategoryBack)
 
         reqQueue = Volley.newRequestQueue(this@GameCategoryActivity)
 
-        val category = intent.getStringExtra("imageTag")
+        spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+        val category = spf.getString("category", "").toString()
+
+        tvCategoryName.setText(category)
+
+        // 글작성 버튼
+        btnWriteNext.setOnClickListener {
+            var it_next: Intent =
+                Intent(this, BoardWriteActivity::class.java)
+            startActivity(it_next)
+        }
+
+        // 뒤로가기 버튼
+        ivCategoryBack.setOnClickListener {
+            var it_next = Intent(this, MainActivity::class.java)
+            startActivity(it_next)
+        }
 
         val request = object : StringRequest(Request.Method.GET,
             "http://172.30.1.24:8888/board/category?category=$category",
-//            "https://57ef-211-223-144-120.ngrok.io/board/category?category=$category",
-
             { response ->
                 Log.d("response", response.toString())
 
                 var result = JSONArray(response)
 
-                // JSON 응답을 List<BoardCategoryVO>로 변환하여 boardList 에 저장
-                val typeToken = object : TypeToken<List<BoardCategoryVO>>() {}.type
-                boardList.clear()
-                boardList.addAll(Gson().fromJson(response, typeToken))
+                if (result.length() > 0) {
+                    // JSON 응답을 List<BoardCategoryVO>로 변환하여 boardList 에 저장
+                    val typeToken = object : TypeToken<List<BoardCategoryVO>>() {}.type
+                    boardList.clear()
+                    boardList.addAll(Gson().fromJson(response, typeToken))
+                } else {
+                    boardList.clear()
+                }
 
                 val adapter = BoardCategoryAdapter(this@GameCategoryActivity, boardList)
 
@@ -68,7 +93,8 @@ class GameCategoryActivity : AppCompatActivity() {
                         val selectedBoard = boardList[position]
 
                         val intent = Intent(this@GameCategoryActivity, BoardDetailActivity::class.java)
-                        intent.putExtra("selected_board_id", selectedBoard.categoryBoardId)
+                        intent.putExtra("selected_board_id", selectedBoard.board_id)
+                        Log.d("보낸다", selectedBoard.board_id .toString())
                         startActivity(intent)
                     }
                 }

@@ -42,8 +42,11 @@ class Fragment4 : Fragment() {
     lateinit var btnEditMypage: Button
     lateinit var btnBoardListMypage: Button
     lateinit var btnLogoutMypage: Button
+    // 로그인 유저 정보 담을 변수
     lateinit var userEmail: String
     lateinit var userNick: String
+    var userId = 0
+
     lateinit var intent: Intent
 
 
@@ -77,20 +80,21 @@ class Fragment4 : Fragment() {
         // ✨ SharedPreference 생성
         //url 값 저장 (SharedPreference -> 내부 메모리)
         val spf = requireActivity().getSharedPreferences("userSPF", Context.MODE_PRIVATE)
-        //MODE_PRIVATE : 내부 캐시에 저장 --> 노출X
+
 
         // 저장 - editor 사용
         val editor = spf.edit()
-        editor.putString("userEmail", "user1@example.com")
-        editor.putString("userNick","User1")
-        editor.putInt("userId",1)
-        editor.commit()
+//        editor.putString("userEmail", "user1@example.com")
+//        editor.putString("userNick","User1")
+//        editor.putInt("userId",1)
+//        editor.commit()
 
 
         // spf 에서 유저 정보 가져와 textView에 출력
 
-        userEmail = spf.getString("userEmail", "")!!
-        userNick = spf.getString("userNick", "")!!
+        userEmail = spf.getString("loginEmail", "")!!
+        userNick = spf.getString("loginrNick", "")!!
+        userId = spf.getInt("loginId",0)
 
         tvIdMypage.text = userEmail
         tvNickMypage.text = userNick
@@ -111,22 +115,22 @@ class Fragment4 : Fragment() {
 
             // 권한 설정 확인
             // 읽기 쓰기 권한 설정 X 라면
-            if (writePermission == PackageManager.PERMISSION_DENIED || readPermission == PackageManager.PERMISSION_DENIED) {
-                ActivityCompat.requestPermissions( // 읽기 쓰기 권한 요청
-                    // Fragment는 Context가 this가 아님! requireActivity() 임
-                    requireActivity(),
-                    arrayOf(
-                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        android.Manifest.permission.READ_EXTERNAL_STORAGE
-                    ),
-                    1
-                )
+//            if (writePermission == PackageManager.PERMISSION_DENIED || readPermission == PackageManager.PERMISSION_DENIED) {
+//                ActivityCompat.requestPermissions( // 읽기 쓰기 권한 요청
+//                    // Fragment는 Context가 this가 아님! requireActivity() 임
+//                    requireActivity(),
+//                    arrayOf(
+//                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                        android.Manifest.permission.READ_EXTERNAL_STORAGE
+//                    ),
+//                    1
+//                )
+//
+//            }
+//            // 읽기 쓰기 권한 설정이 되어있다면
+//            else {
 
-            }
-            // 읽기 쓰기 권한 설정이 되어있다면
-            else {
 
-                // 방법 2
                 val it = Intent(Intent.ACTION_GET_CONTENT)
                 it.type = "image/*"
                 startActivityForResult(it, STORAGE_CODE)
@@ -134,7 +138,7 @@ class Fragment4 : Fragment() {
             }
 
 
-        }
+//        }
 
 
         // 회원정보 수정 페이지로 이동

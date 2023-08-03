@@ -155,16 +155,5 @@
         </TableRow>
     </TableLayout>
 
-    <ImageButton
-        android:id="@+id/btnBackEditPage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:backgroundTint="@color/main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/homeAsUpIndicator" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

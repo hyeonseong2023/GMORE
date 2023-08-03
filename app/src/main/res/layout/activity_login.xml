@@ -23,7 +23,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/glLoginV10p"
         app:layout_constraintTop_toTopOf="@+id/glLoginH25p"
-        app:layout_constraintVertical_bias="0.146">
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/tvLogin"
@@ -41,11 +41,13 @@
             android:id="@+id/etLoginId"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/edtblackline"
             android:ems="10"
             android:hint="ID"
             android:inputType="text"
             android:letterSpacing="-0.05"
+            android:padding="10dp"
             android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,10 +58,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:background="@drawable/edtblackline"
             android:ems="10"
             android:hint="PW"
-            android:inputType="text"
+            android:inputType="text|textPassword"
             android:letterSpacing="-0.05"
+            android:padding="10dp"
             android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -70,11 +74,13 @@
             android:id="@+id/btnLogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/main"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:letterSpacing="-0.05"
             android:text="LOGIN"
-            android:textSize="18sp"
+            android:textSize="20sp"
             app:cornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -106,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:letterSpacing="-0.05"
-            android:text="아이디가 없다면? "
+            android:text="회원이 아니세요?"
             android:textAlignment="textEnd"
             android:textColor="#9E9E9E"
             android:textStyle="bold" />
@@ -117,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:letterSpacing="-0.05"
-            android:text=" 회원가입하러 가기(클릭)"
+            android:text="  회원가입하러 가기"
             android:textAlignment="textStart"
             android:textColor="@color/main"
             android:textStyle="bold" />
@@ -156,13 +162,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.20" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glLoginV90p"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.80" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

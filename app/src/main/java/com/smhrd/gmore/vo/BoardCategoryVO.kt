@@ -7,5 +7,5 @@ data class BoardCategoryVO(
     var categoryNick: String,
     var categoryDate: String,
     var categoryLikeCnt: Int?,
-    var categoryBoardId : Int
+    var board_id  : Int
 ) : Serializable
