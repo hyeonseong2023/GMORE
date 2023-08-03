@@ -20,125 +20,153 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
 
-    <ImageView
-        android:id="@+id/your_image_view"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="226dp"
-        android:layout_marginTop="220dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView19"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
-
-    <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="226dp"
-        android:layout_marginTop="106dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView19"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
-
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="114dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView19"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
-
-    <ImageView
-        android:id="@+id/imageView18"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="106dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView19"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="220dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView19"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
-
-    <ImageView
-        android:id="@+id/imageView16"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="220dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView19"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="리그오브레전드"
-        app:layout_constraintEnd_toEndOf="@+id/imageView13"
-        app:layout_constraintStart_toStartOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="오버워치"
-        app:layout_constraintEnd_toEndOf="@+id/imageView18"
-        app:layout_constraintStart_toStartOf="@+id/imageView18"
-        app:layout_constraintTop_toBottomOf="@+id/imageView18" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="메이플스토리"
-        app:layout_constraintEnd_toEndOf="@+id/imageView17"
-        app:layout_constraintStart_toStartOf="@+id/imageView17"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:text="피파 온라인4"
-        app:layout_constraintEnd_toEndOf="@+id/imageView14"
-        app:layout_constraintStart_toStartOf="@+id/imageView14"
-        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="로스트아크"
-        app:layout_constraintEnd_toEndOf="@+id/imageView16"
-        app:layout_constraintStart_toStartOf="@+id/imageView16"
-        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+        app:layout_constraintEnd_toEndOf="@+id/ivFIFA4"
+        app:layout_constraintStart_toStartOf="@+id/ivFIFA4"
+        app:layout_constraintTop_toBottomOf="@+id/ivFIFA4" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:text="배틀그라운드"
-        app:layout_constraintEnd_toEndOf="@+id/your_image_view"
-        app:layout_constraintStart_toStartOf="@+id/your_image_view"
-        app:layout_constraintTop_toBottomOf="@+id/your_image_view" />
+        app:layout_constraintEnd_toEndOf="@+id/ivBattleGround"
+        app:layout_constraintStart_toStartOf="@+id/ivBattleGround"
+        app:layout_constraintTop_toBottomOf="@+id/ivBattleGround" />
 
     <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="282dp"
-        android:layout_height="269dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="100dp"
+        android:id="@+id/ivOverwatch"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:tag="Overwatch"
+        app:layout_constraintEnd_toStartOf="@+id/ivMaplestory"
+        app:layout_constraintStart_toEndOf="@+id/ivLOL"
+        app:layout_constraintTop_toTopOf="@+id/guideline11"
+        app:srcCompat="@drawable/overwatch" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="리그오브레전드"
+        app:layout_constraintEnd_toEndOf="@+id/ivLOL"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="@+id/ivLOL"
+        app:layout_constraintTop_toBottomOf="@+id/ivLOL" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="메이플스토리"
+        app:layout_constraintEnd_toEndOf="@+id/ivMaplestory"
+        app:layout_constraintStart_toStartOf="@+id/ivMaplestory"
+        app:layout_constraintTop_toBottomOf="@+id/ivMaplestory" />
+
+    <ImageView
+        android:id="@+id/ivLOL"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:tag="LOL"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline11"
+        app:srcCompat="@drawable/lol" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="오버워치"
+        app:layout_constraintEnd_toEndOf="@+id/ivOverwatch"
+        app:layout_constraintStart_toStartOf="@+id/ivOverwatch"
+        app:layout_constraintTop_toBottomOf="@+id/ivOverwatch" />
+
+    <ImageView
+        android:id="@+id/ivMaplestory"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="40dp"
+        android:tag="Maplestory"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/guideline11"
+        app:srcCompat="@drawable/maplestory" />
+
+    <ImageView
+        android:id="@+id/ivLostArk"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="45dp"
+        android:tag="LostArk"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/ivBattleGround"
+        app:layout_constraintStart_toEndOf="@+id/ivFIFA4"
+        app:srcCompat="@drawable/lostark" />
+
+    <ImageView
+        android:id="@+id/ivFIFA4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="45dp"
+        android:tag="FIFA4"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:srcCompat="@drawable/fifa" />
+
+    <ImageView
+        android:id="@+id/ivBattleGround"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="45dp"
+        android:tag="BattleGround"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:srcCompat="@drawable/battleground" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="로스트아크"
+        app:layout_constraintEnd_toEndOf="@+id/ivLostArk"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="@+id/ivLostArk"
+        app:layout_constraintTop_toBottomOf="@+id/ivLostArk" />
+
+    <ImageView
+        android:id="@+id/your_image_view"
+        android:layout_width="0dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="168dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/i08239827906" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95212036" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
 </androidx.constraintlayout.widget.ConstraintLayout>
