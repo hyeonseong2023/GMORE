@@ -25,9 +25,7 @@ import com.kakao.sdk.user.UserApiClient
 import com.smhrd.gmore.MainActivity
 import com.smhrd.gmore.R
 import com.smhrd.gmore.board.BoardWriteActivity
-import com.smhrd.gmore.board.GameCategoryActivity
 import com.smhrd.gmore.databinding.ActivityLoginBinding
-
 import com.smhrd.gmore.vo.MemberVO
 import com.smhrd.gmore.vo.MembersResponse
 import com.smhrd.gmore.vo.RQMember
@@ -42,9 +40,8 @@ class LoginActivity : AppCompatActivity() {
     lateinit var tvToJoin : TextView
 
     lateinit var reqQue : RequestQueue
-    
-    var reqURL : String = "http://172.30.1.24:8888/"
 
+    var reqURL : String = "http://172.30.1.29:8888/"
 
 
     lateinit var binding : ActivityLoginBinding
@@ -121,7 +118,7 @@ class LoginActivity : AppCompatActivity() {
 
                         intent.putExtra("selected_login_id", userId.toString()) // 아이디 값을 인텐트에 저장
 //                        startActivity(it_toMain)
-                        val i = Intent(this, GameCategoryActivity::class.java)
+                        val i = Intent(this, BoardWriteActivity::class.java)
                         startActivity(i)
                         finish()
                     } ?: run {
