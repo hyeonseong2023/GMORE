@@ -55,6 +55,7 @@ class GameCategoryActivity : AppCompatActivity() {
         val request = object : StringRequest(
             Request.Method.GET,
             "http://172.30.1.24:8888/board/category?category=$category",
+//            "https://57ef-211-223-144-120.ngrok.io/board/category?category=$category",
             { response ->
                 Log.d("response", response.toString())
 
@@ -66,18 +67,18 @@ class GameCategoryActivity : AppCompatActivity() {
                 boardList.addAll(Gson().fromJson(response, typeToken))
 
                 val adapter = BoardCategoryAdapter(this@GameCategoryActivity, boardList)
-                adapter.categoryClickEvent = object : CategoryClickEvent {
 
-                    // 아이템 클릭 이벤트 처리
+                // 아이템 클릭 이벤트 처리
+                adapter.categoryClickEvent = object : CategoryClickEvent {
                     override fun onItemClick(position: Int) {
                         val selectedBoard = boardList[position]
 
                         val intent = Intent(this@GameCategoryActivity, HomeActivity::class.java)
                         intent.putExtra("selected_board_id", selectedBoard.categoryBoardId)
                         startActivity(intent)
-
                     }
                 }
+
                 rv.layoutManager = LinearLayoutManager(this@GameCategoryActivity)
                 rv.adapter = adapter
             },
