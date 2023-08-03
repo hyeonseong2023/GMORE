@@ -1,6 +1,8 @@
 package com.smhrd.gmore.board
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -33,6 +35,8 @@ class GameCategoryActivity : AppCompatActivity() {
     lateinit var tvCategoryName: TextView
     val boardList = ArrayList<BoardCategoryVO>()
     lateinit var btnWriteNext: Button
+    lateinit var spf: SharedPreferences
+    lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +48,14 @@ class GameCategoryActivity : AppCompatActivity() {
 
         reqQueue = Volley.newRequestQueue(this@GameCategoryActivity)
 
-        val category = intent.getStringExtra("imageTag")
+        spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+        val category = spf.getString("category", "").toString()
+
+        btnWriteNext.setOnClickListener {
+            var it_next: Intent =
+                Intent(this, BoardWriteActivity::class.java)
+            startActivity(it_next)
+        }
 
         val request = object : StringRequest(Request.Method.GET,
             "http://172.30.1.24:8888/board/category?category=$category",
@@ -67,8 +78,9 @@ class GameCategoryActivity : AppCompatActivity() {
                     override fun onItemClick(position: Int) {
                         val selectedBoard = boardList[position]
 
-                        val intent = Intent(this@GameCategoryActivity, HomeActivity::class.java)
-                        intent.putExtra("selected_board_id", selectedBoard.categoryBoardId)
+                        val intent = Intent(this@GameCategoryActivity, BoardDetailActivity::class.java)
+                        intent.putExtra("selected_board_id", selectedBoard.board_id)
+                        Log.d("보낸다", selectedBoard.board_id .toString())
                         startActivity(intent)
                     }
                 }

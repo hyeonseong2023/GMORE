@@ -66,6 +66,7 @@ class BoardDetailActivity : AppCompatActivity() {
         login_nick = sharedPreferences.getString("userNick", "1") ?: "1"
 
         boardId =  intent.getIntExtra("selected_board_id", -1).toString()
+        Log.d("boardId??? : ", boardId)
         fetchBoardDetail()
         fetchComments()
         var isBookmarked = false // 북마크 상태를 저장하는 변수 (기본값: false)
@@ -119,7 +120,7 @@ class BoardDetailActivity : AppCompatActivity() {
 private fun fetchBoardDelete() {
     thread {
         try {
-            val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/delete"
+            val urlString = "http://172.30.1.24:8888/board/detail/$boardId/delete"
             val url = URL(urlString)
             val conn = url.openConnection() as HttpURLConnection
 
@@ -158,14 +159,10 @@ private fun fetchBoardDelete() {
       }
     }
 
-
-
-
-
     private fun fetchBoardDetail() {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}"
+                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
                 conn.requestMethod = "GET"
@@ -180,7 +177,7 @@ private fun fetchBoardDelete() {
                 `in`.close()
 
                 Log.d("Response", response.toString())
-
+                Log.d("Response", "Received response: $response")
                 // 응답을 Kotlin 데이터 클래스로 변환
                 val gson = Gson()
                 val boardDetail = gson.fromJson(response.toString(), BoardDetailVO::class.java)
@@ -209,7 +206,7 @@ private fun fetchBoardDelete() {
     private fun fetchComments() {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/comments"
+                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/comments"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -248,7 +245,7 @@ private fun fetchBoardDelete() {
     private fun updateBookmark(isBookmarked: Boolean) {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/1/$isBookmarked/book"
+                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/1/$isBookmarked/book"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -266,7 +263,7 @@ private fun fetchBoardDelete() {
     private fun updateLike(isLiked: Boolean) {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/1/$isLiked/like"
+                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/1/$isLiked/like"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 

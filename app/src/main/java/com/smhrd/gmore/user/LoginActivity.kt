@@ -24,10 +24,13 @@ import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.smhrd.gmore.MainActivity
 import com.smhrd.gmore.R
+
+import com.smhrd.gmore.chat.ChatActivity
+
 import com.smhrd.gmore.board.BoardWriteActivity
 import com.smhrd.gmore.board.GameCategoryActivity
-import com.smhrd.gmore.databinding.ActivityLoginBinding
 
+import com.smhrd.gmore.databinding.ActivityLoginBinding
 import com.smhrd.gmore.vo.MemberVO
 import com.smhrd.gmore.vo.MembersResponse
 import com.smhrd.gmore.vo.RQMember
@@ -42,7 +45,8 @@ class LoginActivity : AppCompatActivity() {
     lateinit var tvToJoin: TextView
     lateinit var reqQue: RequestQueue
 
-    var reqURL: String = "http://172.30.1.29:8888/"
+
+    var reqURL : String = "http://172.30.1.15:8888/"
 
     lateinit var binding : ActivityLoginBinding
 
@@ -109,7 +113,16 @@ class LoginActivity : AppCompatActivity() {
                         editor.commit()
                         Log.d("userNick", spf.getString("userNick", "").toString())
                         intent.putExtra("selected_login_id", userId.toString()) // 아이디 값을 인텐트에 저장
+                        // ✨혜주 spf 수정✨
 
+
+                        Log.d("로그인한 사용자 값",userId.toString())
+                        Log.d("로그인한 사용자 값",userNick)
+                        editor.putString("loginedId", userId.toString())
+                        editor.putString("loginedNick", userNick)
+                        editor.putString("logineEmail", etLoginId.text.toString())
+                        editor.commit()
+                        //✨혜주 spf 수정 끝✨
                         val i = Intent(this, GameCategoryActivity::class.java)
                         startActivity(i)
                         startActivity(it_toMain)

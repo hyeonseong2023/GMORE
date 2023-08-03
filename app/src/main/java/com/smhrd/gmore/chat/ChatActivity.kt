@@ -1,18 +1,20 @@
 package com.smhrd.gmore.chat
 
 import ChatChildEvent
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.smhrd.gmore.R
+import com.smhrd.gmore.utils.FBAuth
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -21,12 +23,15 @@ class ChatActivity : AppCompatActivity() {
     lateinit var rvChat : RecyclerView
     lateinit var btnChatSend : Button
     lateinit var etChatMsg: EditText
-    lateinit var  tvChatNick : TextView
+    lateinit var tvChatNick:TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+        var spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+        var userNick = spf.getString("userNick", "userNick")
+
 
         rvChat = findViewById(R.id.rvChat)
         btnChatSend = findViewById(R.id.btnChatSend)
@@ -39,17 +44,20 @@ class ChatActivity : AppCompatActivity() {
 
         val data = ArrayList<ChatVO>()
 
-//        data.add(ChatVO("안녕하", "dd",myTime(getTime())))
+        data.add(ChatVO("안녕하세yo", "ssoo","오후14:30"))
+        data.add(ChatVO("겜 친추 하실래요???", "ssoo","오후14:32"))
 
+        var adapter = ChatAdapter(applicationContext, data,userNick.toString())
+        rvChat.layoutManager = LinearLayoutManager(applicationContext)// 목록형
+        rvChat.adapter = adapter
+        tvChatNick.text = "ssoo"
 
-        var adapter : ChatAdapter = ChatAdapter(applicationContext,R.layout.chat_msg_temp, data );
-        rvChat.layoutManager = LinearLayoutManager(applicationContext)
-        rvChat.adapter=adapter
-
-        tvChatNick.text = "dd"
 
         btnChatSend.setOnClickListener {
-            myRef.push().setValue(ChatVO(etChatMsg.text.toString(),"dd",myTime(getTime())))
+            Log.d("spf",spf.toString())
+            Log.d("loginId",userNick.toString())
+
+            myRef.push().setValue(ChatVO(etChatMsg.text.toString(),userNick.toString(), myTime(getTime())))
 
             rvChat.smoothScrollToPosition(data.size-1)
             etChatMsg.text.clear()
@@ -58,23 +66,14 @@ class ChatActivity : AppCompatActivity() {
         myRef.addChildEventListener(ChatChildEvent(data,adapter))
     }
 
-    fun myTime(time: String): String{
-        var timeResult = ""
-        if(time=="")
-            return ""
-        if (time.substring(11,13).toInt()>12)
-            timeResult += "오전 " + (time.substring(11,13).toInt() - 12) + time.substring(13,16)
-        else if (time.substring(11,13).toInt()==12)
-            timeResult += "오전 " + time.substring(11,16)
-        else if (time.substring(11,13).toInt()>9)
-            timeResult += "오후 " + time.substring(11,16)
-        else if (time.substring(11,13).toInt()==0)
-            timeResult += "오후 12" + time.substring(13,16)
-        else
-            timeResult += "오후 " + time.substring(12,16)
-        return timeResult
-    }
-    fun getTime(): String{
+
+
+    // 아이디 비교하기
+    /**사용자uid와 targetUid 비교
+     * @return Boolean*/
+
+
+    fun getTime(): String {
         // Calendar 객체는 getInstance() 메소드로 객체를 생성한다
         val currentTime = Calendar.getInstance().time
         // 시간을 나타낼 형식, 어느위치의 시간을 가져올건지 설정
@@ -86,4 +85,32 @@ class ChatActivity : AppCompatActivity() {
     }
 
 
+    /**시간을 오후 9:13같은 형식으로 바꿔준다*/
+    fun myTime(time: String): String {
+        var timeResult = ""
+        if (time == "")
+            return ""
+        if (time.substring(11, 13).toInt() > 12)
+            timeResult += "오전 " + (time.substring(11, 13).toInt() - 12) + time.substring(13, 16)
+        else if (time.substring(11, 13).toInt() == 12)
+            timeResult += "오전 " + time.substring(11, 16)
+        else if (time.substring(11, 13).toInt() > 9)
+            timeResult += "오후 " + time.substring(11, 16)
+        else if (time.substring(11, 13).toInt() == 0)
+            timeResult += "오후 12" + time.substring(13, 16)
+        else
+            timeResult += "오후 " + time.substring(12, 16)
+        return timeResult
+    }
+    fun getUid():String{
+//            auth = FirebaseAuth.getInstance() // class 안에서 인스턴스 생성할 때 getInstance()붙여준다
+        return "dd"
+    }
+
+
+
 }
+
+
+
+

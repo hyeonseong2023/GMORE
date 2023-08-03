@@ -89,7 +89,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
         // SharedPreference 생성
         val spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
-        val userId = spf.getString("userId", "")?.toInt()   // 유저코드 값 불러오기
+        val userId = spf.getString("userId", "").toString()   // 유저코드 값 불러오기
         val userNick = spf.getString("userNick", "").toString() // 닉네임 값 불러오기
         val category = spf.getString("category","").toString()  // 게임 카테고리 값 불러오기
 
@@ -121,13 +121,14 @@ class BoardWriteActivity : AppCompatActivity() {
             val inputContent = etWriteContent.text.toString()
             val request = object : StringRequest(
                 Request.Method.POST,
-                "http://172.30.1.29:8888/board/write",
+                "http://172.30.1.24:8888/board/write",
 //                "http://localhost:8888/board/write",
                 { response ->
                     Log.d("response", response.toString())
 
                     if(response == "Success"){
                         val it = Intent(this, GameCategoryActivity::class.java)
+                        intent.putExtra("categoryTag", category)
                         startActivity(it)
                         finish()
 
@@ -142,7 +143,7 @@ class BoardWriteActivity : AppCompatActivity() {
                 override fun getParams(): MutableMap<String, String> {
 
                     val params: MutableMap<String, String> = HashMap<String, String>()
-                    val board = BoardDetailVO(null, inputTitle, inputContent, encodeImgString, category, userId,null, userNick)
+                    val board = BoardDetailVO(null, inputTitle, inputContent, encodeImgString, category, userId.toInt(),null, userNick)
                     params.put("board", Gson().toJson(board))
                     return params
                 }

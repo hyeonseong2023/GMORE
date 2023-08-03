@@ -25,14 +25,10 @@ class MyPageBoardList : AppCompatActivity() {
     var data = ArrayList<BoardDetailVO>()
 
     lateinit var requestQueue: RequestQueue
-    lateinit var userId: String
+    var userId = 0
 
 //    lateinit var adapter: MyPageBoardAdapter
     lateinit var board : BoardDetailVO
-
-    // 제목 클릭 시 해당 페이지로 이동
-    lateinit var tvMyTitle: TextView
-
 
 
 
@@ -42,7 +38,7 @@ class MyPageBoardList : AppCompatActivity() {
 
         requestQueue = Volley.newRequestQueue(this@MyPageBoardList)
         rvMyBoard = findViewById(R.id.rvMyBoard)
-        tvMyTitle = findViewById(R.id.tvTitleMyBoard)
+
 
         // spf 이용해 로그인 유저 데이터 받아오기
         val spf = getSharedPreferences(
@@ -51,8 +47,8 @@ class MyPageBoardList : AppCompatActivity() {
         )
 
         // spf 에서 user 데이터 가져오기
-        userId = spf.getInt("userId", 0).toString()
-        Log.d("리스트인덱스", userId)
+        userId = spf.getInt("userId", 0)
+        Log.d("리스트인덱스", userId.toString())
         val request = object : StringRequest(
             Request.Method.POST,
             "http://172.30.1.40:8888/user/boardlist",
@@ -73,23 +69,10 @@ class MyPageBoardList : AppCompatActivity() {
                 }
 
                 // ✨✨✨✨✨adapter 생성시 넘겨 주는 매개 변수 순서 잘 맞춰 주기
-                val adapter = MyPageBoardAdapter(applicationContext, R.layout.myboardtemplate, data)
+                var adapter = MyPageBoardAdapter(applicationContext, R.layout.myboardtemplate, data)
                 rvMyBoard.layoutManager = LinearLayoutManager(this)
                 rvMyBoard.adapter = adapter
 
-
-
-
-
-
-                rvMyBoard.layoutManager = LinearLayoutManager(this)
-                rvMyBoard.adapter = adapter
-                // ++++++++++ 끝
-
-
-                // 어뎁터를 화면에 보이게 띄워주는 역할
-//                rvMyBoard.layoutManager = LinearLayoutManager(applicationContext)
-//                rvMyBoard.adapter = adapter
 
             }, { error ->
                 Log.d("error", error.toString())
@@ -97,13 +80,12 @@ class MyPageBoardList : AppCompatActivity() {
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params: MutableMap<String, String> = HashMap<String, String>()
-                params.put("userId", userId)
+                params.put("userId", userId.toString())
 
                 return params
             }
         }
         requestQueue.add(request)
-
 
     }
 
