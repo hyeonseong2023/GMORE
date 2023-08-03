@@ -45,7 +45,8 @@ class LoginActivity : AppCompatActivity() {
     var reqURL: String = "http://172.30.1.29:8888/"
 
 
-    lateinit var binding: ActivityLoginBinding
+
+    lateinit var binding : ActivityLoginBinding
 
     // SharedPreference
     lateinit var spf: SharedPreferences
