@@ -6,24 +6,12 @@
     android:layout_height="wrap_content">
 
 
-    <ImageView
-        android:id="@+id/imgCRT"
-        android:layout_width="58dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/tvCRTNick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:text="이름"
         app:layout_constraintStart_toEndOf="@+id/imgCRT"
         app:layout_constraintTop_toTopOf="@+id/imgCRT" />
@@ -33,19 +21,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="4dp"
         android:text="내용"
-        app:layout_constraintBottom_toBottomOf="@+id/imgCRT"
-        app:layout_constraintStart_toEndOf="@+id/imgCRT" />
+        app:layout_constraintStart_toEndOf="@+id/imgCRT"
+        app:layout_constraintTop_toBottomOf="@+id/tvCRTNick" />
 
     <TextView
         android:id="@+id/tvCRTLastMsgTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="36dp"
         android:text="시간"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgCRT"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgCRT"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pimage" />
 </androidx.constraintlayout.widget.ConstraintLayout>

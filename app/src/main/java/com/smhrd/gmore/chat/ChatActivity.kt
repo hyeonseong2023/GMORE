@@ -42,8 +42,8 @@ class ChatActivity : AppCompatActivity() {
 
         val data = ArrayList<ChatVO>()
 
-        data.add(ChatVO("안녕하", "ddd","시간1"))
-        data.add(ChatVO("안녕하", "ddd","시간1"))
+        data.add(ChatVO("안녕하세요", "ddd",myTime(getTime())))
+        data.add(ChatVO("안녕하", "ddd",myTime(getTime())))
 
         var adapter = ChatAdapter(applicationContext, data,loginedID.toString())
         rvChat.layoutManager = LinearLayoutManager(applicationContext)// 목록형

@@ -37,21 +37,9 @@ class ChatRoomFragment(var spf : String): Fragment() {
         val view = inflater.inflate(R.layout.fragment_chat_rooms, container, false)
         Log.d("ss",spf)
         val rvChatRoom = view.findViewById<RecyclerView>(R.id.rvChatRoom)
-        chatList.add(
-            ChatRoomVO(
-                "thgml", "thgmldi", "gg", "gg"
-            )
-        )
-        chatList.add(
-            ChatRoomVO(
-                "thgml", "thgmldi", "gg", "gg"
-            )
-        )
-        chatList.add(
-            ChatRoomVO(
-                "thgml", "thgmldi", "gg", "gg"
-            )
-        )
+        chatList.add(ChatRoomVO("thgml", spf, "gg", "gg"))
+        chatList.add(ChatRoomVO("sohee", "thgmldi", "gg", "gg"))
+        chatList.add(ChatRoomVO("thgml", "thgmldi", "gg", "gg"))
 
 //        getChatRoomData()
 

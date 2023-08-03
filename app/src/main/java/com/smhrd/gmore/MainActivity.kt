@@ -3,7 +3,6 @@ package com.smhrd.gmore
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.smhrd.gmore.databinding.ActivityLoginBinding
 import com.smhrd.gmore.databinding.ActivityMainBinding
 import com.smhrd.gmore.fragment.ChatRoomFragment
 import com.smhrd.gmore.fragment.Fragment1
