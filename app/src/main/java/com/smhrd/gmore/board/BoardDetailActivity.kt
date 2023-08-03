@@ -76,9 +76,9 @@ class BoardDetailActivity : AppCompatActivity() {
             isBookmarked = !isBookmarked // isBookmarked 값을 전환
 
             if (isBookmarked) {
-                boardbookmark.setImageResource(android.R.drawable.btn_star_big_on) // 활성화 된 별 이미지로 변경
+                boardbookmark.setImageResource(R.drawable.star_on) // 활성화 된 별 이미지로 변경
             } else {
-                boardbookmark.setImageResource(android.R.drawable.btn_star_big_off) // 비활성화 된 별 이미지로 변경
+                boardbookmark.setImageResource(R.drawable.star_off) // 비활성화 된 별 이미지로 변경
             }
             updateBookmark(isBookmarked)
         }
@@ -94,7 +94,7 @@ class BoardDetailActivity : AppCompatActivity() {
             if (isLiked) {
                 boardLike.setImageResource(R.drawable.harton) // 활성화 된 하트 이미지로 변경
             } else {
-                boardLike.setImageResource(R.drawable.hartoff) // 비활성화 된 하트 이미지로 변경
+                boardLike.setImageResource(R.drawable.icon_like_off) // 비활성화 된 하트 이미지로 변경
             }
             updateLike(isLiked)
         }
