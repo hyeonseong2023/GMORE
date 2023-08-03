@@ -8,7 +8,7 @@
     tools:menu="@menu/main_bottom">
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvMainTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/main"
@@ -88,7 +88,7 @@
         android:layout_marginEnd="5dp"
         android:src="@drawable/gamemain"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
-        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintEnd_toStartOf="@+id/tvMainTitle"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
