@@ -40,9 +40,13 @@ class LoginActivity : AppCompatActivity() {
     lateinit var btnLogin : Button
     lateinit var tvToJoin : TextView
 
+<<<<<<< Updated upstream
     lateinit var reqQue : RequestQueue
+=======
+>>>>>>> Stashed changes
 
-    var reqURL : String = "http://172.30.1.29:8888/"
+    var reqURL: String = "http://172.30.1.29:8888/"
+
 
 
     lateinit var binding : ActivityLoginBinding

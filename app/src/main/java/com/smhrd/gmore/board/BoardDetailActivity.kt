@@ -13,14 +13,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.smhrd.gmore.R
-import com.smhrd.gmore.user.JoinActivity
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.concurrent.thread
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 
 class BoardDetailActivity : AppCompatActivity() {
 
@@ -30,7 +35,6 @@ class BoardDetailActivity : AppCompatActivity() {
     private lateinit var tvBoardDate: TextView
     private lateinit var tvBoardContent: TextView
     private lateinit var ivBoardImage: ImageView
-    private lateinit var ivInputAdd: ImageView
     private lateinit var rvComments: RecyclerView
     private lateinit var commentAdapter: CommentAdapter
     private lateinit var boardbookmark: ImageView
@@ -40,7 +44,7 @@ class BoardDetailActivity : AppCompatActivity() {
     private lateinit var btnBoradDelete: Button
     private lateinit var btnBoradUpdate: Button
 
-    lateinit var boardId:String
+    private var boardId: Int? = null
     lateinit var login_id:String
     lateinit var login_nick:String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,24 +52,23 @@ class BoardDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_board_detail)
 
         // 뷰 초기화를 setContentView 호출 후에 수행합니다.
-        etCommentInput = findViewById(R.id.editTextText)
+        etCommentInput = findViewById(R.id.boardcomAdd)
         btnSubmitComment = findViewById(R.id.ivInputAdd)
         tvBoardTitle = findViewById(R.id.tvBoardTitle)
         tvBoardWriter = findViewById(R.id.tvBoardWriter)
         tvBoardDate = findViewById(R.id.tvBoardDate)
         tvBoardContent = findViewById(R.id.tvBoardContent)
         ivBoardImage = findViewById(R.id.ivBoardImage)
-        ivInputAdd = findViewById(R.id.ivInputAdd)
         rvComments = findViewById(R.id.rvComments)
         boardbookmark = findViewById(R.id.boardBookmark)
         boardLike = findViewById(R.id.boardLike)
         btnBoradDelete = findViewById(R.id.btnBoradDelete)
         btnBoradUpdate = findViewById(R.id.btnBoradUpdate)
-        val sharedPreferences = getSharedPreferences("sdf", Context.MODE_PRIVATE)
-        login_id = sharedPreferences.getString("selected_login_id", "1") ?: "1"
-        login_nick = sharedPreferences.getString("userNick", "1") ?: "1"
-
-        boardId =  intent.getIntExtra("selected_board_id", -1).toString()
+        boardId = intent.getStringExtra("selected_board_id")?.toIntOrNull() ?: 35
+        val sharedPreferences = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+        login_id = sharedPreferences.getString("userId", "1") ?: "aass"
+        login_nick = sharedPreferences.getString("userNick", "1") ?: "aaaasa"
+        Log.d("아이디 값",sharedPreferences.getString("userId", "??").toString())
         fetchBoardDetail()
         fetchComments()
         var isBookmarked = false // 북마크 상태를 저장하는 변수 (기본값: false)
@@ -165,7 +168,7 @@ private fun fetchBoardDelete() {
     private fun fetchBoardDetail() {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}"
+                val urlString = "http://172.30.1.29:8888/board/detail/${boardId}"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
                 conn.requestMethod = "GET"
@@ -179,7 +182,7 @@ private fun fetchBoardDelete() {
                 }
                 `in`.close()
 
-                Log.d("Response", response.toString())
+                Log.d("보드 내용", response.toString())
 
                 // 응답을 Kotlin 데이터 클래스로 변환
                 val gson = Gson()
@@ -191,13 +194,19 @@ private fun fetchBoardDelete() {
                     tvBoardWriter.text = boardDetail.nickname
                     tvBoardDate.text = boardDetail.date_created
                     tvBoardContent.text = boardDetail.content
-                    // 이미지 로드
-                    // 예를 들어 Glide 라이브러리를 사용한다면:
-                    // Glide.with(this).load(boardDetail.image_url).into(ivBoardImage)
-                    if(login_nick==boardDetail.nickname){
-                        btnBoradDelete.visibility = View.VISIBLE
+
+                    // Convert Base64 encoded image to Bitmap
+                    val bitmap = boardDetail.image_url?.let { stringToBitmap(it) }
+                    if (bitmap != null) {
+                        ivBoardImage.setImageBitmap(bitmap)
+                    } else {
+                        // If the bitmap is null, you can set a default image or show an error placeholder.
+                        // Example: ivBoardImage.setImageResource(R.drawable.default_image)
                     }
 
+                    if (login_nick == boardDetail.nickname) {
+                        btnBoradDelete.visibility = View.VISIBLE
+                    }
                 }
 
             } catch (e: Exception) {
@@ -205,6 +214,7 @@ private fun fetchBoardDelete() {
             }
         }
     }
+
 
     private fun fetchComments() {
         thread {
@@ -248,7 +258,7 @@ private fun fetchBoardDelete() {
     private fun updateBookmark(isBookmarked: Boolean) {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/1/$isBookmarked/book"
+                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/${login_id}/$isBookmarked/book"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -266,7 +276,7 @@ private fun fetchBoardDelete() {
     private fun updateLike(isLiked: Boolean) {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/1/$isLiked/like"
+                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/${login_id}/like"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -282,37 +292,56 @@ private fun fetchBoardDelete() {
     }
 
     private fun submitComment() {
-        thread {
-            try {
-//                val commentText = etCommentInput.text.toString()
-//                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/1/$isLiked/like"
-//
-//                val url = URL(urlString)
-//                val conn = url.openConnection() as HttpURLConnection
-//
-//                conn.requestMethod = "POST"
-//                conn.doOutput = true
-//
-//                val outputStream = conn.outputStream
-//                outputStream.write(postData.toByteArray())
-//                outputStream.close()
-//
-//                val responseCode = conn.responseCode
-//                Log.d("Response", "Response Code: $responseCode")
-//
-//                if (responseCode == HttpURLConnection.HTTP_OK) {
-//                    runOnUiThread {
-//                        etCommentInput.setText("") // 코멘트 전송에 성공하면 텍스트를 지웁니다.
-//                        fetchComments() // 코멘트 목록을 새로 고칩니다.
-//                    }
-//                }
+        val commentText = etCommentInput.text.toString()
 
-            } catch (e: Exception) {
-                Log.e("Submit Comment", "Error submitting comment: ${e.message}", e)
+        if (commentText.isNotBlank()) {
+            thread {
+                try {
+                    val urlString = "http://172.30.1.11:8888/board/detail/$boardId/comment/write/$login_id"
+                    val url = URL(urlString)
+                    val conn = url.openConnection() as HttpURLConnection
+
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
+                    conn.requestMethod = "POST"
+                    conn.doOutput = true
+
+                    val postData = "content=$commentText"
+                    val outputStream = conn.outputStream
+                    outputStream.write(postData.toByteArray())
+                    outputStream.flush()
+                    outputStream.close()
+
+                    val responseCode = conn.responseCode
+
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        runOnUiThread {
+                            etCommentInput.setText("")
+                            fetchComments()
+                        }
+                    }
+
+                } catch (e: Exception) {
+                    Log.e("Submit Comment", "Error submitting comment: ${e.message}", e)
+                }
+            }
+        } else {
+            runOnUiThread {
+                Toast.makeText(this, "댓글을 입력해 주세요.", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+
+    private fun stringToBitmap(encodedString: String): Bitmap? {
+        try {
+            val imageBytes = Base64.decode(encodedString, Base64.DEFAULT)
+            val inputStream = ByteArrayInputStream(imageBytes)
+            return BitmapFactory.decodeStream(inputStream)
+        } catch (e: Exception) {
+            Log.e("StringToBitmap", "Error converting string to bitmap: ${e.message}", e)
+        }
+        return null
+    }
 
 
 
