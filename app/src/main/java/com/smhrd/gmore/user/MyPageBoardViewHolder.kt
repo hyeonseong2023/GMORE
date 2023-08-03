@@ -15,4 +15,7 @@ class MyPageBoardViewHolder (var itemView: View) : RecyclerView.ViewHolder(itemV
         tvMyTitle = itemView.findViewById(R.id.tvTitleMyBoard)
         tvMyDate = itemView.findViewById(R.id.tvDateMyBoard)
     }
+
+
+
 }

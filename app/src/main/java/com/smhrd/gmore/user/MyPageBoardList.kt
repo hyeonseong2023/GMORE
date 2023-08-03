@@ -27,11 +27,13 @@ class MyPageBoardList : AppCompatActivity() {
     lateinit var requestQueue: RequestQueue
     lateinit var userId: String
 
-    lateinit var adapter: MyPageBoardAdapter
+//    lateinit var adapter: MyPageBoardAdapter
     lateinit var board : BoardDetailVO
 
     // 제목 클릭 시 해당 페이지로 이동
     lateinit var tvMyTitle: TextView
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,19 +59,16 @@ class MyPageBoardList : AppCompatActivity() {
             { response ->
                 Log.d("response", response.toString())
 
+
+
+
                 var result = JSONArray(response)
                 for (i in 0 until result.length()) {
                     // 여기 수정 -> board 전역 변수로 변경
                      board = Gson().fromJson(result.get(i).toString(), BoardDetailVO::class.java)
                     data.add(board)
-                    adapter = MyPageBoardAdapter(applicationContext, R.layout.myboardtemplate, data)
+//                    adapter = MyPageBoardAdapter(applicationContext, R.layout.myboardtemplate, data)
 
-                    // 게시글 클릭 이벤트
-                    tvMyTitle.setOnClickListener{
-                        var getBoardId = data.get(i).board_id
-                        Log.d("선택한 board_ID",getBoardId.toString())
-                        // 해당 board_id 가진 개시글 Acrivitiy로 보내기 / getBoardId
-                    }
 
                 }
 
@@ -78,10 +77,20 @@ class MyPageBoardList : AppCompatActivity() {
                 rvMyBoard.layoutManager = LinearLayoutManager(this)
                 rvMyBoard.adapter = adapter
 
-                // 어뎁터를 화면에 보이게 띄워주는 역할
-                rvMyBoard.layoutManager = LinearLayoutManager(applicationContext)
 
+
+
+
+
+                rvMyBoard.layoutManager = LinearLayoutManager(this)
                 rvMyBoard.adapter = adapter
+                // ++++++++++ 끝
+
+
+                // 어뎁터를 화면에 보이게 띄워주는 역할
+//                rvMyBoard.layoutManager = LinearLayoutManager(applicationContext)
+//                rvMyBoard.adapter = adapter
+
             }, { error ->
                 Log.d("error", error.toString())
             }
@@ -96,9 +105,7 @@ class MyPageBoardList : AppCompatActivity() {
         requestQueue.add(request)
 
 
-
-
-
-
     }
+
+
 }
