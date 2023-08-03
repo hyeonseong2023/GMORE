@@ -1,15 +1,21 @@
 package com.smhrd.gmore.board
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.smhrd.gmore.R
+import com.smhrd.gmore.user.JoinActivity
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -31,8 +37,12 @@ class BoardDetailActivity : AppCompatActivity() {
     private lateinit var boardLike: ImageView
     private lateinit var etCommentInput: EditText
     private lateinit var btnSubmitComment: ImageView
+    private lateinit var btnBoradDelete: Button
+    private lateinit var btnBoradUpdate: Button
+
     lateinit var boardId:String
     lateinit var login_id:String
+    lateinit var login_nick:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_detail)
@@ -49,17 +59,19 @@ class BoardDetailActivity : AppCompatActivity() {
         rvComments = findViewById(R.id.rvComments)
         boardbookmark = findViewById(R.id.boardBookmark)
         boardLike = findViewById(R.id.boardLike)
-        boardId =  intent.getIntExtra("selected_board_id", -1).toString()
-        login_id =  intent.getIntExtra("selected_login_id", -1).toString()
-        if(login_id == null){
-            login_id = 1.toString()
-        }
+        btnBoradDelete = findViewById(R.id.btnBoradDelete)
+        btnBoradUpdate = findViewById(R.id.btnBoradUpdate)
+        val sharedPreferences = getSharedPreferences("sdf", Context.MODE_PRIVATE)
+        login_id = sharedPreferences.getString("selected_login_id", "1") ?: "1"
+        login_nick = sharedPreferences.getString("userNick", "1") ?: "1"
+
         fetchBoardDetail()
         fetchComments()
         var isBookmarked = false // 북마크 상태를 저장하는 변수 (기본값: false)
 
+        //별이미지 사용하는 북마크
         boardbookmark.setOnClickListener {
-            isBookmarked = !isBookmarked // isBookmarked 값을 전환 (예: ture -> false, false -> true)
+            isBookmarked = !isBookmarked // isBookmarked 값을 전환
 
             if (isBookmarked) {
                 boardbookmark.setImageResource(android.R.drawable.btn_star_big_on) // 활성화 된 별 이미지로 변경
@@ -73,9 +85,9 @@ class BoardDetailActivity : AppCompatActivity() {
         }
 
         var isLiked = false // 좋아요 상태를 저장하는 변수 (기본값: false)
-
+//좋아요
         boardLike.setOnClickListener {
-            isLiked = !isLiked // 좋아요 상태를 전환 (예: ture -> false, false -> true)
+            isLiked = !isLiked
 
             if (isLiked) {
                 boardLike.setImageResource(R.drawable.harton) // 활성화 된 하트 이미지로 변경
@@ -84,7 +96,62 @@ class BoardDetailActivity : AppCompatActivity() {
             }
             updateLike(isLiked)
         }
+
+        btnBoradDelete.setOnClickListener{
+            fetchBoardDelete()
+        }
+
+        btnBoradUpdate.setOnClickListener{
+            var it = Intent(this, BoardEditActivity::class.java)
+            startActivity(it)
+        }
     }
+//게시글 삭제 버튼 반응
+private fun fetchBoardDelete() {
+    thread {
+        try {
+            val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/delete"
+            val url = URL(urlString)
+            val conn = url.openConnection() as HttpURLConnection
+
+            conn.requestMethod = "GET"
+
+            val `in` = BufferedReader(InputStreamReader(conn.inputStream))
+            val response = StringBuilder()
+
+            var inputLine: String?
+            while (`in`.readLine().also { inputLine = it } != null) {
+                response.append(inputLine)
+            }
+
+            // 받은 값(응답 문자열)에 따른 조건 처리
+            when (response.toString().trim()) {
+                "Success" -> {
+                    runOnUiThread {
+                        val intent = Intent(this, GameCategoryActivity::class.java)
+                        startActivity(intent)
+                        finish() // 현재 Activity 닫기
+                    }
+                }
+                "Fail" -> {
+                    runOnUiThread {
+                        Toast.makeText(this, "실패.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else -> {
+
+                }
+            }
+
+        } catch (e: Exception) {
+            Log.e("Fetch c", "Error fetching board detail: ${e.message}", e)
+        }
+      }
+    }
+
+
+
+
 
     private fun fetchBoardDetail() {
         thread {
@@ -92,7 +159,6 @@ class BoardDetailActivity : AppCompatActivity() {
                 val urlString = "http://172.30.1.11:8888/board/detail/${boardId}"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
-
                 conn.requestMethod = "GET"
 
                 val `in` = BufferedReader(InputStreamReader(conn.inputStream))
@@ -119,6 +185,9 @@ class BoardDetailActivity : AppCompatActivity() {
                     // 이미지 로드
                     // 예를 들어 Glide 라이브러리를 사용한다면:
                     // Glide.with(this).load(boardDetail.image_url).into(ivBoardImage)
+                    if(login_nick==boardDetail.nickname){
+                        btnBoradDelete.visibility = View.VISIBLE
+                    }
                 }
 
             } catch (e: Exception) {

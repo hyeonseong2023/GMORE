@@ -71,7 +71,9 @@ class BoardWriteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_board_write)
 
         btnWriteClose = findViewById(R.id.btnWriteClose)
+
         btnWriteOk = findViewById(R.id.btnOkkk)
+
         btnWriteCam = findViewById(R.id.btnWriteCam)
         btnWritePhoto = findViewById(R.id.btnWritephoto)
         etWriteTitle = findViewById(R.id.etWriteTitle)
