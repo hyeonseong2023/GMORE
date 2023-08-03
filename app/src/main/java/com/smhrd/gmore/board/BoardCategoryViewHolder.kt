@@ -8,10 +8,10 @@ import com.smhrd.gmore.R
 class BoardCategoryViewHolder(itemView: View, val categoryClickEvent: CategoryClickEvent?) :
     RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-    var categoryTitle:TextView
-    var categoryNick:TextView
-    var categoryDate:TextView
-    var categoryLikeCnt:TextView
+    var categoryTitle: TextView
+    var categoryNick: TextView
+    var categoryDate: TextView
+    var categoryLikeCnt: TextView
 
     init {
         categoryTitle = itemView.findViewById(R.id.tvCategoryTitle)

@@ -14,19 +14,19 @@ import com.smhrd.gmore.board.GameCategoryActivity
 
 class Fragment1 : Fragment() {
 
-    lateinit var ivLOL :Button
-    lateinit var ivOverwatch :Button
-    lateinit var ivMaplestory :Button
-    lateinit var ivFifa4 :Button
-    lateinit var ivLostark :Button
-    lateinit var ivBattleground :Button
+    lateinit var ivLOL: Button
+    lateinit var ivOverwatch: Button
+    lateinit var ivMaplestory: Button
+    lateinit var ivFifa4: Button
+    lateinit var ivLostark: Button
+    lateinit var ivBattleground: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        var view:View = inflater.inflate(R.layout.fragment_1, container, false)
+        var view: View = inflater.inflate(R.layout.fragment_1, container, false)
 
         val imageView = view.findViewById<ImageView>(R.id.your_image_view)
         Glide.with(this).load(R.drawable.i08239827906).into(imageView)
@@ -38,7 +38,8 @@ class Fragment1 : Fragment() {
         ivLostark = view.findViewById(R.id.ivLostArk)
         ivBattleground = view.findViewById(R.id.ivBattleGround)
 
-        val imageViews = listOf(ivLOL, ivOverwatch, ivMaplestory, ivFifa4, ivLostark, ivBattleground)
+        val imageViews =
+            listOf(ivLOL, ivOverwatch, ivMaplestory, ivFifa4, ivLostark, ivBattleground)
 
         // 각 이미지를 클릭하면 클릭한 이미지의 태그 text를 넘기고 카테고리 페이지로 이동
         val commonClickListener = View.OnClickListener { view ->
@@ -51,9 +52,6 @@ class Fragment1 : Fragment() {
         imageViews.forEach { it.setOnClickListener(commonClickListener) }
 
         return view
-
-
-
 
 
     }
