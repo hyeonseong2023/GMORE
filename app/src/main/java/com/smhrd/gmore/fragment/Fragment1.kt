@@ -14,12 +14,12 @@ import com.smhrd.gmore.board.GameCategoryActivity
 
 class Fragment1 : Fragment() {
 
-    lateinit var ivLOL: Button
-    lateinit var ivOverwatch: Button
-    lateinit var ivMaplestory: Button
-    lateinit var ivFifa4: Button
-    lateinit var ivLostark: Button
-    lateinit var ivBattleground: Button
+    lateinit var ivLOL: ImageView
+    lateinit var ivOverwatch: ImageView
+    lateinit var ivMaplestory: ImageView
+    lateinit var ivFifa4: ImageView
+    lateinit var ivLostark: ImageView
+    lateinit var ivBattleground: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +29,7 @@ class Fragment1 : Fragment() {
         var view: View = inflater.inflate(R.layout.fragment_1, container, false)
 
         val imageView = view.findViewById<ImageView>(R.id.your_image_view)
-        Glide.with(this).load(R.drawable.i08239827906).into(imageView)
+        Glide.with(this).load(R.drawable.cirby).into(imageView)
 
         ivLOL = view.findViewById(R.id.ivLOL)
         ivOverwatch = view.findViewById(R.id.ivOverwatch)
