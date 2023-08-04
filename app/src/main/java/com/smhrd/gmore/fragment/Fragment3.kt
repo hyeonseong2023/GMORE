@@ -48,6 +48,7 @@ class Fragment3 : Fragment() {
     private fun fetchFavorites() {
         thread {
             try {
+
                 val urlString = "http://172.30.1.11:8888/favorites/${login_id}"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
