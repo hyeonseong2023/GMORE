@@ -40,7 +40,7 @@ class ChatRoomFragment(var spf : String): Fragment() {
         val view = inflater.inflate(R.layout.fragment_chat_rooms, container, false)
         Log.d("ss",spf)
         val rvChatRoom = view.findViewById<RecyclerView>(R.id.rvChatRoom)
-        chatList.add(ChatRoomVO("ssoo", "sss", "겜 친추 하실래요???", "오후14:32"))
+        chatList.add(ChatRoomVO("ssoo", "sss", "겜 친추 하실래요???", "오후 1:32"))
         chatList.add(ChatRoomVO("백으", "sss", "배그 쉽지가 않네", "오후 3:29"))
         chatList.add(ChatRoomVO("lol", "sss", "재밌다ㅎㅎㅎㅎ", "오후 3:12"))
 
