@@ -36,9 +36,4 @@ router.get('/:user_id', (req, res) => {
   });
 });
 
-<<<<<<< HEAD
 module.exports = router;
-=======
-
-module.exports = router;
->>>>>>> main
