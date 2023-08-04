@@ -50,11 +50,11 @@ class BoardWriteActivity : AppCompatActivity() {
     lateinit var btnWritePhoto: ImageButton
     lateinit var btnWriteCam: ImageButton
     lateinit var ivUpload: ImageView
-    lateinit var ivDelete : ImageButton
+    lateinit var ivDelete: ImageButton
 
     lateinit var writeImgLine: View
     lateinit var reqQueue: RequestQueue
-     var encodeImgString: String = ""
+    var encodeImgString: String = ""
     val STORAGE_CODE = 1000
 
     var imgCamUpload = false
@@ -91,8 +91,7 @@ class BoardWriteActivity : AppCompatActivity() {
         val spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
         val userId = spf.getString("userId", "").toString()   // 유저코드 값 불러오기
         val userNick = spf.getString("userNick", "").toString() // 닉네임 값 불러오기
-        val category = spf.getString("category","").toString()  // 게임 카테고리 값 불러오기
-
+        val category = spf.getString("category", "").toString()  // 게임 카테고리 값 불러오기
 
 
         // 뒤로가기 버튼
@@ -126,13 +125,13 @@ class BoardWriteActivity : AppCompatActivity() {
                 { response ->
                     Log.d("response", response.toString())
 
-                    if(response == "Success"){
+                    if (response == "Success") {
                         val it = Intent(this, GameCategoryActivity::class.java)
                         intent.putExtra("categoryTag", category)
                         startActivity(it)
                         finish()
 
-                    }else{
+                    } else {
                         Toast.makeText(this, "Fail....", Toast.LENGTH_SHORT).show()
                     }
                 },
@@ -143,7 +142,16 @@ class BoardWriteActivity : AppCompatActivity() {
                 override fun getParams(): MutableMap<String, String> {
 
                     val params: MutableMap<String, String> = HashMap<String, String>()
-                    val board = BoardDetailVO(null, inputTitle, inputContent, encodeImgString, category, userId.toInt(),null, userNick)
+                    val board = BoardDetailVO(
+                        null,
+                        inputTitle,
+                        inputContent,
+                        encodeImgString,
+                        category,
+                        userId.toInt(),
+                        null,
+                        userNick
+                    )
                     params.put("board", Gson().toJson(board))
                     return params
                 }
@@ -154,11 +162,29 @@ class BoardWriteActivity : AppCompatActivity() {
 
         // 갤러리에서 이미지 가져오기 버튼
         btnWritePhoto.setOnClickListener {
-            imgPhotoUpload = true
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
-            startActivityForResult(intent, STORAGE_CODE)
+            when {
+                // 갤러리 접근 권한이 있는 경우
+                ContextCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED
+                -> {
+                    imgPhotoUpload = true
+                    val intent = Intent(Intent.ACTION_PICK)
+                    intent.type = "image/*"
+                    startActivityForResult(intent, STORAGE_CODE)
+
+                }
+                // 갤러리 접근 권한이 없는 경우 & 교육용 팝업을 보여줘야 하는 경우
+
+                // 권한 요청 하기(requestPeㄱmissions) -> 갤러리 접근(onRequestPermissionResult)
+                else -> requestPermissions(
+                    arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                    1000
+                )
+            }
         }
+
 
 
         // 카메라 버튼
@@ -186,13 +212,15 @@ class BoardWriteActivity : AppCompatActivity() {
         }
 
         // 추가된 이미지 삭제 버튼
-        ivDelete.setOnClickListener{
+        ivDelete.setOnClickListener {
             ivUpload.setImageBitmap(null)
             imgCamUpload = false
             imgPhotoUpload = false
             ivDelete.visibility = View.INVISIBLE
         }
     }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -262,4 +290,3 @@ class BoardWriteActivity : AppCompatActivity() {
         }
     }
 }
-
