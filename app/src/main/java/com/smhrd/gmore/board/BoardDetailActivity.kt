@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.smhrd.gmore.R
 import java.io.BufferedReader
+import java.io.ByteArrayOutputStream
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
@@ -60,12 +63,11 @@ class BoardDetailActivity : AppCompatActivity() {
         boardLike = findViewById(R.id.boardLike)
         btnBoradDelete = findViewById(R.id.btnBoradDelete)
         btnBoradUpdate = findViewById(R.id.btnBoradUpdate)
-        val sharedPreferences = getSharedPreferences("sdf", Context.MODE_PRIVATE)
-        login_id = sharedPreferences.getString("selected_login_id", "1") ?: "1"
-        login_nick = sharedPreferences.getString("userNick", "1") ?: "1"
-
+        val spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+        login_id = spf.getString("userId", "").toString()   // 유저코드 값 불러오기
+        login_nick = spf.getString("userNick", "").toString() // 닉네임 값 불러오기
         boardId =  intent.getIntExtra("selected_board_id", -1).toString()
-        Log.d("boardId??? : ", boardId)
+        Log.d("boardId??? : ", login_id)
         fetchBoardDetail()
         fetchComments()
         var isBookmarked = false // 북마크 상태를 저장하는 변수 (기본값: false)
@@ -110,8 +112,9 @@ class BoardDetailActivity : AppCompatActivity() {
                 putExtra("writer", tvBoardWriter.text.toString())
                 putExtra("date", tvBoardDate.text.toString())
                 putExtra("content", tvBoardContent.text.toString())
-                // 이미지 URL을 변수로 가져올 수 있는 경우 다음 변수 이름을 사용합니다.
-                // putExtra("image_url", imaivInputAddgeUrl)
+                if (ivBoardImage.drawable != null) {
+                    putExtra("base64_image", bitmapToBase64((ivBoardImage.drawable as BitmapDrawable).bitmap))
+                }
             }
             startActivity(intent)
         }
@@ -120,11 +123,11 @@ class BoardDetailActivity : AppCompatActivity() {
 private fun fetchBoardDelete() {
     thread {
         try {
-            val urlString = "http://172.30.1.24:8888/board/detail/$boardId/delete"
+            val urlString = "http://172.30.1.11:8888/board/detail/$boardId/delete"
             val url = URL(urlString)
             val conn = url.openConnection() as HttpURLConnection
 
-            conn.requestMethod = "GET"
+            conn.requestMethod = "DELETE"
 
             val `in` = BufferedReader(InputStreamReader(conn.inputStream))
             val response = StringBuilder()
@@ -188,18 +191,40 @@ private fun fetchBoardDelete() {
                     tvBoardWriter.text = boardDetail.nickname
                     tvBoardDate.text = boardDetail.date_created
                     tvBoardContent.text = boardDetail.content
-
-                    // 이미지 로드
-                    val bitmapImage = decodeBase64ToBitmap(boardDetail.image_url ?: "")
-                    if (bitmapImage != null) {
-                        ivBoardImage.setImageBitmap(bitmapImage)
+                    if (boardDetail.nickname == login_nick) {
+                        btnBoradDelete.visibility = View.VISIBLE
+                        btnBoradUpdate.visibility = View.VISIBLE
+                    } else {
+                        btnBoradDelete.visibility = View.GONE
+                        btnBoradUpdate.visibility = View.GONE
                     }
-                }
+                    if (boardDetail.image_url != null) {
+                        // 이미지 로드
+                        val bitmapImage = decodeBase64ToBitmap(boardDetail.image_url)
+                        if (bitmapImage != null) {
+                            ivBoardImage.setImageBitmap(bitmapImage)
+                        }
+                    }
 
+                    // 게시물 작성자와 현재 로그인한 사용자가 동일할 때 삭제 버튼을 표시
+
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun bitmapToBase64(bitmap: Bitmap): String {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        return Base64.encodeToString(byteArray, Base64.DEFAULT)
+    }
+
+    fun base64ToBitmap(base64: String): Bitmap {
+        val imageBytes = Base64.decode(base64, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
 
     private fun decodeBase64ToBitmap(base64: String): Bitmap? {
@@ -215,7 +240,7 @@ private fun fetchBoardDelete() {
     private fun fetchComments() {
         thread {
             try {
-                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/comments"
+                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/comments"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -254,7 +279,7 @@ private fun fetchBoardDelete() {
     private fun updateBookmark(isBookmarked: Boolean) {
         thread {
             try {
-                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/1/$isBookmarked/book"
+                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/${login_id}/$isBookmarked/book"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -268,11 +293,16 @@ private fun fetchBoardDelete() {
             }
         }
     }
+    override fun onBackPressed() {
+        val intent = Intent(this, GameCategoryActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 
     private fun updateLike(isLiked: Boolean) {
         thread {
             try {
-                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/1/$isLiked/like"
+                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/${login_id}/$isLiked/like"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -297,15 +327,16 @@ private fun fetchBoardDelete() {
 
         thread {
             try {
-                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/newcomment/${login_id}"
+                val urlString = "http://172.30.1.11:8888/board/detail/$boardId/newcomment/$login_id"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
                 conn.requestMethod = "POST"
-                conn.doInput = true
                 conn.doOutput = true
-
-                val postData = "content=${content}".toByteArray(Charsets.UTF_8)
+                // 댓글 내용을 서버로 전송하기 위한 설정
+                val body = "content=$content"
+                val postData = body.toByteArray(Charsets.UTF_8)
+                conn.setRequestProperty("Content-Length", postData.size.toString())
                 conn.outputStream.write(postData)
 
                 val responseCode = conn.responseCode
@@ -328,6 +359,7 @@ private fun fetchBoardDelete() {
             }
         }
     }
+
 
 
 

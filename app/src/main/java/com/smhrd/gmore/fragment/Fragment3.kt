@@ -1,5 +1,6 @@
 package com.smhrd.gmore.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,7 +22,7 @@ class Fragment3 : Fragment() {
 
     private lateinit var rvFavorites: RecyclerView
     private lateinit var favoriteAdapter: FavoriteAdapter
-
+    var login_id:  String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,15 +38,17 @@ class Fragment3 : Fragment() {
         rvFavorites.layoutManager = LinearLayoutManager(requireContext())
         favoriteAdapter = FavoriteAdapter(emptyList())
         rvFavorites.adapter = favoriteAdapter
-
+        val spf = requireActivity().getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+        login_id = spf.getString("userId", "1")
         // 데이터 가져오기
         fetchFavorites()
+
     }
 
     private fun fetchFavorites() {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/favorites/1"
+                val urlString = "http://172.30.1.11:8888/favorites/${login_id}"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
