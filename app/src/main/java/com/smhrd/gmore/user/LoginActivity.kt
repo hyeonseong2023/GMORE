@@ -190,7 +190,6 @@ class LoginActivity : AppCompatActivity() {
                             )
                             var loginedID = user.kakaoAccount?.email!!
 
-
                             checkEmail(loginedID) { isEmailExists ->
                                 if (isEmailExists) {
                                     get_userID(loginedID)
