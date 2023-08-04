@@ -31,6 +31,7 @@ import com.smhrd.gmore.MainActivity
 
 import com.smhrd.gmore.R
 import com.smhrd.gmore.user.EditProfileActivity
+import com.smhrd.gmore.user.LoginActivity
 import com.smhrd.gmore.user.MyPageBoardList
 import com.smhrd.gmore.user.User_VO
 import java.io.ByteArrayOutputStream
@@ -45,7 +46,8 @@ class Fragment4 : Fragment() {
     // 로그인 유저 정보 담을 변수
     lateinit var userEmail: String
     lateinit var userNick: String
-    var userId = 0
+    lateinit var userId:String
+    lateinit var userImg:String
 
     lateinit var intent: Intent
 
@@ -76,28 +78,48 @@ class Fragment4 : Fragment() {
         btnBoardListMypage = view.findViewById(R.id.btnBoardListMypage)
         btnLogoutMypage = view.findViewById(R.id.btnLogoutMypage)
 
+         reqQueue = Volley.newRequestQueue(requireActivity())
 
         // ✨ SharedPreference 생성
         //url 값 저장 (SharedPreference -> 내부 메모리)
         val spf = requireActivity().getSharedPreferences("userSPF", Context.MODE_PRIVATE)
-
-
         // 저장 - editor 사용
         val editor = spf.edit()
-//        editor.putString("userEmail", "user1@example.com")
-//        editor.putString("userNick","User1")
-//        editor.putInt("userId",1)
-//        editor.commit()
 
 
         // spf 에서 유저 정보 가져와 textView에 출력
 
         userEmail = spf.getString("loginEmail", "")!!
+        Log.d("유저이메일MYPAGE",userEmail)
         userNick = spf.getString("loginNick", "")!!
-        userId = spf.getInt("loginId",0)
+        userId = spf.getString("loginId","")!!
 
         tvIdMypage.text = userEmail
         tvNickMypage.text = userNick
+        // 로그인 유저 이미지 가져오기
+        val request = object : StringRequest(
+            Request.Method.POST,
+            "http://172.30.1.40:8888/user/getimg",
+            { response ->
+                Log.d("response", response.toString())
+
+                val imageBytes = Base64.decode(response, 0)
+                val image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                imgProfileMypage.setImageBitmap(image)
+
+            }, { error ->
+                Log.d("error", error.toString())
+            }
+        ) {
+            override fun getParams(): MutableMap<String, String>? {
+
+                val params: MutableMap<String, String> = HashMap<String, String>()
+                params.put("getimg", userEmail)
+                return params
+            }
+        }
+        reqQueue.add(request)
+
 
 
         // 쓰기기 /읽기 권한 설정 확인용 변수 선언
@@ -164,11 +186,10 @@ class Fragment4 : Fragment() {
             val editor = spf.edit()
 
 
-            editor.remove("userEmail")
-            editor.remove("userNick")
-            editor.commit()
 
-            intent = Intent(requireActivity(),MainActivity::class.java)
+            editor.clear()
+            editor.apply()
+            intent = Intent(requireActivity(),LoginActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
         }

@@ -75,7 +75,7 @@ router.post('/login', (req, res) => {
 	console.log("로그인 req.body는? ", req.body.LoginMember);
 	let { id, pw } = JSON.parse(req.body.LoginMember);
 	let sql = 'select user_id as id, nickname as nick from ' + tb_name + ' where email = ? and password = ?';
-   
+
 	conn.query(sql, [id, pw], (err, rows) => {
 	  console.log(rows);
 	  if (err) {
@@ -87,6 +87,7 @@ router.post('/login', (req, res) => {
 	   } else { //-> 로그인 성공
 		 // Array로 반환된 rows를 JSON 객체 형태로 변환합니다.
 		 const responseObject = { members: rows };
+		 console.log("로그인",rows);
 		 res.send(responseObject);
 	   }
 	  }

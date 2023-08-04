@@ -21,11 +21,12 @@ import org.json.JSONArray
 
 class MyPageBoardList : AppCompatActivity() {
 
+    lateinit var tvTitleMyBoard : TextView
     lateinit var rvMyBoard: RecyclerView
     var data = ArrayList<BoardDetailVO>()
 
     lateinit var requestQueue: RequestQueue
-    var userId = 0
+   lateinit var userId : String
 
 //    lateinit var adapter: MyPageBoardAdapter
     lateinit var board : BoardDetailVO
@@ -36,19 +37,20 @@ class MyPageBoardList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page_board_list)
 
+        // 작성 게시글 없을시 텍스트 표시할 뷰
+        tvTitleMyBoard = findViewById(R.id.tvTitleMyBoard)
+
         requestQueue = Volley.newRequestQueue(this@MyPageBoardList)
         rvMyBoard = findViewById(R.id.rvMyBoard)
 
 
         // spf 이용해 로그인 유저 데이터 받아오기
-        val spf = getSharedPreferences(
-            "userSPF",
-            Context.MODE_PRIVATE
-        )
+        val spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
+
 
         // spf 에서 user 데이터 가져오기
-        userId = spf.getInt("userId", 0)
-        Log.d("리스트인덱스", userId.toString())
+        userId = spf.getString("loginId", "")!!
+        Log.d("리스트인덱스", userId)
         val request = object : StringRequest(
             Request.Method.POST,
             "http://172.30.1.40:8888/user/boardlist",
@@ -56,31 +58,30 @@ class MyPageBoardList : AppCompatActivity() {
                 Log.d("response", response.toString())
 
 
+                if (response.toString().equals("NODATA")) {
+                    tvTitleMyBoard.text = "작성한 게시물이 없습니다"
+                } else {
 
-
-                var result = JSONArray(response)
-                for (i in 0 until result.length()) {
-                    // 여기 수정 -> board 전역 변수로 변경
-                     board = Gson().fromJson(result.get(i).toString(), BoardDetailVO::class.java)
-                    data.add(board)
+                    var result = JSONArray(response)
+                    for (i in 0 until result.length()) {
+                        // 여기 수정 -> board 전역 변수로 변경
+                        board = Gson().fromJson(result.get(i).toString(), BoardDetailVO::class.java)
+                        data.add(board)
 //                    adapter = MyPageBoardAdapter(applicationContext, R.layout.myboardtemplate, data)
-
-
+                    }
+                    // ✨✨✨✨✨adapter 생성시 넘겨 주는 매개 변수 순서 잘 맞춰 주기
+                    var adapter =
+                        MyPageBoardAdapter(applicationContext, R.layout.myboardtemplate, data)
+                    rvMyBoard.layoutManager = LinearLayoutManager(this)
+                    rvMyBoard.adapter = adapter
                 }
-
-                // ✨✨✨✨✨adapter 생성시 넘겨 주는 매개 변수 순서 잘 맞춰 주기
-                var adapter = MyPageBoardAdapter(applicationContext, R.layout.myboardtemplate, data)
-                rvMyBoard.layoutManager = LinearLayoutManager(this)
-                rvMyBoard.adapter = adapter
-
-
             }, { error ->
                 Log.d("error", error.toString())
             }
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params: MutableMap<String, String> = HashMap<String, String>()
-                params.put("userId", userId.toString())
+                params.put("userId", userId)
 
                 return params
             }

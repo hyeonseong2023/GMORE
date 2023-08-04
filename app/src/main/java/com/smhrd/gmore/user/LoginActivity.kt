@@ -125,6 +125,8 @@ class LoginActivity : AppCompatActivity() {
                         editor.putString("loginId", userId.toString())
                         editor.putString("loginNick", userNick)
                         editor.putString("loginEmail", etLoginId.text.toString())
+
+
                         editor.commit()
                         //✨혜주 spf 수정 끝✨
                         val i = Intent(this, GameCategoryActivity::class.java)

@@ -4,12 +4,45 @@ const router = express.Router()
 const db_config = require('../config/database')
 const {v4:uuidv4} = require('uuid')
 const fs = require('fs')
+const { encode } = require('punycode')
 
 
 const conn = db_config.init()
 db_config.connect(conn)
 
+//이미지 인코딩파일 보내기-mypage
+router.post('/getimg', (req, res)=>{
 
+    let email =req.body.getimg
+    console.log("마이페이지로그인이메일",email);
+    let sql = "select image_url from user where email=?"
+    conn.query(sql,[email], (err, rows)=>{
+     
+     
+       if(err){
+          console.log(err)
+          res.send('Fail')
+       } else {
+        console.log("흠흠춘식",rows[0].image_url);
+        if(rows[0].image_url !=null){
+            console.log("흠흠춘식 null 아님",rows[0].image_url);
+            let readFile = fs.readFileSync('public/img/user/'+email+'.jpg'); //이미지 파일 읽기
+            let encode = Buffer.from(readFile).toString('base64'); //파일 인코딩
+            // console.log("이미지보내",encode);
+            res.send(encode)
+        }else{
+            console.log("흠흠춘식 null 임",rows[0].image_url);
+            let readFile = fs.readFileSync('public/img/user/img16.PNG'); //이미지 파일 읽기
+          let encode = Buffer.from(readFile).toString('base64'); //파일 인코딩
+        //   console.log("이미지보내",encode);
+          res.send(encode)
+        }
+        
+       }
+
+    
+    })
+})
 router.post('/updateimg', (req, res) => {
 
     // 데이터 파싱해주기
@@ -24,14 +57,14 @@ router.post('/updateimg', (req, res) => {
     // 랜덤한 id(중복되지 않는 랜덤한 문자열) 생성
     const uuid = uuidv4() //  바로 파일이름으로 사용
     //파일 저장되는 기본 경롤 : 프로젝트 폴더 바로 아래 (기준)
-    fs.writeFileSync('public/img/user/'+uuid+'.jpg',decode)
+    fs.writeFileSync('public/img/user/'+email+'.jpg',decode)
 
 
   
      let sql = "update user set image_url=? where email=?"
     //  테스트 쿼리
     // let sql = "update user set img=?"
-    conn.query(sql,[uuid,email],(err,rows)=>{
+    conn.query(sql,[email,email],(err,rows)=>{
         if(err){
             console.log(err)
         }else{
@@ -83,10 +116,10 @@ console.log("춘식이랑닉네임",JSON.parse(req.body.editPageData).nick)
     let sendData
 
     // JSON.parse(req.body.editPageData).
-    if(password==null){
+    if(password==null||password==""){
         sql = "update user set nickname=? where email=?"
         sendData =[nick,email]
-    }else if(nick==null){
+    }else if(nick==null||nick==""){
         sql = "update user set password=? where email=?"
         sendData =[password,email]
     }else{
@@ -106,6 +139,44 @@ console.log("춘식이랑닉네임",JSON.parse(req.body.editPageData).nick)
         }
     })
 
+})
+
+
+
+
+
+router.post('/boardlist', (req, res) => {
+
+    console.log(req.body.userId)
+   
+    let getuserBoard = req.body.userId
+   
+    let sql = "select * from board where user_id=?"
+    conn.query(sql,[getuserBoard],(err,rows)=>{
+
+        
+        if(err){
+            console.log(err)
+        }else{
+            if(rows.length>0){
+                for(let i = 0; i < rows.length; i++){
+                    if(rows[i].image_url != null){
+    console.log(rows[i].image_url)
+
+    // let readFile = fs.readFileSync('public/img/board/'+email+'.jpg'); //이미지 파일 읽기
+    // let encode = Buffer.from(readFile).toString('base64'); //파일 인코딩
+
+                    }
+                }
+            res.send(rows)
+        
+            }else{
+            res.send('NODATA')
+            }
+        }
+    })
+    //res는 한 번만
+    // res.send("보드데이터OK")
 })
 
 module.exports = router

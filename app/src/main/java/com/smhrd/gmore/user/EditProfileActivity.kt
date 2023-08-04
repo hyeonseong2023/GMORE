@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import com.smhrd.gmore.MainActivity
 import com.smhrd.gmore.R
 import com.smhrd.gmore.fragment.Fragment4
 import org.json.JSONArray
@@ -121,11 +122,11 @@ class EditProfileActivity : AppCompatActivity() {
                             // ✨ spf에 변경한 유저 정보 담아주기
                             val spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)
                             val editor = spf.edit()
-                            editor.putString("userNick",etNickEditProfile.text.toString())
+                            editor.putString("loginNick",etNickEditProfile.text.toString())
                             editor.commit()
 
                             // 마이페이지로 화면 이동
-                            var it = Intent(this@EditProfileActivity,Fragment4::class.java)
+                            var it = Intent(this@EditProfileActivity,MainActivity::class.java)
                             startActivity(it)
                             finish()
                         }
