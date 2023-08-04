@@ -6,6 +6,7 @@ db.connect(connection);
 
 router.get('/:user_id', (req, res) => {
   const user_id = req.params.user_id;
+  console.log(req.params.user_id);
   const queryString = `
     SELECT 
       board.title as categoryTitle,
@@ -27,8 +28,11 @@ router.get('/:user_id', (req, res) => {
       res.sendStatus(500);
       return;
     }
+    else{
+      console.log(rows);
+      res.send(rows)
+    }
 
-    res.send(rows);
   });
 });
 

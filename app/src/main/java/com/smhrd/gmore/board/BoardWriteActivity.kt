@@ -121,7 +121,7 @@ class BoardWriteActivity : AppCompatActivity() {
             val inputContent = etWriteContent.text.toString()
             val request = object : StringRequest(
                 Request.Method.POST,
-                "http://172.30.1.11:8888/board/write",
+                "http://172.30.1.40:8888/board/write",
 //                "http://localhost:8888/board/write",
                 { response ->
                     Log.d("response", response.toString())

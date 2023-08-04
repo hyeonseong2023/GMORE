@@ -30,8 +30,13 @@ class MyPageBoardAdapter (var context: Context, var template: Int, var data:Arra
                clickidx = data.get(position).board_id!!
                Log.d("클릭한 idx",clickidx.toString())
                // Intent 통해 해당 게시글 페이지로 넘기기
-               var intent = Intent(context,BoardDetailActivity::class.java)
-               intent.putExtra("boardIdx",clickidx)
+//               var intent = Intent(context,BoardDetailActivity::class.java)
+//               intent.putExtra("selected_board_id",clickidx)
+//               context.startActivity(intent)
+
+               val intent = Intent(context, BoardDetailActivity::class.java)
+               intent.putExtra("selected_board_id", clickidx)
+               intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                context.startActivity(intent)
 
            }

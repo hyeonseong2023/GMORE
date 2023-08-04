@@ -93,5 +93,25 @@ router.post('/login', (req, res) => {
 	  }
 	});
    });
+
+  
+router.get('/getuserid/:email', (req, res)=>{
+   let email = req.params.email
+   let sql = 'select user_id, nickname from user where email = ?'
+
+   conn.query(sql, [email], (err, rows) => {
+      if(err) {
+         console.log("실패", err)
+         res.send("Fail");
+      } else {
+         if(rows == '') {
+            res.send("Fail")
+         } else {
+            console.log("getuserid", rows)
+            res.send(rows)
+         }
+      }      
+   })   
+})
    
 module.exports = router

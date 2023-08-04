@@ -18,6 +18,7 @@ import com.google.gson.Gson
 import com.smhrd.gmore.R
 import com.smhrd.gmore.board.BoardDetailVO
 import org.json.JSONArray
+import org.json.JSONObject
 
 class MyPageBoardList : AppCompatActivity() {
 
@@ -62,11 +63,30 @@ class MyPageBoardList : AppCompatActivity() {
                     tvTitleMyBoard.text = "작성한 게시물이 없습니다"
                 } else {
 
-                var result = JSONArray(response)
+//                var result = JSONArray(response)
+                    var result = JSONArray(response)
                 for (i in 0 until result.length()) {
+                    Log.d("데이터길이",result.length().toString())
                     // 여기 수정 -> board 전역 변수로 변경
-                    board = Gson().fromJson(result.get(i).toString(), BoardDetailVO::class.java)
-                    data.add(board)
+//                    board = Gson().fromJson(result.get(i).toString(), BoardDetailVO::class.java)
+
+                    // 데이터 파싱
+
+                    val board_id = result.getJSONObject(i).getInt("board_id")
+
+                    val user_id = result.getJSONObject(i).getString("user_id")
+                    val title = result.getJSONObject(i).getString("title")
+                    val content = result.getJSONObject(i).getString("content")
+                    val image_url = result.getJSONObject(i).getString("image_url")
+                    Log.d("파싱데이터", image_url.toString())
+                    val category = result.getJSONObject(i).getString("category")
+//                    val date = result.getString("date")
+                    val date = result.getJSONObject(i).getString("date")
+
+                    var newBoard : BoardDetailVO = BoardDetailVO(board_id,title,content,image_url,category,user_id.toInt(),date,null)
+                    data.add(newBoard)
+
+//                    data.add(board)
 
 //                    adapter = MyPageBoardAdapter(applicationContext, R.layout.myboardtemplate, data)
                     }

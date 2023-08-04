@@ -193,7 +193,7 @@ class EditProfileActivity : AppCompatActivity() {
             ) {
                 override fun getParams(): MutableMap<String, String> {
                     val params: MutableMap<String, String> = HashMap<String, String>()
-                    params.put("deleteData", userEmail.toString())
+                    params.put("deleteData", userid.toString())
                     return params
                 }
             }

@@ -107,7 +107,7 @@ class BoardEditActivity : AppCompatActivity() {
             val inputContent = etEditContent.text.toString()
             val request = object : StringRequest(
                 Request.Method.POST,
-                "http://172.30.1.29:8888/board/update", // board_id
+                "http://172.30.1.40:8888/board/update", // board_id
 //                "http://localhost:8888/board/write",
                 { response ->
                     Log.d("response", response.toString())
