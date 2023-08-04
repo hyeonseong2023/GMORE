@@ -47,9 +47,9 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-    var reqURL : String = "http://172.30.1.24:8888/"
+//    var reqURL : String = "http://211.223.144.120:8888/"
 
-//    var reqURL: String = "http://172.30.1.29:8888/"
+    var reqURL: String = "http://172.30.1.24:8888/"
 
 
 
