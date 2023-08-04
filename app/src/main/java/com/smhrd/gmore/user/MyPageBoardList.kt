@@ -62,11 +62,12 @@ class MyPageBoardList : AppCompatActivity() {
                     tvTitleMyBoard.text = "작성한 게시물이 없습니다"
                 } else {
 
-                    var result = JSONArray(response)
-                    for (i in 0 until result.length()) {
-                        // 여기 수정 -> board 전역 변수로 변경
-                        board = Gson().fromJson(result.get(i).toString(), BoardDetailVO::class.java)
-                        data.add(board)
+                var result = JSONArray(response)
+                for (i in 0 until result.length()) {
+                    // 여기 수정 -> board 전역 변수로 변경
+                    board = Gson().fromJson(result.get(i).toString(), BoardDetailVO::class.java)
+                    data.add(board)
+
 //                    adapter = MyPageBoardAdapter(applicationContext, R.layout.myboardtemplate, data)
                     }
                     // ✨✨✨✨✨adapter 생성시 넘겨 주는 매개 변수 순서 잘 맞춰 주기

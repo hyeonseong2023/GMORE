@@ -135,7 +135,7 @@
         app:layout_constraintGuide_percent="0.8" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/edtComment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
@@ -157,17 +157,17 @@
     <ImageView
         android:id="@+id/boardBookmark"
         android:layout_width="39dp"
-        android:layout_height="32dp"
+        android:layout_height="33dp"
         app:layout_constraintBottom_toBottomOf="@+id/boardLike"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintTop_toTopOf="@+id/boardLike"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/btn_star_big_off" />
+        app:srcCompat="@drawable/star_off" />
 
     <ImageView
         android:id="@+id/boardLike"
-        android:layout_width="31dp"
-        android:layout_height="29dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="4dp"
         android:padding="1dp"
@@ -175,7 +175,7 @@
         app:layout_constraintEnd_toStartOf="@+id/boardBookmark"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:srcCompat="@drawable/hartoff" />
+        app:srcCompat="@drawable/icon_like_off" />
 
     <Button
         android:id="@+id/btnBoradUpdate"
@@ -183,6 +183,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/main"
         android:text="수정"
+        android:visibility="invisible"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalTop"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
