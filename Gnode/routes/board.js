@@ -30,6 +30,22 @@ router.post('/', (req, res) => {
 	});
 });
 
+router.get('/category', (req, res) => { // 받는 코드 추가해야함!
+    let category = req.query.category;
+    console.log('Category received:', category);
+
+    let sql = "select title as categoryTitle, user.nickname as categoryNick, DATE_FORMAT(board.date_created, '%m-%d %H:%i') as categoryDate, count(likes.board_id) as categoryLikeCnt, board.board_id from board left join likes on board.board_id = likes.board_id left join user on board.user_id = user.user_id where board.category = ? group by board.board_id order by board.board_id desc";
+    conn.query(sql, [category], (err, rows) => {
+        if (err) {
+            console.log(err);
+            res.send('Fail..')
+        } else {
+            console.log('OK! : ', rows);
+            res.send(rows)
+        }
+    })
+})
+
 
 function encodeImageToBase64(filePath, callback) {
 	fs.readFile(filePath, (err, data) => {
