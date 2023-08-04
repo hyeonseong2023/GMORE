@@ -76,7 +76,8 @@ class BoardEditActivity : AppCompatActivity() {
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
         val date = intent.getStringExtra("date")
-        val image = "이미지"
+//        val image
+        Log.d("비트맵",intent.getStringExtra("base64_image").toString())
 
         etEditTitle.setText(title)
         etEditContent.setText(content)
