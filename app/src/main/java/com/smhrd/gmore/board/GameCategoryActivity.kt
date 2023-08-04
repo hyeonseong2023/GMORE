@@ -40,6 +40,7 @@ class GameCategoryActivity : AppCompatActivity() {
     lateinit var spf: SharedPreferences
     lateinit var ivCategoryBack : ImageView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_category)

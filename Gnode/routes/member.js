@@ -75,22 +75,23 @@ router.post('/login', (req, res) => {
 	console.log("로그인 req.body는? ", req.body.LoginMember);
 	let { id, pw } = JSON.parse(req.body.LoginMember);
 	let sql = 'select user_id as id, nickname as nick from ' + tb_name + ' where email = ? and password = ?';
-   
+
 	conn.query(sql, [id, pw], (err, rows) => {
-	  console.log(rows);
-	  if (err) {
-	   console.log("실패", err);
-	   res.send("Fail");
-	  } else {
-	   if (rows == '') { // 없는 정보 -> 로그인 실패
-		 res.send("fail");
-	   } else { //-> 로그인 성공
-		 // Array로 반환된 rows를 JSON 객체 형태로 변환합니다.
-		 const responseObject = { members: rows };
-		 res.send(responseObject);
-	   }
-	  }
+		console.log(rows);
+		if (err) {
+			console.log("실패", err);
+			res.send("Fail");
+		} else {
+			if (rows == '') { // 없는 정보 -> 로그인 실패
+				res.send("fail");
+			} else { //-> 로그인 성공
+				// Array로 반환된 rows를 JSON 객체 형태로 변환합니다.
+				const responseObject = { members: rows };
+				res.send(responseObject);
+			}
+		}
 	});
+<<<<<<< HEAD
    });
 
 router.get('/getuserid/:email', (req, res)=>{
@@ -112,4 +113,28 @@ router.get('/getuserid/:email', (req, res)=>{
    })   
 })
    
+=======
+});
+
+
+router.get('/getuserid/:email', (req, res)=>{
+	let email = req.params.email
+	let sql = 'select user_id, nickname from user where email = ?'
+
+	conn.query(sql, [email], (err, rows) => {
+		if(err) {
+			console.log("실패", err)
+			res.send("Fail");
+		} else {
+			if(rows == '') {
+				res.send("Fail")
+			} else {
+				console.log("getuserid", rows)
+				res.send(rows)
+			}
+		}		
+	})	
+})
+
+>>>>>>> main
 module.exports = router

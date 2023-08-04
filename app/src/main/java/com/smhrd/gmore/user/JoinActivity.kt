@@ -46,7 +46,7 @@ class JoinActivity : AppCompatActivity() {
     var isNickOk : Boolean = false
 
 
-    var reqURL : String = "http://172.30.1.15:8888/"
+    var reqURL : String = "http://172.30.1.24:8888/"
 
     lateinit var binding : ActivityJoinBinding
     val constraintSet = ConstraintSet()
@@ -163,8 +163,11 @@ class JoinActivity : AppCompatActivity() {
                     isPwOk = true
                     checkJoin()
                     Log.d("비밀번호 일치", "비밀번호가 일치함.")
+                    Toast.makeText(this@JoinActivity, "비밀번호가 일치함", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this,"가능",Toast.LENGTH_SHORT)
                 } else {
                     Log.d("비밀번호 일치", "비밀번호가 불일치함.")
+                    Toast.makeText(this@JoinActivity, "비밀번호가 불일치함", Toast.LENGTH_SHORT).show()
                     isPwOk = false
                     checkJoin()
                 }

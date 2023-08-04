@@ -3,6 +3,7 @@ package com.smhrd.gmore
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import com.smhrd.gmore.databinding.ActivityMainBinding
 import com.smhrd.gmore.fragment.ChatRoomFragment
 import com.smhrd.gmore.fragment.Fragment1
@@ -12,6 +13,7 @@ import com.smhrd.gmore.fragment.Fragment4
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityMainBinding
+    lateinit var tvMainTitle : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +25,15 @@ class MainActivity : AppCompatActivity() {
         var loginedID = spf.getString("loginedId", "-")
 
         binding.tvTest112.text = loginedID
+        tvMainTitle = binding.tvMainTitle
+
+        tvMainTitle.setOnClickListener {
+            supportFragmentManager.beginTransaction().replace(
+                R.id.fl,
+                Fragment1()
+            ).commit()
+        }
+
 
         // ------------------------------------------------------------------------------------------------------------------------------------------------
 
