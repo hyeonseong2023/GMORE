@@ -1,10 +1,10 @@
 # 🖥 프로젝트 소개 (팀명: GMORE)
 ### Firebase와 Node.js, MySQL, Kotlin을 활용한 게임 커뮤니티
-
+![KakaoTalk_20230804_164307798](https://github.com/2023-SMHRD-SW-Fullstack-1/GMORE/assets/130417959/03201836-e67e-4a7a-8c0d-4c2bd6f8e5b7)
 
 
 # 📝프로젝트 설명
-GMORE 는 게임별로 소통을 좀 더 쉽게 할 수 있도록 커뮤니티 서비스는 제공하는 어플 입니다.
+GMORE는 각 게임별로 소통을 좀 더 쉽게 할 수 있도록 커뮤니티 서비스는 제공하는 어플 입니다.
 각 게임별로 사용자들과 소통하며 정보를 공유 할 수 있습니다.
 
 
@@ -25,6 +25,6 @@ GMORE 는 게임별로 소통을 좀 더 쉽게 할 수 있도록 커뮤니티 �
   - 채팅 : 실시간 채팅
   
 # 서비스흐름도
-
+![20230804](https://github.com/2023-SMHRD-SW-Fullstack-1/GMORE/assets/130417959/8c1b7889-c3a3-4e56-b1d0-39255dda3223)
   
 # 🎥 시연 영상
