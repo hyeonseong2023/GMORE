@@ -28,3 +28,4 @@ GMORE는 각 게임별로 소통을 좀 더 쉽게 할 수 있도록 커뮤니�
 ![20230804](https://github.com/2023-SMHRD-SW-Fullstack-1/GMORE/assets/130417959/8c1b7889-c3a3-4e56-b1d0-39255dda3223)
   
 # 🎥 시연 영상
+https://github.com/2023-SMHRD-SW-Fullstack-1/GMORE/assets/130417959/0b5cb828-0f04-45aa-92a1-1f36b3a4ff51
