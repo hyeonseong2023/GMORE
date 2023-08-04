@@ -40,6 +40,7 @@ class GameCategoryActivity : AppCompatActivity() {
     lateinit var spf: SharedPreferences
     lateinit var ivCategoryBack : ImageView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_category)
@@ -48,6 +49,7 @@ class GameCategoryActivity : AppCompatActivity() {
         tvCategoryName = this.findViewById(R.id.tvCategoryListName1)
         btnWriteNext = this.findViewById(R.id.btnNextWrite)
         ivCategoryBack = this.findViewById(R.id.ivCategoryBack)
+
         reqQueue = Volley.newRequestQueue(this@GameCategoryActivity)
 
         spf = getSharedPreferences("userSPF", Context.MODE_PRIVATE)

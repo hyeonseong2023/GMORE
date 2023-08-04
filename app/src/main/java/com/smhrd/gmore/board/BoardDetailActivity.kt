@@ -123,7 +123,7 @@ class BoardDetailActivity : AppCompatActivity() {
 private fun fetchBoardDelete() {
     thread {
         try {
-            val urlString = "http://172.30.1.11:8888/board/detail/$boardId/delete"
+            val urlString = "http://172.30.1.24:8888/board/detail/$boardId/delete"
             val url = URL(urlString)
             val conn = url.openConnection() as HttpURLConnection
 
@@ -165,7 +165,7 @@ private fun fetchBoardDelete() {
     private fun fetchBoardDetail() {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}"
+                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
                 conn.requestMethod = "GET"
@@ -240,7 +240,7 @@ private fun fetchBoardDelete() {
     private fun fetchComments() {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/comments"
+                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/comments"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -279,7 +279,7 @@ private fun fetchBoardDelete() {
     private fun updateBookmark(isBookmarked: Boolean) {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/${login_id}/$isBookmarked/book"
+                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/${login_id}/$isBookmarked/book"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -302,7 +302,7 @@ private fun fetchBoardDelete() {
     private fun updateLike(isLiked: Boolean) {
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/${boardId}/${login_id}/$isLiked/like"
+                val urlString = "http://172.30.1.24:8888/board/detail/${boardId}/${login_id}/$isLiked/like"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
@@ -327,7 +327,7 @@ private fun fetchBoardDelete() {
 
         thread {
             try {
-                val urlString = "http://172.30.1.11:8888/board/detail/$boardId/newcomment/$login_id"
+                val urlString = "http://172.30.1.24:8888/board/detail/$boardId/newcomment/$login_id"
                 val url = URL(urlString)
                 val conn = url.openConnection() as HttpURLConnection
 
