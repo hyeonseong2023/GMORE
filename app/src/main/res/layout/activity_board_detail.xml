@@ -6,16 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".board.BoardDetailActivity">
 
+    <EditText
+        android:id="@+id/edtComment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:inputType="text"
+        android:letterSpacing="-0.04"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/ivInputAdd"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/tvBoardTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/main"
+        android:letterSpacing="-0.04"
         android:text="Title"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,68 +42,40 @@
         android:id="@+id/tvBoardWriter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:gravity="center"
+        android:letterSpacing="-0.04"
         android:text="Author"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalTop"
-        app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toTopOf="@+id/guideline9"
-        app:layout_constraintVertical_bias="0.48000002" />
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <TextView
         android:id="@+id/tvBoardDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="5dp"
+        android:letterSpacing="-0.04"
         android:text="Date"
+        android:maxLength="10"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintTop_toBottomOf="@id/tvBoardTitle" />
-
-    <ScrollView
-        android:id="@+id/svBoardContent"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/boardBookmark"
-        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalTop"
-        app:layout_constraintVertical_bias="1.0">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <TextView
-                android:id="@+id/tvBoardContent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Content" />
-
-            <ImageView
-                android:id="@+id/ivBoardImage"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                app:srcCompat="@drawable/ic_launcher_background" />
-
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalTop" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontalTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.13" />
+        app:layout_constraintGuide_percent="0.16" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontalBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineEnd"
@@ -115,9 +103,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvComments"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="379dp"
+        android:layout_height="80dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
         android:padding="1dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -132,27 +121,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8" />
-
-    <EditText
-        android:id="@+id/edtComment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toStartOf="@+id/ivInputAdd"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintGuide_percent="0.88" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <ImageView
         android:id="@+id/boardBookmark"
@@ -179,24 +155,27 @@
 
     <Button
         android:id="@+id/btnBoradUpdate"
-        android:layout_width="85dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/main"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:backgroundTint="#D7D7D7"
         android:text="수정"
+        android:textSize="16sp"
         android:visibility="invisible"
-        app:cornerRadius="10dp"
+        app:cornerRadius="5dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalTop"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <Button
         android:id="@+id/btnBoradDelete"
-        android:layout_width="85dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/main"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#D8D8D8"
         android:text="삭제"
+        android:textSize="16sp"
         android:visibility="invisible"
+        app:cornerRadius="5dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalTop"
         app:layout_constraintEnd_toStartOf="@+id/btnBoradUpdate"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
@@ -206,6 +185,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.07" />
+        app:layout_constraintGuide_percent="0.1" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalBottom"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/tvBoardDate"
+        app:layout_constraintVertical_bias="0.006">
+
+        <TextView
+            android:id="@+id/tvBoardContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:letterSpacing="-0.04"
+            android:text="Content"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivBoardImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitStart"
+        app:layout_constraintBottom_toTopOf="@+id/boardLike"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:letterSpacing="-0.04"
+        android:text="작성자 : "
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

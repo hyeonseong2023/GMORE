@@ -123,7 +123,7 @@ class BoardDetailActivity : AppCompatActivity() {
 private fun fetchBoardDelete() {
     thread {
         try {
-            val urlString = "http://172.30.1.11:8888/board/detail/$boardId/delete"
+            val urlString = "http://172.30.1.40:8888/board/detail/$boardId/delete"
             val url = URL(urlString)
             val conn = url.openConnection() as HttpURLConnection
 
