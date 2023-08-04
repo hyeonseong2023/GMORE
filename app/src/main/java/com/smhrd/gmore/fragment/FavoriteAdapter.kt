@@ -19,8 +19,9 @@ class FavoriteAdapter(private var favorites: List<Fragment3VO>) : RecyclerView.A
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val favorite = favorites[position]
-        // 데이터 바인딩
+        holder.bind(favorite)
     }
+
 
     override fun getItemCount(): Int {
         return favorites.size

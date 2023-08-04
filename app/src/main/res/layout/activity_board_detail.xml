@@ -135,7 +135,7 @@
         app:layout_constraintGuide_percent="0.8" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/edtComment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
@@ -183,6 +183,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/main"
         android:text="수정"
+        android:visibility="invisible"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalTop"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
