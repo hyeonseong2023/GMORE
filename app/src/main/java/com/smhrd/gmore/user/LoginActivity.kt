@@ -224,9 +224,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun get_userID(email: String) {
+        Log.d("Login", "get_userID 함수 실행")
         var request = object : StringRequest(Request.Method.GET,
             reqURL + "member/getuserid/" + email,
             { response ->
+                Log.d("Login", "getuserid response"+response)
                 var result = JSONArray(response).getJSONObject(0)
                 var code = result.getString("user_id").toString()
                 var nickname = result.getString("nickname").toString()
@@ -240,7 +242,7 @@ class LoginActivity : AppCompatActivity() {
                 var it_toMain = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(it_toMain)
             }, { err ->
-                Log.d("Login", err.toString())
+                Log.d("Login", "get_userID 에러 -> "+err.toString())
             }
         ) {}
         reqQue.add(request)
