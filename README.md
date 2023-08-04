@@ -1,4 +1,4 @@
-# 🖥 프로젝트 소개 (팀명: 맛잘알)
+# 🖥 프로젝트 소개 (팀명: GMORE)
 ### Firebase와 Node.js, MySQL, Kotlin을 활용한 게임 커뮤니티
 
 
