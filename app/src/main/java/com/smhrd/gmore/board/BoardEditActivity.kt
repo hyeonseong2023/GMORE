@@ -6,7 +6,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
@@ -16,8 +15,8 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -26,6 +25,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.smhrd.gmore.R
 import java.io.ByteArrayOutputStream
+
 class BoardEditActivity : AppCompatActivity() {
 
     lateinit var btnEditClose: ImageButton
@@ -36,10 +36,11 @@ class BoardEditActivity : AppCompatActivity() {
     lateinit var btnEditCam: ImageButton
     lateinit var ivEditUpload: ImageView
     lateinit var ivDelete: ImageButton
+    lateinit var imagebitmap : Bitmap
 
     lateinit var EditImgLine: View
     lateinit var reqQueue: RequestQueue
-    lateinit var encodeImgString: String
+    var encodeImgString: String = ""
     val STORAGE_CODE = 1000
 
     var imgCamUpload = false
@@ -76,12 +77,23 @@ class BoardEditActivity : AppCompatActivity() {
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
         val date = intent.getStringExtra("date")
-//        val image
-        Log.d("비트맵",intent.getStringExtra("base64_image").toString())
+        val image = intent.getStringExtra("base64_image").toString()
+        Log.d("image", intent.getStringExtra("base64_image").toString())
+
+        // 이미지 예외처리
+        // 불러온 이미지 String -> Bitmap
+        if(intent.getStringExtra("base64_image").toString() == "null"){ // 불러올 이미지가 없다면
+            ivDelete.visibility = View.INVISIBLE
+        }else{  // 불러올 이미지가 있다면
+            val imageBytes = Base64.decode(image, 0)
+            imagebitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+            ivEditUpload.setImageBitmap(imagebitmap)
+        }
+
+
 
         etEditTitle.setText(title)
         etEditContent.setText(content)
-//        ivEditUpload.setImageBitmap(image)
 
 
         // 뒤로가기 버튼
@@ -107,7 +119,7 @@ class BoardEditActivity : AppCompatActivity() {
             val inputContent = etEditContent.text.toString()
             val request = object : StringRequest(
                 Request.Method.POST,
-                "http://172.30.1.29:8888/board/update", // board_id
+                "http://172.30.1.11:8888/board/update", // board_id
 //                "http://localhost:8888/board/write",
                 { response ->
                     Log.d("response", response.toString())
