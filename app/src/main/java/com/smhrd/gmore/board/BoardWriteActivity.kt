@@ -254,11 +254,17 @@ class BoardWriteActivity : AppCompatActivity() {
                 val imageBitmap: Bitmap = extras?.get("data") as Bitmap
                 // ImageView에 Bitmap으로 이미지를 입력
                 ivUpload.setImageBitmap(imageBitmap)
+
+                val deviceWidth = imageBitmap.width
+                val deviceHeight = imageBitmap.height
+
+                Log.d("d", deviceWidth.toString())
                 val options = BitmapFactory.Options()
                 options.inSampleSize = 4
 
-                val resized = Bitmap.createScaledBitmap(imageBitmap, 300, 300, true)
-                encodeBitmapImg(resized)
+
+                val resized = Bitmap.createScaledBitmap(imageBitmap, 100, 100, true)
+                encodeBitmapImg(imageBitmap)
                 ivDelete.visibility = View.VISIBLE
                 writeImgLine.visibility = View.VISIBLE
             }
