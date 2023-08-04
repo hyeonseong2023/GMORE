@@ -47,11 +47,11 @@ class MyPageBoardList : AppCompatActivity() {
         )
 
         // spf 에서 user 데이터 가져오기
-        userId = spf.getInt("userId", 0)
+        userId = spf.getString("userId", "0")!!.toInt()
         Log.d("리스트인덱스", userId.toString())
         val request = object : StringRequest(
             Request.Method.POST,
-            "http://172.30.1.40:8888/user/boardlist",
+            "http://172.30.1.21:8888/user/boardlist",
             { response ->
                 Log.d("response", response.toString())
 
