@@ -61,7 +61,7 @@ class MyPageBoardList : AppCompatActivity() {
                 var result = JSONArray(response)
                 for (i in 0 until result.length()) {
                     // 여기 수정 -> board 전역 변수로 변경
-                     board = Gson().fromJson(result.get(i).toString(), BoardDetailVO::class.java)
+                    board = Gson().fromJson(result.get(i).toString(), BoardDetailVO::class.java)
                     data.add(board)
 //                    adapter = MyPageBoardAdapter(applicationContext, R.layout.myboardtemplate, data)
 

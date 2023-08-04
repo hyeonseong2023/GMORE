@@ -43,19 +43,14 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".HomeActivity"
-            android:exported="true" />
-        <activity
             android:name=".fragment.FragmentTest"
             android:exported="true"/>
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
 
-            <activity
-                android:name=".user.MyPageBoardList"
-                android:exported="false" />
-
-
+        <activity
+            android:name=".user.MyPageBoardList"
+            android:exported="false" />
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
@@ -72,11 +67,10 @@
         <activity
             android:name=".user.EditProfileActivity"
             android:exported="false" />
+
         <activity
             android:name=".chat.ChatActivity"
             android:exported="true">
-
-
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->

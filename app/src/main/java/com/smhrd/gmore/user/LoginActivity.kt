@@ -46,14 +46,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var reqQue: RequestQueue
 
 
-
-    var reqURL : String = "http://172.30.1.24:8888/"
-
-//    var reqURL: String = "http://172.30.1.29:8888/"
-
-
-
-
+    var reqURL: String = "http://172.30.1.21:8888/"
 
     lateinit var binding : ActivityLoginBinding
 
